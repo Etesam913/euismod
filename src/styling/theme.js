@@ -4,7 +4,8 @@ export const lightTheme = {
         secondaryFont: ""
     },
     colors:{
-
+        primary: "#282828",
+        background: "#ffffff"
     }
 }
 
@@ -14,6 +15,7 @@ export const darkTheme = {
         secondaryFont: ""
     },
     colors:{
-
+        primary: "#ffffff",
+        background: "#252525"
     }
 }

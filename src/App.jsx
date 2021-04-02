@@ -1,29 +1,21 @@
 import React, { useState } from "react";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-import { motion } from "framer-motion";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { HashRouter as Router, Route } from "react-router-dom";
 import { darkTheme, lightTheme } from "./styling/theme";
-import { Header1 } from "./styling/Headers";
-import { Moon, Sun } from "./SvgMaster";
+import Navbar from "./components/Navbar";
+import Home from "./Pages/Home";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <DarkModeButton
-        whileHover={{ scale: 1.15 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => {
-          setIsDarkMode(!isDarkMode);
-        }}
-      >
-        {isDarkMode ? (
-          <Moon height="1.65rem" width="1.65rem" />
-        ) : (
-          <Sun height="1.65rem" width="1.65rem" />
-        )}
-      </DarkModeButton>
-      <Header1>Testing ...</Header1>
+      <Router>
+        <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+        <Route path="/">
+            <Home></Home>
+        </Route>
+      </Router>
       <GlobalStyles />
     </ThemeProvider>
   );
@@ -35,15 +27,8 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     background: ${(props) => props.theme.colors.background};
     transition: background 150ms ease-in-out;
+    font-family: "Nunito Sans", "Roboto", "Helvetica", "Arial";
   }
-`;
-
-const DarkModeButton = styled(motion.button)`
-  position: absolute;
-  right: 0.35rem;
-  top: 0.35rem;
-  background: transparent;
-  border: 0;
 `;
 
 export default App;

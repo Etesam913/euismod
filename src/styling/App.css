@@ -1,0 +1,13 @@
+.no-underline{
+    text-decoration: none;
+}
+
+.nav-link-active{
+    color: #828282;
+    font-weight: bold;
+}
+
+.nav-link-inactive{
+    color: #828282;
+    font-weight: bold;
+}

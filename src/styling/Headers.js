@@ -15,8 +15,9 @@ const headerDefaults = css`
   margin: ${(props) => (props.margin ? props.margin : "0.5rem 0.5rem")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "600")};
   transition: color 150ms ease-in-out;
+  text-align: ${props=>props.textAlign};
   padding: ${props => props.padding};
-  display: ${(props) => (props.block ? props.block : "block")};
+  display: ${(props) => (props.display ? props.display : "block")};
   font-family: ${(props) => props.theme.fonts.primary};
   ${responsive}
   ${(props) =>

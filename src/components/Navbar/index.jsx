@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import styled, { withTheme } from "styled-components";
 import "../../styling/App.css";
 import { Header1, Header2 } from "../../styling/Headers";
@@ -6,12 +6,13 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { buttonVariants } from "../../styling/variants";
 import { Moon, Sun } from "../../SvgMaster";
 import { motion } from "framer-motion";
+import { AppContext } from "../../Contexts";
 
-function Navbar({ isDarkMode, setIsDarkMode, size }) {
+function Navbar() {
   let location = useLocation();
-
+  const { isDarkMode, setIsDarkMode, size } = useContext(AppContext);
   const navAnimation = () => {
-    if (location.pathname === "/learn") {
+    if (location.pathname.includes("/learn")) {
       return { padding: "0 1rem" };
     } else if (location.pathname === "/" && size.width <= 768) {
       return { padding: "0rem 1rem" };
@@ -21,7 +22,7 @@ function Navbar({ isDarkMode, setIsDarkMode, size }) {
   };
 
   /*const navAnimation =
-            currentPath === "/learn" ? { padding: "0 1rem" } : { padding: "0 6rem" };*/
+                currentPath === "/learn" ? { padding: "0 1rem" } : { padding: "0 6rem" };*/
 
   return (
     <Nav initial={{ padding: "0 6rem" }} animate={navAnimation}>
@@ -68,7 +69,7 @@ const Nav = styled(motion.nav)`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.5rem;
- 
+
   /*transition: padding 150ms ease-in-out;*/
   /*@media screen and (max-width: 500px) {
     padding: 0 3rem;

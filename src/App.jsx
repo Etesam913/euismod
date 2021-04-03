@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { HashRouter as Router, Route } from "react-router-dom";
 import { darkTheme, lightTheme } from "./styling/theme";
 import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
 import Learn from "./Pages/Learn";
+import { AppContext } from "./Contexts";
 import { useWindowSize } from "./components/CustomHooks";
 
 function App() {
@@ -12,22 +13,20 @@ function App() {
   const size = useWindowSize();
 
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <Router>
-        <Navbar
-          isDarkMode={isDarkMode}
-          setIsDarkMode={setIsDarkMode}
-          size={size}
-        />
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/learn">
-          <Learn />
-        </Route>
-      </Router>
-      <GlobalStyles />
-    </ThemeProvider>
+    <AppContext.Provider value={{ isDarkMode, setIsDarkMode, size }}>
+      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+        <Router>
+          <Navbar />
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/learn">
+            <Learn isDarkMode={isDarkMode} />
+          </Route>
+        </Router>
+        <GlobalStyles />
+      </ThemeProvider>
+    </AppContext.Provider>
   );
 }
 

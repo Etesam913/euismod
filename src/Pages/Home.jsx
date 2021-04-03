@@ -27,15 +27,13 @@ function Home() {
 }
 
 const Container = styled(motion.div)`
-  padding: 2.5rem 8rem;
+  padding: 2.5rem 6rem;
   transition: padding 300ms ease-in-out;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto;
 
   @media screen and (max-width: 768px) {
-    padding: 2.5rem 6rem;
-    transition: padding 300ms ease-in-out;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
     justify-content: center;

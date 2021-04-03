@@ -22,7 +22,7 @@ function Learn() {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: auto auto;
   grid-template-rows: 100%;
   padding: 2.5rem 0rem;
   transition: padding 150ms ease-in-out;

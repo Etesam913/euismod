@@ -14,7 +14,7 @@ function Navbar() {
   const navAnimation = () => {
     if (location.pathname.includes("/learn")) {
       return { padding: "0 1rem" };
-    } else if (location.pathname === "/" && size.width <= 768) {
+    } else if (size.width <= 768) {
       return { padding: "0rem 1rem" };
     } else {
       return { padding: "0 6rem" };
@@ -22,7 +22,7 @@ function Navbar() {
   };
 
   /*const navAnimation =
-                currentPath === "/learn" ? { padding: "0 1rem" } : { padding: "0 6rem" };*/
+                  currentPath === "/learn" ? { padding: "0 1rem" } : { padding: "0 6rem" };*/
 
   return (
     <Nav initial={{ padding: "0 6rem" }} animate={navAnimation}>
@@ -63,18 +63,9 @@ const Nav = styled(motion.nav)`
   color: white;
   background: transparent;
   display: flex;
-
-  /*padding: ${(props) =>
-    props.currentPath === "/learn" ? "0 1rem" : "0 6rem"} ;*/
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.5rem;
-
-  /*transition: padding 150ms ease-in-out;*/
-  /*@media screen and (max-width: 500px) {
-    padding: 0 3rem;
-    !*transition: padding 150ms ease-in-out;*!
-  }*/
 `;
 
 const activeClassName = "nav-item-active";

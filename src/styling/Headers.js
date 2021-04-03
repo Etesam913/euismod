@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import {motion} from "framer-motion";
 
 const responsive = css`
   ${(props) =>
@@ -27,7 +28,7 @@ const headerDefaults = css`
     `};
 `;
 
-export const Header1 = styled.h1`
+export const Header1 = styled(motion.h1)`
   ${headerDefaults};
   margin: ${(props) => (props.margin ? props.margin : "0.75rem 0.5rem")};
   font-size: 2.25em;

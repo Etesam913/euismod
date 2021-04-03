@@ -7,6 +7,7 @@ export const FlexContainer = styled.div`
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
+  padding: ${props=>props.padding};
 
   // Row Specific Styles
   ${(props) =>
@@ -51,8 +52,8 @@ export const CodeContainer = styled.div`
   border-radius: 0.5rem;
   font-size: 1em;
   box-sizing: border-box;
-  transition: 150ms;
   color: ${(props) => props.theme.colors.primary};
+  transition: 150ms;
 `;
 
 export const CodeLine = styled.code`

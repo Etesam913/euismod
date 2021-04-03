@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Header1 } from "../../styling/Headers";
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import styled, { css } from "styled-components";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 import { AppContext } from "../../Contexts";
 import { useHistory } from "react-router-dom";
+import Hamburger from "../Hamburger";
 
 function Sidebar() {
-  const { isDarkMode } = useContext(AppContext);
+  const { isDarkMode, size } = useContext(AppContext);
+  const [isSideNavShowing, setIsSideNavShowing] = useState(true);
   const history = useHistory();
 
   function handleClick(path) {
@@ -14,44 +16,71 @@ function Sidebar() {
   }
 
   return (
-    <LessonsContainer>
-      <Header1 margin={"0"} padding={"0rem .75rem"}>
-        Lessons
-      </Header1>
-      <LessonsList>
-        <LessonItem as={"li"} isDarkMode={isDarkMode}>
-          <LessonButton
-            onClick={() => {
-              handleClick("/learn");
-            }}
-          >
-            Create The Grid
-          </LessonButton>
-        </LessonItem>
-        <LessonItem as={"li"} isDarkMode={isDarkMode}>
-          <LessonButton
-            onClick={() => {
-              handleClick("/learn/2");
-            }}
-          >
-            Grid Areas
-          </LessonButton>
-        </LessonItem>
-        <LessonItem as={"li"} isDarkMode={isDarkMode}>
-          <LessonButton
-            onClick={() => {
-              handleClick("/learn/3");
-            }}
-          >
-            Item Placement
-          </LessonButton>
-        </LessonItem>
-      </LessonsList>
-    </LessonsContainer>
+    <>
+      <LessonsContainer
+        isSideNavShowing={isSideNavShowing}
+        initial={{ padding: "14px 12px 12px 10px" }}
+        animate={
+          isSideNavShowing
+            ? { width: 220, height: 320 }
+            : {
+                width: 52,
+                height: 52,
+              }
+        }
+      >
+        <HamburgerWrapper isSideNavShowing={isSideNavShowing}>
+          <Hamburger
+            sideNav={isSideNavShowing}
+            setSideNav={setIsSideNavShowing}
+            height="3px"
+            width="24px"
+          />
+        </HamburgerWrapper>
+        <AnimatePresence>
+          {isSideNavShowing && (
+            <motion.div>
+              <Header1 margin={"0"} padding={"0rem .75rem"}>
+                Lessons
+              </Header1>
+              <LessonsList>
+                <LessonItem isDarkMode={isDarkMode}>
+                  <LessonButton
+                    onClick={() => {
+                      handleClick("/learn");
+                    }}
+                  >
+                    Create The Grid
+                  </LessonButton>
+                </LessonItem>
+                <LessonItem isDarkMode={isDarkMode}>
+                  <LessonButton
+                    onClick={() => {
+                      handleClick("/learn/2");
+                    }}
+                  >
+                    Grid Areas
+                  </LessonButton>
+                </LessonItem>
+                <LessonItem isDarkMode={isDarkMode}>
+                  <LessonButton
+                    onClick={() => {
+                      handleClick("/learn/3");
+                    }}
+                  >
+                    Item Placement
+                  </LessonButton>
+                </LessonItem>
+              </LessonsList>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </LessonsContainer>
+    </>
   );
 }
 
-const LessonItem = styled.li`
+const LessonItem = styled(motion.li)`
   margin-top: 1.5rem;
 `;
 
@@ -61,31 +90,52 @@ const LessonButton = styled(motion.button)`
   cursor: pointer;
   background-color: ${(props) => props.theme.colors.lowContrastBackground};
   color: ${(props) => props.theme.colors.primary};
-  transition: 150ms ease-in-out;
   font-family: ${(props) => props.theme.fonts.primary};
   font-weight: normal;
   padding: 0.75rem;
   width: 100%;
   text-align: left;
   border-radius: 0.5rem;
+  transition: 150ms background-color ease-in-out;
 
   :hover {
     filter: brightness(90%);
-    transition: 150ms;
+    transition: 200ms ease-in-out;
   }
 `;
 
-const LessonsList = styled.ul`
+const LessonsList = styled(motion.ul)`
   list-style-type: none;
   padding: 0;
 `;
 
-const LessonsContainer = styled.section`
+const LessonsContainer = styled(motion.section)`
   background: ${(props) => props.theme.colors.lowContrastBackground};
-  padding: 1.25rem;
+  overflow: hidden;
   border-top-right-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
-  transition: background 150ms ease-in-out;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 1;
+
+  display: block;
+  transform: translate3d(0px 0px 0px) !important;
 `;
+
+const HamburgerWrapper = styled.button`
+  border: 0;
+  padding: 0;
+  ${(props) =>
+    props.isSideNavShowing &&
+    css`
+      top: 0.25rem;
+      right: 0.25rem;
+    `}
+
+  position: absolute;
+  background: transparent;
+`;
+
+const Container = styled.div``;
 
 export default Sidebar;

@@ -15,6 +15,26 @@ function Sidebar() {
     history.push(path);
   }
 
+  const sideBarData = [
+    ["Create The Grid", "/learn"],
+    ["Item Placement", "/learn/2"],
+    ["Grid Areas", "/learn/3"],
+    ["Grid Gap", "/learn/4"],
+  ];
+  const sideBarItems = sideBarData.map((text) => {
+    return (
+      <LessonItem isDarkMode={isDarkMode}>
+        <LessonButton
+          onClick={() => {
+            handleClick(text[1]);
+          }}
+        >
+          {text[0]}
+        </LessonButton>
+      </LessonItem>
+    );
+  });
+
   return (
     <>
       <LessonsContainer
@@ -22,7 +42,7 @@ function Sidebar() {
         initial={{ padding: "14px 12px 12px 10px" }}
         animate={
           isSideNavShowing
-            ? { width: 220, height: 320 }
+            ? { width: 220, height: 370 }
             : {
                 width: 52,
                 height: 52,
@@ -39,39 +59,11 @@ function Sidebar() {
         </HamburgerWrapper>
         <AnimatePresence>
           {isSideNavShowing && (
-            <motion.div>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <Header1 margin={"0"} padding={"0rem .75rem"}>
                 Lessons
               </Header1>
-              <LessonsList>
-                <LessonItem isDarkMode={isDarkMode}>
-                  <LessonButton
-                    onClick={() => {
-                      handleClick("/learn");
-                    }}
-                  >
-                    Create The Grid
-                  </LessonButton>
-                </LessonItem>
-                <LessonItem isDarkMode={isDarkMode}>
-                  <LessonButton
-                    onClick={() => {
-                      handleClick("/learn/2");
-                    }}
-                  >
-                    Grid Areas
-                  </LessonButton>
-                </LessonItem>
-                <LessonItem isDarkMode={isDarkMode}>
-                  <LessonButton
-                    onClick={() => {
-                      handleClick("/learn/3");
-                    }}
-                  >
-                    Item Placement
-                  </LessonButton>
-                </LessonItem>
-              </LessonsList>
+              <LessonsList>{sideBarItems}</LessonsList>
             </motion.div>
           )}
         </AnimatePresence>
@@ -96,7 +88,8 @@ const LessonButton = styled(motion.button)`
   width: 100%;
   text-align: left;
   border-radius: 0.5rem;
-  transition: 150ms background-color ease-in-out;
+  transition: 200ms ease-in-out;
+  white-space: nowrap;
 
   :hover {
     filter: brightness(90%);

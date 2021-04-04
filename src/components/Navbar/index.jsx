@@ -91,6 +91,7 @@ const DarkModeButton = styled(motion.button)`
   height: 26px;
   width: 26px;
   margin: 0 1rem;
+  cursor: pointer;
 `;
 
 const FlexContainer = styled.section`

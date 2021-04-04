@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const responsive = css`
   ${(props) =>
@@ -16,8 +16,8 @@ const headerDefaults = css`
   margin: ${(props) => (props.margin ? props.margin : "0.5rem 0.5rem")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "600")};
   transition: color 150ms ease-in-out;
-  text-align: ${props=>props.textAlign};
-  padding: ${props => props.padding};
+  text-align: ${(props) => props.textAlign};
+  padding: ${(props) => props.padding};
   display: ${(props) => (props.display ? props.display : "block")};
   font-family: ${(props) => props.theme.fonts.primary};
   ${responsive}
@@ -44,19 +44,28 @@ export const Header3 = styled.h3`
   font-size: 1.25em;
 `;
 
-export const Paragraph = styled.p`
+export const Paragraph = styled(motion.p)`
   color: ${(props) => props.theme.colors.primary};
   margin: ${(props) => (props.margin ? props.margin : "0.5rem 0.5rem")};
   transition: color 150ms ease-in-out;
-  display: ${props=>props.display ? props.display : 'block'};
+  display: ${(props) => (props.display ? props.display : "block")};
   max-width: ${(props) => props.maxWidth};
   font-size: ${(props) => (props.fontSize ? props.fontSize : "1em")};
+  text-align: ${(props) => props.textAlign};
   ${(props) =>
     props.invert &&
     css`
       ${invertStyles}
     `};
   ${responsive}
+`;
+
+export const SuccessText = styled(Paragraph)`
+  color: ${(props) => props.theme.colors.success} !important;
+`;
+
+export const ErrorText = styled(Paragraph)`
+  color: ${(props) => props.theme.colors.error} !important;
 `;
 
 const invertStyles = css`

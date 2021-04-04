@@ -1,7 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Header2, Paragraph } from "../../styling/Headers";
-import { AppContext } from "../../Contexts";
+import React, { useContext, useState, useRef } from "react";
 import {
   CodeContainer,
   CodeLine,
@@ -10,26 +7,22 @@ import {
   LessonGrid,
   Sandbox,
 } from "../../styling/GeneralComponents";
-import StyledButton from "../../components/Button";
+import { Header2, Paragraph } from "../../styling/Headers";
+import { SandboxContent2 } from "../../components/Sandboxes";
 import StyledInput from "../../components/Input";
-import { checkFirstSolution } from "../../functions/SolutionChecks";
-import { SandboxContent1 } from "../../components/Sandboxes";
+import { AppContext } from "../../Contexts";
+import { motion } from "framer-motion";
+import StyledButton from "../../components/Button";
 import { renderSubmitText, solutionAnimation } from "./helpers";
+import { checkSecondSolution } from "../../functions/SolutionChecks";
 
-function Lesson1() {
+function Lesson2() {
   const { size } = useContext(AppContext);
-  const displayRef = useRef(null);
-  const columnsRef = useRef(null);
-  const rowsRef = useRef(null);
-  const [displayText, setDisplayText] = useState("");
-  const [columnsText, setColumnsText] = useState("");
-  const [rowsText, setRowsText] = useState("");
   const [solutionObj, setSolutionObj] = useState(null);
-
-  function onSubmit() {
-    setSolutionObj(checkFirstSolution(displayRef, columnsRef, rowsRef));
-  }
-
+  const [justifyText, setJustifyText] = useState("");
+  const [alignText, setAlignText] = useState("");
+  const justifySelfRef = useRef(null);
+  const alignSelfRef = useRef(null);
   const boxData = [0, 0, 0, 0, 0, 0];
   const htmlBoxes = boxData.map((val, index) => {
     return (
@@ -39,17 +32,17 @@ function Lesson1() {
     );
   });
 
+  function onSubmit() {
+    setSolutionObj(checkSecondSolution(justifySelfRef, alignSelfRef));
+  }
+
   return (
     <div>
       <LessonGrid>
         <GridItem>
           <Header2 textAlign="center">See Changes</Header2>
           <Sandbox>
-            <SandboxContent1
-              displayProperty={displayText}
-              columnsProperty={columnsText}
-              rowProperty={rowsText}
-            />
+            <SandboxContent2 justifySelf={justifyText} alignSelf={alignText} />
           </Sandbox>
         </GridItem>
         <GridItem>
@@ -60,47 +53,42 @@ function Lesson1() {
             Info:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">
-            When creating a grid you must first set the display property to
-            grid. To create 3 columns of width 150 pixels each, you would set
-            grid-template-columns to “150px 150px 150px”.
+            A grid item can be aligned both horizontally by using the
+            justify-self property. It can be aligned vertically by using the
+            align-self property. For instance, to align an grid item to the
+            bottom left of its container you would set justify-self: start and
+            align-self: end;
           </Paragraph>
           <Header2 margin="0.75rem 0" responsive>
             Task:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">
-            Create a 3x2 grid where each row has a height of 133 pixels and each
-            column has a width of 50%.
+            Align each box to the bottom left of its grid item.
           </Paragraph>
         </GridItem>
         <GridItem>
           <Header2 textAlign="center">CSS</Header2>
           <CodeContainer>
-            <CodeLine>.container &#123;</CodeLine>
+            <CodeLine>.box &#123;</CodeLine>
+            <CodeLine textIndent="1em">height: 50px;</CodeLine>
+            <CodeLine textIndent="1em">width: 50px;</CodeLine>
+            <CodeLine textIndent="1em">background: red;</CodeLine>
+            <CodeLine textIndent="1em">margin: 10px;</CodeLine>
             <CodeLine textIndent="1em">
-              display:{" "}
+              justify-self:
               <StyledInput
-                width="5rem"
-                passedRef={displayRef}
-                stateToUpdate={displayText}
-                setStateToUpdate={setDisplayText}
+                passedRef={justifySelfRef}
+                stateToUpdate={justifyText}
+                setStateToUpdate={setJustifyText}
               />
               ;
             </CodeLine>
             <CodeLine textIndent="1em">
-              grid-template-columns:
+              align-self:
               <StyledInput
-                passedRef={columnsRef}
-                stateToUpdate={columnsText}
-                setStateToUpdate={setColumnsText}
-              />
-              ;
-            </CodeLine>
-            <CodeLine textIndent="1em">
-              grid-template-rows:
-              <StyledInput
-                passedRef={rowsRef}
-                stateToUpdate={rowsText}
-                setStateToUpdate={setRowsText}
+                passedRef={alignSelfRef}
+                stateToUpdate={alignText}
+                setStateToUpdate={setAlignText}
               />
               ;
             </CodeLine>
@@ -135,4 +123,4 @@ function Lesson1() {
   );
 }
 
-export default Lesson1;
+export default Lesson2;

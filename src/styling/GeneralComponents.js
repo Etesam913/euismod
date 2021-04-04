@@ -7,7 +7,7 @@ export const FlexContainer = styled.div`
   justify-content: ${(props) =>
     props.justifyContent ? props.justifyContent : "center"};
   align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
-  padding: ${props=>props.padding};
+  padding: ${(props) => props.padding};
 
   // Row Specific Styles
   ${(props) =>
@@ -36,7 +36,7 @@ export const LessonGrid = styled.div`
 `;
 
 export const Sandbox = styled.div`
-  height: 25rem;
+  height: 400px;
   width: 100%;
   border: 2px solid ${(props) => props.theme.colors.primary};
   transition: border 150ms;
@@ -54,16 +54,18 @@ export const CodeContainer = styled.div`
   box-sizing: border-box;
   color: ${(props) => props.theme.colors.primary};
   transition: 150ms;
+  line-height: 1.75rem;
 `;
 
 export const CodeLine = styled.code`
   display: block;
-  // TODO: replace this by putting it in the theme
-  font-family: "Fira Code";
-  text-indent: ${(props) => props.textIndent};
+  text-indent: ${props=>props.textIndent};
+  font-family: ${(props) => props.theme.fonts.code};
 `;
 
 export const GridItem = styled.div`
   padding: 0.5rem 1rem;
   box-sizing: border-box;
 `;
+
+

@@ -4,12 +4,15 @@ import { motion } from "framer-motion";
 import { buttonVariants2 } from "../../styling/variants";
 import { useHistory } from "react-router-dom";
 
-function StyledButton({ text, to }) {
+function StyledButton({ text, to, onClick }) {
   const history = useHistory();
 
   function handleClick() {
     if (to) {
       history.push(to);
+    }
+    if (onClick) {
+      onClick();
     }
   }
 

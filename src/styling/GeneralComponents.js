@@ -29,14 +29,42 @@ export const LessonGrid = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: auto auto;
+  grid-template-areas:
+    "sandbox info"
+    "sandbox html"
+    "css html";
   @media screen and (max-width: 768px) {
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "sandbox"
+      "info"
+      "css"
+      "html";
+  }
+`;
+
+export const LessonGridType2 = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "sandbox info"
+    "css info"
+    "css html";
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "sandbox"
+      "info"
+      "css"
+      "html";
   }
 `;
 
 export const Sandbox = styled.div`
-  height: 400px;
+  height: ${(props) => (props.height ? props.height : "400px")};
   width: 100%;
   border: 2px solid ${(props) => props.theme.colors.primary};
   transition: border 150ms;
@@ -59,13 +87,39 @@ export const CodeContainer = styled.div`
 
 export const CodeLine = styled.code`
   display: block;
-  text-indent: ${props=>props.textIndent};
+  text-indent: ${(props) => props.textIndent};
   font-family: ${(props) => props.theme.fonts.code};
 `;
 
 export const GridItem = styled.div`
   padding: 0.5rem 1rem;
   box-sizing: border-box;
+  grid-area: ${(props) => props.gridArea};
 `;
 
+export const Property = styled.span`
+  background: ${(props) => props.theme.colors.lowContrastBackground};
+  color: ${(props) => props.theme.colors.primary};
+  font-family: ${(props) => props.theme.fonts.code};
+  font-size: 0.75em;
+  transition: 150ms;
+  margin: ${(props) => (props.margin ? props.margin : "0.2rem .35rem")};
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+`;
 
+export const MultiLineProperty = styled(Property)`
+  padding: 0.5rem;
+  width: max-content;
+  display: block;
+  text-align: left;
+  /* line-height: 1.75em;*/
+`;
+
+export const ResponsiveImg = styled.img`
+  width: 100%;
+  height: auto;
+  margin: ${(props) => props.margin};
+  max-width: ${(props) => props.maxWidth};
+`;

@@ -5,6 +5,7 @@ import {
   FlexContainer,
   GridItem,
   LessonGrid,
+  Property,
   Sandbox,
 } from "../../styling/GeneralComponents";
 import { Header2, Paragraph } from "../../styling/Headers";
@@ -53,17 +54,18 @@ function Lesson2() {
             Info:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">
-            A grid item can be aligned both horizontally by using the
-            justify-self property. It can be aligned vertically by using the
-            align-self property. For instance, to align an grid item to the
-            bottom left of its container you would set justify-self: start and
-            align-self: end;
+            A grid item can be aligned horizontally by using the
+            <Property>justify-self</Property> property. It can be aligned
+            vertically by using the align-self property. For instance, to align
+            an grid item to the center left of its grid container you would set{" "}
+            <Property>justify-self: start</Property> and
+            <Property>align-self: center</Property>.
           </Paragraph>
           <Header2 margin="0.75rem 0" responsive>
             Task:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">
-            Align each box to the bottom left of its grid item.
+            Align each box to the bottom left of its grid container.
           </Paragraph>
         </GridItem>
         <GridItem>

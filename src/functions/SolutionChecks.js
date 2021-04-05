@@ -48,10 +48,12 @@ export function checkSecondSolution(justifySelfRef, alignSelfRef) {
     console.log(sanitizedJustifyText, sanitizedAlignText);
 
     const justifySolution = "start";
+    const justifySolution2 = "left";
     const alignSolution = "end";
 
     if (
-      sanitizedJustifyText === justifySolution &&
+      (sanitizedJustifyText === justifySolution ||
+        sanitizedJustifyText === justifySolution2) &&
       sanitizedAlignText === alignSolution
     ) {
       return { isSolved: true, text: "Correct" };

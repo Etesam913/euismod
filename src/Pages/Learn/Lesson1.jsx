@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import { Header2, Paragraph } from "../../styling/Headers";
 import { AppContext } from "../../Contexts";
 import {
-  CodeContainer,
-  CodeLine,
-  FlexContainer,
-  GridItem,
-  LessonGrid,
-  Sandbox,
+    CodeContainer,
+    CodeLine,
+    FlexContainer,
+    GridItem,
+    LessonGrid, Property,
+    Sandbox,
 } from "../../styling/GeneralComponents";
 import StyledButton from "../../components/Button";
 import StyledInput from "../../components/Input";
@@ -62,7 +62,7 @@ function Lesson1() {
           <Paragraph margin="0" responsive fontSize="1.1em">
             When creating a grid you must first set the display property to
             grid. To create 3 columns of width 150 pixels each, you would set
-            grid-template-columns to “150px 150px 150px”.
+            <Property>grid-template-columns: 150px 150px 150px</Property>.
           </Paragraph>
           <Header2 margin="0.75rem 0" responsive>
             Task:

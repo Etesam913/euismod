@@ -1,23 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export function SandboxContent1({
   displayProperty,
   columnsProperty,
   rowProperty,
 }) {
+  const boxData = [0, 0, 0, 0, 0, 0];
+  const boxes = boxData.map(() => {
+    return <RedBox layout />;
+  });
   return (
     <Grid1
       displayProperty={displayProperty}
       columnsProperty={columnsProperty}
       rowProperty={rowProperty}
+      layout
     >
-      <RedBox />
-      <RedBox />
-      <RedBox />
-      <RedBox />
-      <RedBox />
-      <RedBox />
+      {boxes}
     </Grid1>
   );
 }
@@ -30,7 +31,7 @@ const Grid1 = styled.div`
   height: 100%;
 `;
 
-const RedBox = styled.div`
+const RedBox = styled(motion.div)`
   height: 50px;
   width: 50px;
   background: red;
@@ -40,19 +41,20 @@ const RedBox = styled.div`
 `;
 
 export function SandboxContent2({ justifySelf, alignSelf }) {
-  return (
-    <Grid2>
-      <RedBoxCustomize justifySelf={justifySelf} alignSelf={alignSelf} />
-      <RedBoxCustomize justifySelf={justifySelf} alignSelf={alignSelf} />
-      <RedBoxCustomize justifySelf={justifySelf} alignSelf={alignSelf} />
-      <RedBoxCustomize justifySelf={justifySelf} alignSelf={alignSelf} />
-      <RedBoxCustomize justifySelf={justifySelf} alignSelf={alignSelf} />
-      <RedBoxCustomize justifySelf={justifySelf} alignSelf={alignSelf} />
-    </Grid2>
-  );
+  const boxData = [0, 0, 0, 0, 0, 0];
+  const boxes = boxData.map(() => {
+    return (
+      <RedBoxCustomize
+        layout
+        justifySelf={justifySelf}
+        alignSelf={alignSelf}
+      />
+    );
+  });
+  return <Grid2 layout>{boxes}</Grid2>;
 }
 
-const Grid2 = styled.div`
+const Grid2 = styled(motion.div)`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 133px 133px 133px;
@@ -63,4 +65,5 @@ const Grid2 = styled.div`
 const RedBoxCustomize = styled(RedBox)`
   justify-self: ${(props) => props.justifySelf};
   align-self: ${(props) => props.alignSelf};
+  transform-origin: 50% 50% !important;
 `;

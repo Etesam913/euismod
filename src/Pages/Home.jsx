@@ -21,7 +21,7 @@ function Home() {
         </Paragraph>
         <StyledButton text="Try Other Lessons" to='/learn'/>
       </FlexContainer>
-      <section>sdfsdf</section>
+      <section></section>
     </Container>
   );
 }

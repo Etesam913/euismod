@@ -45,8 +45,6 @@ export function checkSecondSolution(justifySelfRef, alignSelfRef) {
       .toLowerCase();
     const sanitizedAlignText = alignSelfRef.current.value.trim().toLowerCase();
 
-    console.log(sanitizedJustifyText, sanitizedAlignText);
-
     const justifySolution = "start";
     const justifySolution2 = "left";
     const alignSolution = "end";
@@ -67,7 +65,6 @@ export function checkSecondSolution(justifySelfRef, alignSelfRef) {
         alignSelfRef.current.focus();
         errorTexts.push("The align-self property is incorrect");
       }
-      console.log(errorTexts);
       return { isSolved: false, text: errorTexts };
     }
   }

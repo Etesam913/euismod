@@ -1,18 +1,19 @@
 import React, { useContext, useState } from "react";
 import { Header1 } from "../../styling/Headers";
 import styled, { css } from "styled-components";
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { AppContext } from "../../Contexts";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Hamburger from "../Hamburger";
 
-function Sidebar() {
+function Sidebar({ setIsSideNavShowing, isSideNavShowing }) {
   const { isDarkMode, size } = useContext(AppContext);
-  const [isSideNavShowing, setIsSideNavShowing] = useState(true);
+  const location = useLocation();
   const history = useHistory();
 
   function handleClick(path) {
-    history.push(path);
+    if (location.pathname !== path) history.push(path);
+    setIsSideNavShowing(false);
   }
 
   const sideBarData = [
@@ -25,6 +26,7 @@ function Sidebar() {
     return (
       <LessonItem isDarkMode={isDarkMode}>
         <LessonButton
+          selected={location.pathname === text[1]}
           onClick={() => {
             handleClick(text[1]);
           }}
@@ -80,7 +82,10 @@ const LessonButton = styled(motion.button)`
   font-size: 1.25em;
   border: none;
   cursor: pointer;
-  background-color: ${(props) => props.theme.colors.lowContrastBackground};
+  background-color: ${(props) =>
+    props.selected
+      ? props.theme.colors.selected
+      : props.theme.colors.lowContrastBackground};
   color: ${(props) => props.theme.colors.primary};
   font-family: ${(props) => props.theme.fonts.primary};
   font-weight: normal;
@@ -92,7 +97,7 @@ const LessonButton = styled(motion.button)`
   white-space: nowrap;
 
   :hover {
-    filter: brightness(90%);
+    background: ${(props) => props.theme.colors.highlighted};
     transition: 200ms ease-in-out;
   }
 `;

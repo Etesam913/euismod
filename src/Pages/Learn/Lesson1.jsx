@@ -1,14 +1,15 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Header2, Paragraph } from "../../styling/Headers";
 import { AppContext } from "../../Contexts";
 import {
-    CodeContainer,
-    CodeLine,
-    FlexContainer,
-    GridItem,
-    LessonGrid, Property,
-    Sandbox,
+  CodeContainer,
+  CodeLine,
+  FlexContainer,
+  GridItem,
+  LessonGrid,
+  Property,
+  Sandbox,
 } from "../../styling/GeneralComponents";
 import StyledButton from "../../components/Button";
 import StyledInput from "../../components/Input";
@@ -16,7 +17,7 @@ import { checkFirstSolution } from "../../functions/SolutionChecks";
 import { SandboxContent1 } from "../../components/Sandboxes";
 import { renderSubmitText, solutionAnimation } from "./helpers";
 
-function Lesson1() {
+function Lesson1({ setIsSideNavShowing }) {
   const { size } = useContext(AppContext);
   const displayRef = useRef(null);
   const columnsRef = useRef(null);
@@ -26,8 +27,46 @@ function Lesson1() {
   const [rowsText, setRowsText] = useState("");
   const [solutionObj, setSolutionObj] = useState(null);
 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("lesson1Data"));
+    if (data !== null) {
+      setDisplayText(data.displayText);
+      setColumnsText(data.columnsText);
+      setRowsText(data.rowsText);
+      setSolutionObj(data.solutionObj);
+    }
+  }, [setDisplayText, setColumnsText, setRowsText, setSolutionObj]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "lesson1Data",
+      JSON.stringify({
+        displayText: displayText,
+        columnsText: columnsText,
+        rowsText: rowsText,
+        solutionObj: solutionObj,
+      })
+    );
+  }, [displayText, columnsText, rowsText, solutionObj]);
+
   function onSubmit() {
-    setSolutionObj(checkFirstSolution(displayRef, columnsRef, rowsRef));
+    const tempSolObj = checkFirstSolution(displayRef, columnsRef, rowsRef);
+    setSolutionObj(tempSolObj);
+    const data = JSON.parse(localStorage.getItem("lesson1Data"));
+    if (data !== null) {
+      localStorage.setItem(
+        "lesson1Data",
+        JSON.stringify({
+          displayText: data.displayText,
+          columnsText: data.columnsText,
+          rowsText: data.rowsText,
+          solutionObj: tempSolObj,
+        })
+      );
+    }
+    if (tempSolObj.isSolved) {
+      setIsSideNavShowing(true);
+    }
   }
 
   const boxData = [0, 0, 0, 0, 0, 0];
@@ -38,7 +77,6 @@ function Lesson1() {
       </CodeLine>
     );
   });
-
   return (
     <div>
       <LessonGrid>
@@ -83,6 +121,7 @@ function Lesson1() {
                 passedRef={displayRef}
                 stateToUpdate={displayText}
                 setStateToUpdate={setDisplayText}
+                defaultValue="bob"
               />
               ;
             </CodeLine>

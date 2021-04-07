@@ -76,7 +76,12 @@ const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
   margin: 0.5rem 0.5rem;
   font-family: ${(props) => props.theme.fonts.primary};
   font-weight: normal;
-  transition: 300ms;
+  transition: 150ms;
+
+  :hover {
+    color: ${(props) => props.theme.colors.primary};
+    transition: 150ms;
+  }
 
   &.${activeClassName} {
     transition: 300ms;

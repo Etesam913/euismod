@@ -1,27 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
-    CodeContainer,
-    CodeLine,
-    GridItem,
-    LessonGridType2,
-    MultiLineProperty,
-    Property,
-    ResponsiveImg,
-    Sandbox,
+  CodeContainer,
+  CodeLine,
+  GridItem,
+  LessonGridType2,
+  MultiLineProperty,
+  Property,
+  ResponsiveImg,
+  Sandbox,
 } from "../../styling/GeneralComponents";
 import { Header2, Paragraph } from "../../styling/Headers";
 import StyledInput from "../../components/Input";
 import { AppContext } from "../../Contexts";
+import { SandboxContent3 } from "../../components/Sandboxes";
 
 function Lesson3() {
   const { size } = useContext(AppContext);
+  const [templateArea1, setTemplateArea1] = useState("");
+  const [templateArea2, setTemplateArea2] = useState("");
+  const [templateArea3, setTemplateArea3] = useState("");
+
+  const [headerGridArea, setHeaderGridArea] = useState("");
+  const [sidebarGridArea, setSidebarGridArea] = useState("");
+  const [mainContentGridArea, setMainContentSidebarGridArea] = useState("");
+  const [footerGridArea, setFooterGridArea] = useState("");
+
   return (
     <LessonGridType2>
       <GridItem gridArea="sandbox">
         <Header2 textAlign="center">See Changes</Header2>
-        <Sandbox height="500px"></Sandbox>
+        <Sandbox height="500px">
+          <SandboxContent3
+            area1={templateArea1}
+            area2={templateArea2}
+            area3={templateArea3}
+            headerText={headerGridArea}
+            sideBarText={sidebarGridArea}
+          />
+        </Sandbox>
       </GridItem>
-      <GridItem  gridArea="info">
+      <GridItem gridArea="info">
         <Header2
           margin={size.width < 768 ? "0.75rem 0" : "2.5rem 0 0.75rem"}
           responsive
@@ -63,7 +81,7 @@ function Lesson3() {
           src="https://etesam.nyc3.digitaloceanspaces.com/Euismod/Task3_Guide.png"
         />
       </GridItem>
-      <GridItem  gridArea="css">
+      <GridItem gridArea="css">
         <Header2 textAlign="center">CSS</Header2>
         <CodeContainer>
           <CodeLine>.container &#123;</CodeLine>
@@ -72,26 +90,59 @@ function Lesson3() {
           <CodeLine textIndent="1em">
             grid-template-rows: 46px 408px 46px;
           </CodeLine>
-          <CodeLine>&#125;</CodeLine>
-
-          <CodeLine>.container &#123;</CodeLine>
-          <CodeLine textIndent="1em">display: grid;</CodeLine>
-          <CodeLine textIndent="1em">grid-template-columns: 33% 66%;</CodeLine>
-          <CodeLine textIndent="1em">
-            grid-template-rows: 46px 408px 46px;
+          <CodeLine textIndent="1em">grid-template-areas:</CodeLine>
+          <CodeLine textIndent="2em">
+            "
+            <StyledInput
+              stateToUpdate={templateArea1}
+              setStateToUpdate={setTemplateArea1}
+            />
+            "
+          </CodeLine>
+          <CodeLine textIndent="2em">
+            "
+            <StyledInput
+              stateToUpdate={templateArea2}
+              setStateToUpdate={setTemplateArea2}
+            />
+            "
+          </CodeLine>
+          <CodeLine textIndent="2em">
+            "
+            <StyledInput
+              stateToUpdate={templateArea3}
+              setStateToUpdate={setTemplateArea3}
+            />
+            "
           </CodeLine>
           <CodeLine>&#125;</CodeLine>
 
-          <CodeLine>.container &#123;</CodeLine>
-          <CodeLine textIndent="1em">display: grid;</CodeLine>
-          <CodeLine textIndent="1em">grid-template-columns: 33% 66%;</CodeLine>
+          <CodeLine>.header &#123;</CodeLine>
+          <CodeLine textIndent="1em">background: #ff5454;</CodeLine>
           <CodeLine textIndent="1em">
-            grid-template-rows: 46px 408px 46px;
+            grid-area:{" "}
+            <StyledInput
+              stateToUpdate={headerGridArea}
+              setStateToUpdate={setHeaderGridArea}
+            />
+            ;
+          </CodeLine>
+          <CodeLine>&#125;</CodeLine>
+
+          <CodeLine>.sidebar &#123;</CodeLine>
+          <CodeLine textIndent="1em">background: #61cc9e;</CodeLine>
+          <CodeLine textIndent="1em">
+            grid-area:{" "}
+            <StyledInput
+              stateToUpdate={sidebarGridArea}
+              setStateToUpdate={setSidebarGridArea}
+            />
+            ;
           </CodeLine>
           <CodeLine>&#125;</CodeLine>
         </CodeContainer>
       </GridItem>
-      <GridItem  gridArea="html">
+      <GridItem gridArea="html">
         <Header2 textAlign="center">HTML</Header2>
         <CodeContainer>
           <CodeLine>&#60;div class="container"&#62;</CodeLine>

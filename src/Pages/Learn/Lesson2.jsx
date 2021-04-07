@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import {
   CodeContainer,
   CodeLine,
@@ -16,8 +16,9 @@ import { motion } from "framer-motion";
 import StyledButton from "../../components/Button";
 import { renderSubmitText, solutionAnimation } from "./helpers";
 import { checkSecondSolution } from "../../functions/SolutionChecks";
+import Lesson1 from "./Lesson1";
 
-function Lesson2() {
+function Lesson2({ setIsSideNavShowing }) {
   const { size } = useContext(AppContext);
   const [solutionObj, setSolutionObj] = useState(null);
   const [justifyText, setJustifyText] = useState("");
@@ -33,8 +34,43 @@ function Lesson2() {
     );
   });
 
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("lesson2Data"));
+    if (data !== null) {
+      setJustifyText(data.justifyText);
+      setAlignText(data.alignText);
+      setSolutionObj(data.solutionObj);
+    }
+  }, [setJustifyText, setAlignText, setSolutionObj]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "lesson2Data",
+      JSON.stringify({
+        justifyText: justifyText,
+        alignText: alignText,
+        solutionObj: solutionObj,
+      })
+    );
+  }, [justifyText, alignText, solutionObj]);
+
   function onSubmit() {
-    setSolutionObj(checkSecondSolution(justifySelfRef, alignSelfRef));
+    const tempSolObj = checkSecondSolution(justifySelfRef, alignSelfRef);
+    setSolutionObj(tempSolObj);
+    const data = JSON.parse(localStorage.getItem("lesson2Data"));
+    if (data !== null) {
+      localStorage.setItem(
+        "lesson2Data",
+        JSON.stringify({
+          justifyText: data.justifyText,
+          alignText: data.alignText,
+          solutionObj: tempSolObj,
+        })
+      );
+    }
+    if (tempSolObj.isSolved) {
+      setIsSideNavShowing(true);
+    }
   }
 
   return (

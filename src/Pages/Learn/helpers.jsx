@@ -36,7 +36,6 @@ export function renderSubmitText(solutionObj) {
 }
 
 export function solutionAnimation(solutionObj) {
-  console.log(solutionObj);
   if (solutionObj !== null) {
     if (solutionObj.isSolved) {
       return { height: 32 };

@@ -13,8 +13,8 @@ export const lightTheme = {
     highlighted: "#d9d6d6",
     selected: "#e6e3e3",
     inputBackground: "#ddd",
-    success: "#198754",
-    error: "#dc3545",
+    success: "#d4edda",
+    error: "#f8d7da",
   },
 };
 
@@ -33,7 +33,7 @@ export const darkTheme = {
     highlighted: "#484848",
     selected: "#4a4949",
     inputBackground: "#626262",
-    success: "#1fae6c",
-    error: "#dc3545",
+    success: "#d4edda",
+    error: "#f8d7da",
   },
 };

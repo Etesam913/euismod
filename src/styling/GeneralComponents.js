@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 
 export const FlexContainer = styled.div`
   display: flex;
@@ -122,4 +123,23 @@ export const ResponsiveImg = styled.img`
   height: auto;
   margin: ${(props) => props.margin};
   max-width: ${(props) => props.maxWidth};
+`;
+
+export const SuccessAlert = styled(motion.li)`
+  color: #185927;
+  margin: 0;
+  border-radius: 0.5rem;
+  background: ${(props) => props.theme.colors.success} !important;
+  width: max-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: ${(props) => props.textAlign};
+`;
+
+export const ErrorAlert = styled(SuccessAlert)`
+  color: #721c24;
+  overflow: hidden;
+  margin: 0;
+  background: ${(props) => props.theme.colors.error} !important;
 `;

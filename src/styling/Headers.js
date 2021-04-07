@@ -60,14 +60,6 @@ export const Paragraph = styled(motion.p)`
   ${responsive}
 `;
 
-export const SuccessText = styled(Paragraph)`
-  color: ${(props) => props.theme.colors.success} !important;
-`;
-
-export const ErrorText = styled(Paragraph)`
-  color: ${(props) => props.theme.colors.error} !important;
-`;
-
 const invertStyles = css`
   color: ${(props) => props.theme.colors.background};
 `;

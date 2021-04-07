@@ -19,18 +19,18 @@ export function checkFirstSolution(displayRef, columnsRef, rowsRef) {
     ) {
       return { isSolved: true, text: "Correct" };
     } else {
-      let errorTexts = [];
+      let errorTexts = [null, null, null];
       if (sanitizedDisplayText !== displayTextSolution) {
         displayRef.current.focus();
-        errorTexts.push("The display property is incorrect");
+        errorTexts[0] = "The display property is incorrect";
       }
       if (sanitizedColumnsText !== columnsTextSolution) {
         columnsRef.current.focus();
-        errorTexts.push("The grid-template-columns property is incorrect");
+        errorTexts[1] = "The grid-template-columns property is incorrect";
       }
       if (sanitizedRowText !== rowsTextSolution) {
         rowsRef.current.focus();
-        errorTexts.push("The grid-template-rows property is incorrect");
+        errorTexts[2] = "The grid-template-rows property is incorrect";
       }
       console.log(errorTexts);
       return { isSolved: false, text: errorTexts };
@@ -56,14 +56,14 @@ export function checkSecondSolution(justifySelfRef, alignSelfRef) {
     ) {
       return { isSolved: true, text: "Correct" };
     } else {
-      let errorTexts = [];
+      let errorTexts = [null, null];
       if (sanitizedJustifyText !== justifySolution) {
         justifySelfRef.current.focus();
-        errorTexts.push("The justify-self is incorrect");
+        errorTexts[0] = "The justify-self is incorrect";
       }
       if (sanitizedAlignText !== alignSolution) {
         alignSelfRef.current.focus();
-        errorTexts.push("The align-self property is incorrect");
+        errorTexts[1] = "The align-self property is incorrect";
       }
       return { isSolved: false, text: errorTexts };
     }

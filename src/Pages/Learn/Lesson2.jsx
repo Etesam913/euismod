@@ -147,15 +147,8 @@ function Lesson2({ setIsSideNavShowing }) {
         alignItems="flex-end"
         padding="0 .45rem 0 0"
       >
-        <motion.div
-          style={{ overflow: "hidden" }}
-          initial={{ height: 0 }}
-          animate={solutionAnimation(solutionObj)}
-        >
-          {renderSubmitText(solutionObj)}
-        </motion.div>
-
         <StyledButton text="Submit" onClick={onSubmit} />
+        {renderSubmitText(solutionObj, setSolutionObj)}
       </FlexContainer>
     </div>
   );

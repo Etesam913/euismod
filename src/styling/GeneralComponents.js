@@ -31,15 +31,15 @@ export const LessonGrid = styled.div`
   grid-template-columns: 50% 50%;
   grid-template-rows: auto auto;
   grid-template-areas:
-    "sandbox info"
-    "sandbox html"
-    "css html";
+      "sandbox info"
+      "css html";
+}
   @media screen and (max-width: 768px) {
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
     grid-template-areas:
-      "sandbox"
       "info"
+      "sandbox"
       "css"
       "html";
   }
@@ -57,8 +57,8 @@ export const LessonGridType2 = styled.div`
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
     grid-template-areas:
-      "sandbox"
       "info"
+      "sandbox"
       "css"
       "html";
   }
@@ -130,6 +130,7 @@ export const SuccessAlert = styled(motion.li)`
   margin: 0;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.colors.success} !important;
+  min-width: ${(props) => props.minWidth};
   width: max-content;
   display: flex;
   justify-content: space-between;

@@ -57,7 +57,10 @@ export function checkSecondSolution(justifySelfRef, alignSelfRef) {
       return { isSolved: true, text: "Correct" };
     } else {
       let errorTexts = [null, null];
-      if (sanitizedJustifyText !== justifySolution) {
+      if (
+        sanitizedJustifyText !== justifySolution &&
+        sanitizedJustifyText !== justifySolution2
+      ) {
         justifySelfRef.current.focus();
         errorTexts[0] = "The justify-self is incorrect";
       }

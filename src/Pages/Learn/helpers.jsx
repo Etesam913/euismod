@@ -5,35 +5,35 @@ import { AnimatePresence, motion } from "framer-motion";
 import { alertVariants } from "../../styling/variants";
 import { ErrorAlert, SuccessAlert } from "../../styling/GeneralComponents";
 
-export function renderSubmitText(solutionObj, setSolutionObj) {
+export function renderSubmitText(lessonData, setLessonData) {
   function handleClick(textToDelete, useCase) {
-    const tempSolObj = { ...solutionObj };
+    const tempLesson = { ...lessonData };
     if (useCase === "success") {
-      tempSolObj.text = null;
-      setSolutionObj(tempSolObj);
-      console.log(tempSolObj);
+      tempLesson.solutionObj.text = null;
+      setLessonData(tempLesson);
+      console.log(tempLesson);
     } else if (useCase === "error") {
-      const curIndex = tempSolObj.text.indexOf(textToDelete);
-      tempSolObj.text[curIndex] = null;
-      setSolutionObj(tempSolObj);
+      const curIndex = tempLesson.solutionObj.text.indexOf(textToDelete);
+      tempLesson.solutionObj.text[curIndex] = null;
+      setLessonData(tempLesson);
     }
   }
 
   function getText() {
-    if (solutionObj !== null) {
-      if (solutionObj.isSolved) {
+    if (lessonData !== null && lessonData.solutionObj) {
+      if (lessonData.solutionObj.isSolved) {
         return (
           <AnimatePresence>
-            {solutionObj.text !== null && (
+            {lessonData.solutionObj.text !== null && (
               <SuccessAlert
                 textAlign="right"
-                width="5rem"
+                minWidth="5.5rem"
                 variants={alertVariants}
                 initial="init"
                 animate="anim"
                 exit="exit"
               >
-                {solutionObj.text}
+                {lessonData.solutionObj.text}
                 <XButton
                   height="24px"
                   width="24px"
@@ -48,7 +48,7 @@ export function renderSubmitText(solutionObj, setSolutionObj) {
           </AnimatePresence>
         );
       } else {
-        return solutionObj.text.map((text, index) => {
+        return lessonData.solutionObj.text.map((text, index) => {
           return (
             <AnimatePresence>
               {text !== null && (
@@ -101,7 +101,6 @@ const XButton = styled(motion.button)`
   height: ${(props) => props.height};
   width: ${(props) => props.width};
   cursor: pointer;
-  margin-top: 1px;
 `;
 
 const SubmitList = styled.ul`

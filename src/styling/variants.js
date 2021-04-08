@@ -16,6 +16,10 @@ export const alertVariants = {
     height: 0,
     padding: "0px 8px",
     margin: "0px 8px",
-    transition: { padding: { duration: 0.15 }, margin: { duration: 0.15 } },
+    transition: {
+      padding: { duration: 0.15 },
+      margin: { duration: 0.15 },
+      opacity: { duration: 0.15 },
+    },
   },
 };

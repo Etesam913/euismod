@@ -5,9 +5,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { AppContext } from "../../Contexts";
 import { useHistory, useLocation } from "react-router-dom";
 import Hamburger from "../Hamburger";
+import { Checkbox, XSvg } from "../../SvgMaster";
 
-function Sidebar({ setIsSideNavShowing, isSideNavShowing }) {
-  const { isDarkMode, size } = useContext(AppContext);
+function Sidebar({ setIsSideNavShowing, isSideNavShowing, solutionObjs }) {
+  const { isDarkMode } = useContext(AppContext);
   const location = useLocation();
   const history = useHistory();
 
@@ -22,7 +23,28 @@ function Sidebar({ setIsSideNavShowing, isSideNavShowing }) {
     ["Grid Areas", "/learn/3"],
     ["Grid Gap", "/learn/4"],
   ];
-  const sideBarItems = sideBarData.map((text) => {
+  const sideBarItems = sideBarData.map((text, index) => {
+    function solveStatus() {
+      if (
+        solutionObjs !== null &&
+        solutionObjs[index] !== undefined &&
+        solutionObjs[index] !== null
+      ) {
+        if (solutionObjs[index].isSolved) {
+          return (
+            <Checkbox
+              height="28px"
+              width="28px"
+              fill={isDarkMode ? "#4bf285" : "#33ae29"}
+            />
+          );
+        } else {
+          return <XSvg height="28px" width="28px" fill="#d92020" />;
+        }
+      }
+      return <span>c</span>;
+    }
+
     return (
       <LessonItem isDarkMode={isDarkMode}>
         <LessonButton
@@ -32,6 +54,7 @@ function Sidebar({ setIsSideNavShowing, isSideNavShowing }) {
           }}
         >
           {text[0]}
+          {solveStatus()}
         </LessonButton>
       </LessonItem>
     );
@@ -44,7 +67,7 @@ function Sidebar({ setIsSideNavShowing, isSideNavShowing }) {
         initial={{ padding: "14px 12px 12px 10px" }}
         animate={
           isSideNavShowing
-            ? { width: 220, height: 370 }
+            ? { width: 230, height: 370 }
             : {
                 width: 52,
                 height: 52,
@@ -89,12 +112,15 @@ const LessonButton = styled(motion.button)`
   color: ${(props) => props.theme.colors.primary};
   font-family: ${(props) => props.theme.fonts.primary};
   font-weight: normal;
-  padding: 0.75rem;
+  padding: 0.75rem 0.3rem 0.75rem 0.75rem;
   width: 100%;
   text-align: left;
   border-radius: 0.5rem;
   transition: 200ms ease-in-out;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   :hover {
     background: ${(props) => props.theme.colors.highlighted};

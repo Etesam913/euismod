@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext, useRef } from "react";
 import {
   CodeContainer,
   CodeLine,
@@ -8,21 +8,16 @@ import {
   Property,
   Sandbox,
 } from "../../styling/GeneralComponents";
-import { Header2, Paragraph } from "../../styling/Headers";
+import { Header1, Header2, Paragraph } from "../../styling/Headers";
 import { SandboxContent2 } from "../../components/Sandboxes";
 import StyledInput from "../../components/Input";
 import { AppContext } from "../../Contexts";
-import { motion } from "framer-motion";
 import StyledButton from "../../components/Button";
-import { renderSubmitText, solutionAnimation } from "./helpers";
+import { renderSubmitText } from "./helpers";
 import { checkSecondSolution } from "../../functions/SolutionChecks";
-import Lesson1 from "./Lesson1";
 
-function Lesson2({ setIsSideNavShowing }) {
+function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
   const { size } = useContext(AppContext);
-  const [solutionObj, setSolutionObj] = useState(null);
-  const [justifyText, setJustifyText] = useState("");
-  const [alignText, setAlignText] = useState("");
   const justifySelfRef = useRef(null);
   const alignSelfRef = useRef(null);
   const boxData = [0, 0, 0, 0, 0, 0];
@@ -34,40 +29,13 @@ function Lesson2({ setIsSideNavShowing }) {
     );
   });
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("lesson2Data"));
-    if (data !== null) {
-      setJustifyText(data.justifyText);
-      setAlignText(data.alignText);
-      setSolutionObj(data.solutionObj);
-    }
-  }, [setJustifyText, setAlignText, setSolutionObj]);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "lesson2Data",
-      JSON.stringify({
-        justifyText: justifyText,
-        alignText: alignText,
-        solutionObj: solutionObj,
-      })
-    );
-  }, [justifyText, alignText, solutionObj]);
-
   function onSubmit() {
     const tempSolObj = checkSecondSolution(justifySelfRef, alignSelfRef);
-    setSolutionObj(tempSolObj);
-    const data = JSON.parse(localStorage.getItem("lesson2Data"));
-    if (data !== null) {
-      localStorage.setItem(
-        "lesson2Data",
-        JSON.stringify({
-          justifyText: data.justifyText,
-          alignText: data.alignText,
-          solutionObj: tempSolObj,
-        })
-      );
-    }
+    const tempLesson = { ...lesson2Data };
+    tempLesson.solutionObj = tempSolObj;
+    setLesson2Data(tempLesson);
+    localStorage.setItem("lesson2Data", JSON.stringify(tempLesson));
+
     if (tempSolObj.isSolved) {
       setIsSideNavShowing(true);
     }
@@ -75,16 +43,20 @@ function Lesson2({ setIsSideNavShowing }) {
 
   return (
     <div>
+      <Header1 textAlign="center">Item Placement</Header1>
       <LessonGrid>
-        <GridItem>
+        <GridItem gridArea={"sandbox"}>
           <Header2 textAlign="center">See Changes</Header2>
           <Sandbox>
-            <SandboxContent2 justifySelf={justifyText} alignSelf={alignText} />
+            <SandboxContent2
+              justifySelf={lesson2Data.justifySelf}
+              alignSelf={lesson2Data.alignSelf}
+            />
           </Sandbox>
         </GridItem>
-        <GridItem>
+        <GridItem gridArea={"info"}>
           <Header2
-            margin={size.width < 768 ? "0.75rem 0" : "2.5rem 0 0.75rem"}
+            margin={size.width < 768 ? "0.25rem 0" : "2.5rem 0 0.75rem"}
             responsive
           >
             Info:
@@ -104,7 +76,7 @@ function Lesson2({ setIsSideNavShowing }) {
             Align each box to the bottom left of its grid container.
           </Paragraph>
         </GridItem>
-        <GridItem>
+        <GridItem gridArea={"css"}>
           <Header2 textAlign="center">CSS</Header2>
           <CodeContainer>
             <CodeLine>.box &#123;</CodeLine>
@@ -116,8 +88,9 @@ function Lesson2({ setIsSideNavShowing }) {
               justify-self:
               <StyledInput
                 passedRef={justifySelfRef}
-                stateToUpdate={justifyText}
-                setStateToUpdate={setJustifyText}
+                stateToUpdate={lesson2Data}
+                setStateToUpdate={setLesson2Data}
+                property="justifySelf"
               />
               ;
             </CodeLine>
@@ -125,15 +98,16 @@ function Lesson2({ setIsSideNavShowing }) {
               align-self:
               <StyledInput
                 passedRef={alignSelfRef}
-                stateToUpdate={alignText}
-                setStateToUpdate={setAlignText}
+                stateToUpdate={lesson2Data}
+                setStateToUpdate={setLesson2Data}
+                property="alignSelf"
               />
               ;
             </CodeLine>
             <CodeLine>&#125;</CodeLine>
           </CodeContainer>
         </GridItem>
-        <GridItem>
+        <GridItem gridArea={"html"}>
           <Header2 textAlign="center">HTML</Header2>
           <CodeContainer>
             <CodeLine>&#60;div class="container"&#62;</CodeLine>
@@ -148,7 +122,7 @@ function Lesson2({ setIsSideNavShowing }) {
         padding="0 .45rem 0 0"
       >
         <StyledButton text="Submit" onClick={onSubmit} />
-        {renderSubmitText(solutionObj, setSolutionObj)}
+        {renderSubmitText(lesson2Data, setLesson2Data)}
       </FlexContainer>
     </div>
   );

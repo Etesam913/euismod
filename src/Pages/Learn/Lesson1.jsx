@@ -1,6 +1,5 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Header2, Paragraph } from "../../styling/Headers";
+import React, { useContext, useRef } from "react";
+import { Header1, Header2, Paragraph } from "../../styling/Headers";
 import { AppContext } from "../../Contexts";
 import {
   CodeContainer,
@@ -15,55 +14,27 @@ import StyledButton from "../../components/Button";
 import StyledInput from "../../components/Input";
 import { checkFirstSolution } from "../../functions/SolutionChecks";
 import { SandboxContent1 } from "../../components/Sandboxes";
-import { renderSubmitText, solutionAnimation } from "./helpers";
+import { renderSubmitText } from "./helpers";
 
-function Lesson1({ setIsSideNavShowing }) {
+function Lesson1({
+  setIsSideNavShowing,
+  lesson1Data,
+  setLesson1Data,
+}) {
   const { size } = useContext(AppContext);
   const displayRef = useRef(null);
   const columnsRef = useRef(null);
   const rowsRef = useRef(null);
-  const [displayText, setDisplayText] = useState("");
-  const [columnsText, setColumnsText] = useState("");
-  const [rowsText, setRowsText] = useState("");
-  const [solutionObj, setSolutionObj] = useState(null);
-
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("lesson1Data"));
-    if (data !== null) {
-      setDisplayText(data.displayText);
-      setColumnsText(data.columnsText);
-      setRowsText(data.rowsText);
-      setSolutionObj(data.solutionObj);
-    }
-  }, [setDisplayText, setColumnsText, setRowsText, setSolutionObj]);
-
-  useEffect(() => {
-    localStorage.setItem(
-      "lesson1Data",
-      JSON.stringify({
-        displayText: displayText,
-        columnsText: columnsText,
-        rowsText: rowsText,
-        solutionObj: solutionObj,
-      })
-    );
-  }, [displayText, columnsText, rowsText, solutionObj]);
 
   function onSubmit() {
     const tempSolObj = checkFirstSolution(displayRef, columnsRef, rowsRef);
-    setSolutionObj(tempSolObj);
-    const data = JSON.parse(localStorage.getItem("lesson1Data"));
-    if (data !== null) {
-      localStorage.setItem(
-        "lesson1Data",
-        JSON.stringify({
-          displayText: data.displayText,
-          columnsText: data.columnsText,
-          rowsText: data.rowsText,
-          solutionObj: tempSolObj,
-        })
-      );
-    }
+    console.log(tempSolObj);
+    const tempLesson1 = { ...lesson1Data };
+    tempLesson1.solutionObj = tempSolObj;
+    setLesson1Data(tempLesson1);
+    localStorage.setItem("lesson1Data", JSON.stringify(tempLesson1));
+    console.log(JSON.parse(localStorage.getItem("lesson1Data")));
+
     if (tempSolObj.isSolved) {
       setIsSideNavShowing(true);
     }
@@ -79,20 +50,21 @@ function Lesson1({ setIsSideNavShowing }) {
   });
   return (
     <div>
+      <Header1 textAlign="center">Grid Creation</Header1>
       <LessonGrid>
-        <GridItem>
+        <GridItem gridArea={"sandbox"}>
           <Header2 textAlign="center">See Changes</Header2>
           <Sandbox>
             <SandboxContent1
-              displayProperty={displayText}
-              columnsProperty={columnsText}
-              rowProperty={rowsText}
+              displayProperty={lesson1Data.display}
+              columnsProperty={lesson1Data.gridTemplateCols}
+              rowProperty={lesson1Data.gridTemplateRows}
             />
           </Sandbox>
         </GridItem>
-        <GridItem>
+        <GridItem gridArea={"info"}>
           <Header2
-            margin={size.width < 768 ? "0.75rem 0" : "2.5rem 0 0.75rem"}
+            margin={size.width < 768 ? "0.25rem 0" : "2.5rem 0 0.75rem"}
             responsive
           >
             Info:
@@ -110,7 +82,7 @@ function Lesson1({ setIsSideNavShowing }) {
             column has a width of 50%.
           </Paragraph>
         </GridItem>
-        <GridItem>
+        <GridItem gridArea={"css"}>
           <Header2 textAlign="center">CSS</Header2>
           <CodeContainer>
             <CodeLine>.container &#123;</CodeLine>
@@ -119,9 +91,9 @@ function Lesson1({ setIsSideNavShowing }) {
               <StyledInput
                 width="5rem"
                 passedRef={displayRef}
-                stateToUpdate={displayText}
-                setStateToUpdate={setDisplayText}
-                defaultValue="bob"
+                stateToUpdate={lesson1Data}
+                setStateToUpdate={setLesson1Data}
+                property="display"
               />
               ;
             </CodeLine>
@@ -129,8 +101,9 @@ function Lesson1({ setIsSideNavShowing }) {
               grid-template-columns:
               <StyledInput
                 passedRef={columnsRef}
-                stateToUpdate={columnsText}
-                setStateToUpdate={setColumnsText}
+                stateToUpdate={lesson1Data}
+                setStateToUpdate={setLesson1Data}
+                property="gridTemplateCols"
               />
               ;
             </CodeLine>
@@ -138,15 +111,16 @@ function Lesson1({ setIsSideNavShowing }) {
               grid-template-rows:
               <StyledInput
                 passedRef={rowsRef}
-                stateToUpdate={rowsText}
-                setStateToUpdate={setRowsText}
+                stateToUpdate={lesson1Data}
+                setStateToUpdate={setLesson1Data}
+                property="gridTemplateRows"
               />
               ;
             </CodeLine>
             <CodeLine>&#125;</CodeLine>
           </CodeContainer>
         </GridItem>
-        <GridItem>
+        <GridItem gridArea={"html"}>
           <Header2 textAlign="center">HTML</Header2>
           <CodeContainer>
             <CodeLine>&#60;div class="container"&#62;</CodeLine>
@@ -161,7 +135,7 @@ function Lesson1({ setIsSideNavShowing }) {
         padding="0 .45rem 0 0"
       >
         <StyledButton text="Submit" onClick={onSubmit} />
-        {renderSubmitText(solutionObj, setSolutionObj)}
+        {renderSubmitText(lesson1Data, setLesson1Data)}
       </FlexContainer>
     </div>
   );

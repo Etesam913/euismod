@@ -7,16 +7,29 @@ function StyledInput({
   passedRef,
   stateToUpdate,
   setStateToUpdate,
+  property,
 }) {
+  function handleChange(e) {
+    if (setStateToUpdate) {
+      if (property !== null) {
+        const tempState = { ...stateToUpdate };
+        tempState[property] = e.target.value;
+        setStateToUpdate(tempState);
+      } else {
+        setStateToUpdate(e.target.value);
+      }
+    }
+  }
+
   return (
     <Input
       ref={passedRef}
       placeholder={placeholder}
       width={width}
       autoComplete={"off"}
-      value={stateToUpdate}
+      value={stateToUpdate[property]}
       onChange={(e) => {
-        setStateToUpdate && setStateToUpdate(e.target.value);
+        handleChange(e);
       }}
     />
   );

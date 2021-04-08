@@ -37,6 +37,7 @@ const GlobalStyles = createGlobalStyle`
     background: ${(props) => props.theme.colors.background};
     transition: background 150ms ease-in-out;
     font-family: ${(props) => props.theme.fonts.secondary};
+    overflow-x: hidden;
   }
 `;
 

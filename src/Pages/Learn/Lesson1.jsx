@@ -16,11 +16,7 @@ import { checkFirstSolution } from "../../functions/SolutionChecks";
 import { SandboxContent1 } from "../../components/Sandboxes";
 import { renderSubmitText } from "./helpers";
 
-function Lesson1({
-  setIsSideNavShowing,
-  lesson1Data,
-  setLesson1Data,
-}) {
+function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
   const { size } = useContext(AppContext);
   const displayRef = useRef(null);
   const columnsRef = useRef(null);

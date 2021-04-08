@@ -81,8 +81,13 @@ export function SandboxContent3({
       <Sidebar layout sidebarText={sidebarText}>
         Sidebar
       </Sidebar>
-      <MainContent layout>Main Content</MainContent>
-      <Footer layout>Footer</Footer>
+      <MainContent layout mainContentText={mainContentText}>
+        Main Content
+      </MainContent>
+      <Footer layout footerText={footerText}>
+        {" "}
+        Footer
+      </Footer>
     </Grid3>
   );
 }
@@ -125,7 +130,7 @@ const Sidebar = styled(motion.section)`
 
 const MainContent = styled(motion.section)`
   background: #ffffff;
-  /*grid-area: main-content;*/
+  grid-area: ${(props) => props.mainContentText};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,7 +138,7 @@ const MainContent = styled(motion.section)`
 
 const Footer = styled(motion.footer)`
   background: #54a3ff;
-  /*grid-area: footer;*/
+  grid-area: ${(props) => props.footerText};
   display: flex;
   justify-content: center;
   align-items: center;

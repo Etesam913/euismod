@@ -22,12 +22,24 @@ function Learn() {
     alignSelf: "",
   });
 
+  const [lesson3Data, setLesson3Data] = useState({
+    solutionObj: null,
+    gridTemplateArea1: "",
+    gridTemplateArea2: "",
+    gridTemplateArea3: "",
+    headerGridArea: "",
+    sidebarGridArea: "",
+    mainContentGridArea: "",
+    footerGridArea: "",
+  });
+
   useEffect(() => {
     const data1 = JSON.parse(localStorage.getItem("lesson1Data"));
     const data2 = JSON.parse(localStorage.getItem("lesson2Data"));
     const data3 = JSON.parse(localStorage.getItem("lesson3Data"));
     if (data1 !== null) setLesson1Data(data1);
     if (data2 !== null) setLesson2Data(data2);
+    if (data3 !== null) setLesson3Data(data3);
     /*if (data1) setSolutionObj1(data1.solutionObj);
     if (data2) setSolutionObj2(data2.solutionObj);
     if (data3) setSolutionObj3(data3.solutionObj);*/
@@ -41,7 +53,7 @@ function Learn() {
         solutionObjs={[
           lesson1Data.solutionObj,
           lesson2Data.solutionObj,
-          solutionObj3,
+          lesson3Data.solutionObj,
         ]}
       />
       <section>
@@ -62,8 +74,8 @@ function Learn() {
         <Route exact path="/learn/3">
           <Lesson3
             setIsSideNavShowing={setIsSideNavShowing}
-            solutionObj={solutionObj3}
-            setSolutionObj={setSolutionObj3}
+            lesson3Data={lesson3Data}
+            setLesson3Data={setLesson3Data}
           />
         </Route>
       </section>

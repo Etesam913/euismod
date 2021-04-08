@@ -16,6 +16,9 @@ export const lightTheme = {
     success: "#d4edda",
     error: "#f8d7da",
   },
+  misc: {
+    shadow: "6px 6px 54px -20px rgba(0, 0, 0, 0.55)",
+  },
 };
 
 export const darkTheme = {
@@ -35,5 +38,8 @@ export const darkTheme = {
     inputBackground: "#626262",
     success: "#d4edda",
     error: "#f8d7da",
+  },
+  misc: {
+    shadow: "6px 6px 45px -10px rgba(0, 0, 0, 1)",
   },
 };

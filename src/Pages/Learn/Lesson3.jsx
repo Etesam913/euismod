@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import {
   CodeContainer,
   CodeLine,
+  FlexContainer,
   GridItem,
   LessonGridType2,
   MultiLineProperty,
@@ -13,17 +14,52 @@ import { Header1, Header2, Paragraph } from "../../styling/Headers";
 import StyledInput from "../../components/Input";
 import { AppContext } from "../../Contexts";
 import { SandboxContent3 } from "../../components/Sandboxes";
+import StyledButton from "../../components/Button";
+import { checkThirdSolution } from "../../functions/SolutionChecks";
+import { renderSubmitText } from "./helpers";
 
-function Lesson3({ setIsSideNavShowing, solutionObj, setSolutionObj }) {
+function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
   const { size } = useContext(AppContext);
-  const [templateArea1, setTemplateArea1] = useState("");
-  const [templateArea2, setTemplateArea2] = useState("");
-  const [templateArea3, setTemplateArea3] = useState("");
+  const childClassData = [
+    { name: "header", background: "#ff5454", property: "headerGridArea" },
+    { name: "sidebar", background: "#61cc9e", property: "sidebarGridArea" },
+    {
+      name: "main-content",
+      background: "#ffffff",
+      property: "mainContentGridArea",
+    },
+    { name: "footer", background: "#54a3ff", property: "footerGridArea" },
+  ];
+  const childClasses = childClassData.map((classObj) => {
+    return (
+      <>
+        <CodeLine>{"." + classObj.name} &#123;</CodeLine>
+        <CodeLine textIndent="1em">background: {classObj.background};</CodeLine>
+        <CodeLine textIndent="1em">
+          grid-area:{" "}
+          <StyledInput
+            stateToUpdate={lesson3Data}
+            setStateToUpdate={setLesson3Data}
+            property={classObj.property}
+          />
+          ;
+        </CodeLine>
+        <CodeLine>&#125;</CodeLine>
+      </>
+    );
+  });
 
-  const [headerGridArea, setHeaderGridArea] = useState("");
-  const [sidebarGridArea, setSidebarGridArea] = useState("");
-  const [mainContentGridArea, setMainContentSidebarGridArea] = useState("");
-  const [footerGridArea, setFooterGridArea] = useState("");
+  function onSubmit() {
+    const tempSolObj = checkThirdSolution(lesson3Data);
+    const tempLesson = { ...lesson3Data };
+    tempLesson.solutionObj = tempSolObj;
+    setLesson3Data(tempLesson);
+    localStorage.setItem("lesson3Data", JSON.stringify(tempLesson));
+
+    if (tempSolObj.isSolved) {
+      setIsSideNavShowing(true);
+    }
+  }
 
   return (
     <div>
@@ -33,11 +69,13 @@ function Lesson3({ setIsSideNavShowing, solutionObj, setSolutionObj }) {
           <Header2 textAlign="center">See Changes</Header2>
           <Sandbox height="500px">
             <SandboxContent3
-              area1={templateArea1}
-              area2={templateArea2}
-              area3={templateArea3}
-              headerText={headerGridArea}
-              sideBarText={sidebarGridArea}
+              area1={lesson3Data.gridTemplateArea1}
+              area2={lesson3Data.gridTemplateArea2}
+              area3={lesson3Data.gridTemplateArea3}
+              headerText={lesson3Data.headerGridArea}
+              sideBarText={lesson3Data.sidebarGridArea}
+              mainContentText={lesson3Data.mainContentGridArea}
+              footerText={lesson3Data.footerGridArea}
             />
           </Sandbox>
         </GridItem>
@@ -79,7 +117,7 @@ function Lesson3({ setIsSideNavShowing, solutionObj, setSolutionObj }) {
             of the width with the main content taking up the rest of the space.
           </Paragraph>
           <ResponsiveImg
-            margin=".5rem 0 0"
+            margin="2rem 0 0"
             maxWidth="40rem"
             alt="image of task goal"
             src="https://etesam.nyc3.digitaloceanspaces.com/Euismod/Task3_Guide.png"
@@ -100,52 +138,33 @@ function Lesson3({ setIsSideNavShowing, solutionObj, setSolutionObj }) {
             <CodeLine textIndent="2em">
               "
               <StyledInput
-                stateToUpdate={templateArea1}
-                setStateToUpdate={setTemplateArea1}
+                stateToUpdate={lesson3Data}
+                setStateToUpdate={setLesson3Data}
+                property="gridTemplateArea1"
               />
               "
             </CodeLine>
             <CodeLine textIndent="2em">
               "
               <StyledInput
-                stateToUpdate={templateArea2}
-                setStateToUpdate={setTemplateArea2}
+                stateToUpdate={lesson3Data}
+                setStateToUpdate={setLesson3Data}
+                property="gridTemplateArea2"
               />
               "
             </CodeLine>
             <CodeLine textIndent="2em">
               "
               <StyledInput
-                stateToUpdate={templateArea3}
-                setStateToUpdate={setTemplateArea3}
+                stateToUpdate={lesson3Data}
+                setStateToUpdate={setLesson3Data}
+                property="gridTemplateArea3"
               />
               "
             </CodeLine>
             <CodeLine>&#125;</CodeLine>
 
-            <CodeLine>.header &#123;</CodeLine>
-            <CodeLine textIndent="1em">background: #ff5454;</CodeLine>
-            <CodeLine textIndent="1em">
-              grid-area:{" "}
-              <StyledInput
-                stateToUpdate={headerGridArea}
-                setStateToUpdate={setHeaderGridArea}
-              />
-              ;
-            </CodeLine>
-            <CodeLine>&#125;</CodeLine>
-
-            <CodeLine>.sidebar &#123;</CodeLine>
-            <CodeLine textIndent="1em">background: #61cc9e;</CodeLine>
-            <CodeLine textIndent="1em">
-              grid-area:{" "}
-              <StyledInput
-                stateToUpdate={sidebarGridArea}
-                setStateToUpdate={setSidebarGridArea}
-              />
-              ;
-            </CodeLine>
-            <CodeLine>&#125;</CodeLine>
+            {childClasses}
           </CodeContainer>
         </GridItem>
         <GridItem gridArea="html">
@@ -169,6 +188,14 @@ function Lesson3({ setIsSideNavShowing, solutionObj, setSolutionObj }) {
           </CodeContainer>
         </GridItem>
       </LessonGridType2>
+      <FlexContainer
+        flexDirection="column"
+        alignItems="flex-end"
+        padding="0 .45rem 0 0"
+      >
+        <StyledButton text="Submit" onClick={onSubmit} />
+        {renderSubmitText(lesson3Data, setLesson3Data)}
+      </FlexContainer>
     </div>
   );
 }

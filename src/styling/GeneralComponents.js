@@ -33,7 +33,7 @@ export const LessonGrid = styled.div`
   grid-template-areas:
       "sandbox info"
       "css html";
-}
+
   @media screen and (max-width: 768px) {
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
@@ -52,6 +52,7 @@ export const LessonGridType2 = styled.div`
   grid-template-areas:
     "sandbox info"
     "css info"
+    "css html"
     "css html";
   @media screen and (max-width: 768px) {
     grid-template-columns: 100%;

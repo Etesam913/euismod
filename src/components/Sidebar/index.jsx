@@ -1,13 +1,18 @@
 import React, { useContext, useState } from "react";
 import { Header1 } from "../../styling/Headers";
-import styled, { css } from "styled-components";
+import styled, { css, withTheme } from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import { AppContext } from "../../Contexts";
 import { useHistory, useLocation } from "react-router-dom";
 import Hamburger from "../Hamburger";
 import { Checkbox, XSvg } from "../../SvgMaster";
 
-function Sidebar({ setIsSideNavShowing, isSideNavShowing, solutionObjs }) {
+function Sidebar({
+  setIsSideNavShowing,
+  isSideNavShowing,
+  solutionObjs,
+  theme,
+}) {
   const { isDarkMode } = useContext(AppContext);
   const location = useLocation();
   const history = useHistory();
@@ -64,13 +69,16 @@ function Sidebar({ setIsSideNavShowing, isSideNavShowing, solutionObjs }) {
     <>
       <LessonsContainer
         isSideNavShowing={isSideNavShowing}
-        initial={{ padding: "14px 12px 12px 10px" }}
+        initial={{
+          padding: "14px 12px 12px 10px",
+        }}
         animate={
           isSideNavShowing
-            ? { width: 230, height: 370 }
+            ? { width: 230, height: 370, boxShadow: theme.misc.shadow }
             : {
                 width: 52,
                 height: 52,
+                boxShadow: theme.misc.shadow,
               }
         }
       >
@@ -141,9 +149,9 @@ const LessonsContainer = styled(motion.section)`
   box-sizing: border-box;
   position: absolute;
   z-index: 1;
-
+  /*box-shadow: ${(props) => props.theme.misc.shadow};
+  transition: 150ms box-shadow;*/
   display: block;
-  transform: translate3d(0px 0px 0px) !important;
 `;
 
 const HamburgerWrapper = styled.button`
@@ -162,4 +170,4 @@ const HamburgerWrapper = styled.button`
 
 const Container = styled.div``;
 
-export default Sidebar;
+export default withTheme(Sidebar);

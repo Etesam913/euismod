@@ -23,10 +23,10 @@ function Sidebar({
   }
 
   const sideBarData = [
-    ["Create The Grid", "/learn"],
+    ["Grid Creation", "/learn"],
     ["Item Placement", "/learn/2"],
     ["Grid Areas", "/learn/3"],
-    ["Grid Gap", "/learn/4"],
+    ["Grid Gap/fr unit", "/learn/4"],
   ];
   const sideBarItems = sideBarData.map((text, index) => {
     function solveStatus() {
@@ -149,6 +149,12 @@ const LessonsContainer = styled(motion.section)`
   box-sizing: border-box;
   position: absolute;
   z-index: 1;
+  top: 7rem;
+  @media screen and (max-width: 768px) {
+    top: 4.35rem;
+    transition: top 300ms;
+  }
+  transition: top 300ms;
   /*box-shadow: ${(props) => props.theme.misc.shadow};
   transition: 150ms box-shadow;*/
   display: block;

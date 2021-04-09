@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import Lesson1 from "./Lesson1";
 import Lesson3 from "./Lesson3";
 import Lesson2 from "./Lesson2";
+import Lesson4 from "./Lesson4";
 
 function Learn() {
   const [isSideNavShowing, setIsSideNavShowing] = useState(true);
@@ -31,6 +32,13 @@ function Learn() {
     sidebarGridArea: "",
     mainContentGridArea: "",
     footerGridArea: "",
+  });
+
+  const [lesson4Data, setLesson4Data] = useState({
+    solutionObj: null,
+    gridGap: "",
+    gridTemplateCols: "33.333% 66.666%",
+    gridTemplateRows: "10% 80% 10%",
   });
 
   useEffect(() => {
@@ -76,6 +84,13 @@ function Learn() {
             setIsSideNavShowing={setIsSideNavShowing}
             lesson3Data={lesson3Data}
             setLesson3Data={setLesson3Data}
+          />
+        </Route>
+        <Route exact path="/learn/4">
+          <Lesson4
+            setIsSideNavShowing={setIsSideNavShowing}
+            lesson4Data={lesson4Data}
+            setLesson4Data={setLesson4Data}
           />
         </Route>
       </section>

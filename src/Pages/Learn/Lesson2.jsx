@@ -43,10 +43,12 @@ function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
 
   return (
     <div>
-      <Header1 textAlign="center">Item Placement</Header1>
+      <Header1 padding="0 0.5rem" textAlign="center">
+        Item Placement
+      </Header1>
       <LessonGrid>
         <GridItem gridArea={"sandbox"}>
-          <Header2 textAlign="center">See Changes</Header2>
+          <Header2 textAlign="center">Sandbox</Header2>
           <Sandbox>
             <SandboxContent2
               justifySelf={lesson2Data.justifySelf}

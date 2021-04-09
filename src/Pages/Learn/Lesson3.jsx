@@ -63,10 +63,12 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
 
   return (
     <div>
-      <Header1 textAlign="center">Grid Areas</Header1>
+      <Header1 padding="0 0.5rem" textAlign="center">
+        Grid Areas
+      </Header1>
       <LessonGridType2>
         <GridItem gridArea="sandbox">
-          <Header2 textAlign="center">See Changes</Header2>
+          <Header2 textAlign="center">Sandbox</Header2>
           <Sandbox height="500px">
             <SandboxContent3
               area1={lesson3Data.gridTemplateArea1}
@@ -129,10 +131,10 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
             <CodeLine>.container &#123;</CodeLine>
             <CodeLine textIndent="1em">display: grid;</CodeLine>
             <CodeLine textIndent="1em">
-              grid-template-columns: 33% 66%;
+              grid-template-columns: 33.333% 66.666%;
             </CodeLine>
             <CodeLine textIndent="1em">
-              grid-template-rows: 46px 408px 46px;
+              grid-template-rows: 10% 80% 10%;
             </CodeLine>
             <CodeLine textIndent="1em">grid-template-areas:</CodeLine>
             <CodeLine textIndent="2em">

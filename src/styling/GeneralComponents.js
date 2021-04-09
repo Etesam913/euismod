@@ -31,8 +31,8 @@ export const LessonGrid = styled.div`
   grid-template-columns: 50% 50%;
   grid-template-rows: auto auto;
   grid-template-areas:
-      "sandbox info"
-      "css html";
+    "sandbox info"
+    "css html";
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 100%;
@@ -106,7 +106,7 @@ export const Property = styled.span`
   font-size: 0.75em;
   transition: 150ms;
   margin: ${(props) => (props.margin ? props.margin : "0.2rem .35rem")};
-  padding: 0.2rem;
+  padding: 0.2rem 0.3rem;
   border-radius: 0.5rem;
   white-space: nowrap;
 `;

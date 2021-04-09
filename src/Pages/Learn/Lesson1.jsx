@@ -46,10 +46,12 @@ function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
   });
   return (
     <div>
-      <Header1 textAlign="center">Grid Creation</Header1>
+      <Header1 padding="0 0.5rem" textAlign="center">
+        Grid Creation
+      </Header1>
       <LessonGrid>
         <GridItem gridArea={"sandbox"}>
-          <Header2 textAlign="center">See Changes</Header2>
+          <Header2 textAlign="center">Sandbox</Header2>
           <Sandbox>
             <SandboxContent1
               displayProperty={lesson1Data.display}

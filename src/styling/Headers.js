@@ -52,6 +52,7 @@ export const Paragraph = styled(motion.p)`
   max-width: ${(props) => props.maxWidth};
   font-size: ${(props) => (props.fontSize ? props.fontSize : "1em")};
   text-align: ${(props) => props.textAlign};
+  line-height: ${(props) => (props.lineHeight ? props.lineHeight : "1.5em")};
   ${(props) =>
     props.invert &&
     css`

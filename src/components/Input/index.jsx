@@ -27,7 +27,7 @@ function StyledInput({
       placeholder={placeholder}
       width={width}
       autoComplete={"off"}
-      value={stateToUpdate[property]}
+      value={stateToUpdate && stateToUpdate[property]}
       onChange={(e) => {
         handleChange(e);
       }}

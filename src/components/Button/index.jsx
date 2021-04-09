@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { buttonVariants2 } from "../../styling/variants";
 import { useHistory } from "react-router-dom";
 
-function StyledButton({ text, to, onClick }) {
+function StyledButton({ text, to, onClick, margin }) {
   const history = useHistory();
 
   function handleClick() {
@@ -24,6 +24,7 @@ function StyledButton({ text, to, onClick }) {
       variants={buttonVariants2}
       whileHover="hover"
       whileTap="tap"
+      margin={margin}
     >
       {text}
     </StyledButtonWrapper>

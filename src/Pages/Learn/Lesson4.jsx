@@ -15,6 +15,7 @@ import { SandboxContent4 } from "../../components/Sandboxes";
 import StyledInput from "../../components/Input";
 import StyledButton from "../../components/Button";
 import { renderSubmitText } from "./helpers";
+import { checkFourthSolution } from "../../functions/SolutionChecks";
 
 function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
   const { size } = useContext(AppContext);
@@ -26,6 +27,10 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
       gridTemplateCols: "33.333% 66.666%",
       gridTemplateRows: "10% 80% 10%",
     });
+  }
+
+  function onSubmit() {
+    return checkFourthSolution(lesson4Data);
   }
 
   return (
@@ -59,10 +64,10 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
             out in the sandbox.
           </Paragraph>
           <Paragraph margin="1rem 0" responsive fontSize="1.1em">
-            One problem that should stand out is that the footer component
-            overflows out of the sandbox. This is undesirable. The way to fix
-            this is to use fractional units(fr) instead of percentages when
-            defining <Property>grid-template-columns</Property> and{" "}
+            One problem that should stand out is that the components overflow
+            out of the sandbox. This is undesirable. The way to fix this is to
+            use fractional units(fr) instead of percentages when defining{" "}
+            <Property>grid-template-columns</Property> and{" "}
             <Property>grid-template-rows</Property>. The fr unit only deals with
             the remaining space available(takes into account grip gap) while
             percentages deal with the whole length.
@@ -152,13 +157,12 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
           </CodeContainer>
         </GridItem>
       </LessonGridType2>
-
       <FlexContainer
         flexDirection="column"
         alignItems="flex-end"
-        padding="0 .45rem 0 0"
+        padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
       >
-        <StyledButton text="Submit" />
+        <StyledButton text="Submit" onClick={onSubmit} />
       </FlexContainer>
     </div>
   );

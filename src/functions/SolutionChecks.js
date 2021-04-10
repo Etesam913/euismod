@@ -142,3 +142,68 @@ export function checkThirdSolution(lesson3Data) {
   }
   return { isSolved: false, text: errorTexts };
 }
+
+// Goes through every element and checks if their unit is correct
+function checkUnitsMatch(arr, unit) {
+  let indexInCorrectLocation = true;
+  for (let i = 0; i < arr.length; i++) {
+    const sanitizedElement = arr[i].trim();
+    // Unit has to be present and there must be a number to the left of it
+    if (
+      sanitizedElement.indexOf(unit) === -1 ||
+      sanitizedElement.indexOf(unit) === 0
+    ) {
+      return false;
+      // The unit has to be after the number (all the way to the right)
+    } else if (
+      sanitizedElement.indexOf(unit) !==
+      sanitizedElement.length - unit.length
+    ) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkRatio(arr, ratio) {
+  if (ratio.length !== arr.length) {
+    console.error("RATIO AND ARR LENGTH ARE INEQUAL");
+    return;
+  }
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    const curValue = parseFloat(arr[i]);
+    const nextVal = parseFloat(arr[i + 1]);
+    if (curValue * ratio[i + 1] !== nextVal) {
+      return false;
+    }
+  }
+  return true;
+}
+
+export function checkFourthSolution(lesson4Data) {
+  const gridGap = lesson4Data.gridGap.trim();
+  const gridTemplateCols = lesson4Data.gridTemplateCols.trim().split(" ");
+  const gridTemplateRows = lesson4Data.gridTemplateRows.trim().split(" ");
+
+  const gridGapSolution = "8px 10px";
+
+  let errorTexts = [null, null, null];
+  if (gridGap !== gridGapSolution) {
+    errorTexts[0] = "The grid-gap property is wrong";
+  }
+  if (
+    gridTemplateCols.length !== 2 ||
+    !checkUnitsMatch(gridTemplateCols, "fr") ||
+    !checkRatio(gridTemplateCols, [1, 2])
+  ) {
+    errorTexts[1] = "The grid-template-columns property is wrong";
+  }
+  if (
+    gridTemplateRows.length !== 3 ||
+    !checkUnitsMatch(gridTemplateRows, "fr") ||
+    !checkRatio(gridTemplateRows, [1, 8, 0.125])
+  ) {
+    errorTexts[2] = "The grid-template-rows property is wrong";
+  }
+}

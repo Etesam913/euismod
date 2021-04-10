@@ -97,6 +97,9 @@ export const GridItem = styled.div`
   padding: 0.5rem 1rem;
   box-sizing: border-box;
   grid-area: ${(props) => props.gridArea};
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem 2rem;
+  }
 `;
 
 export const Property = styled.span`

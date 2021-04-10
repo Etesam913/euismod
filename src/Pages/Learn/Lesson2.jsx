@@ -121,7 +121,7 @@ function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
       <FlexContainer
         flexDirection="column"
         alignItems="flex-end"
-        padding="0 .45rem 0 0"
+        padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
       >
         <StyledButton text="Submit" onClick={onSubmit} />
         {renderSubmitText(lesson2Data, setLesson2Data)}

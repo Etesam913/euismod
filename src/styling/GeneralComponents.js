@@ -148,3 +148,57 @@ export const ErrorAlert = styled(SuccessAlert)`
   margin: 0;
   background: ${(props) => props.theme.colors.error} !important;
 `;
+
+export const SidebarContainer = styled(motion.aside)`
+  display: block;
+  position: absolute;
+  background: ${(props) => props.theme.colors.lowContrastBackground};
+  overflow: hidden;
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  box-sizing: border-box;
+  z-index: 1;
+  top: 7rem;
+  @media screen and (max-width: 768px) {
+    top: 4.35rem;
+    transition: top 300ms;
+  }
+  transition: top 300ms;
+  box-shadow: ${(props) => props.theme.misc.shadow};
+`;
+
+export const SidebarList = styled(motion.ul)`
+  list-style-type: none;
+  padding: 0;
+`;
+
+export const SidebarItem = styled.li`
+  margin-top: 1.5rem;
+`;
+
+export const SidebarItemButton = styled(motion.button)`
+  font-size: 1.25em;
+  border: none;
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.selected
+      ? props.theme.colors.selected
+      : props.theme.colors.lowContrastBackground};
+  color: ${(props) => props.theme.colors.primary};
+  font-family: ${(props) => props.theme.fonts.primary};
+  font-weight: normal;
+  padding: 0.75rem 0.3rem 0.75rem 0.75rem;
+  width: 100%;
+  text-align: left;
+  border-radius: 0.5rem;
+  transition: 200ms ease-in-out;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  :hover {
+    background: ${(props) => props.theme.colors.highlighted};
+    transition: 200ms ease-in-out;
+  }
+`;

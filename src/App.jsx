@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { HashRouter as Router, Route } from "react-router-dom";
 import { darkTheme, lightTheme } from "./styling/theme";
@@ -7,9 +7,12 @@ import Home from "./Pages/Home";
 import Learn from "./Pages/Learn";
 import { AppContext } from "./Contexts";
 import { useWindowSize } from "./components/CustomHooks";
+import Quiz from "./Pages/Quiz";
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const darkModeInitial =
+    JSON.parse(localStorage.getItem("isDarkMode")) ?? false;
+  const [isDarkMode, setIsDarkMode] = useState(darkModeInitial);
   const size = useWindowSize();
 
   return (
@@ -22,6 +25,9 @@ function App() {
           </Route>
           <Route path="/learn">
             <Learn isDarkMode={isDarkMode} />
+          </Route>
+          <Route path="/quiz">
+            <Quiz />
           </Route>
         </Router>
         <GlobalStyles />

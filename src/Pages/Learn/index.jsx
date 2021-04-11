@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Sidebar from "../../components/Sidebar";
+import LessonsSidebar from "../../components/LessonsSidebar";
 import { Route } from "react-router-dom";
 import Lesson1 from "./Lesson1";
 import Lesson3 from "./Lesson3";
@@ -54,7 +54,7 @@ function Learn() {
 
   return (
     <Container>
-      <Sidebar
+      <LessonsSidebar
         isSideNavShowing={isSideNavShowing}
         setIsSideNavShowing={setIsSideNavShowing}
         solutionObjs={[
@@ -64,41 +64,40 @@ function Learn() {
           lesson4Data.solutionObj,
         ]}
       />
-      <section>
-        <Route exact path="/learn">
-          <Lesson1
-            setIsSideNavShowing={setIsSideNavShowing}
-            lesson1Data={lesson1Data}
-            setLesson1Data={setLesson1Data}
-          />
-        </Route>
-        <Route exact path="/learn/2">
-          <Lesson2
-            setIsSideNavShowing={setIsSideNavShowing}
-            lesson2Data={lesson2Data}
-            setLesson2Data={setLesson2Data}
-          />
-        </Route>
-        <Route exact path="/learn/3">
-          <Lesson3
-            setIsSideNavShowing={setIsSideNavShowing}
-            lesson3Data={lesson3Data}
-            setLesson3Data={setLesson3Data}
-          />
-        </Route>
-        <Route exact path="/learn/4">
-          <Lesson4
-            setIsSideNavShowing={setIsSideNavShowing}
-            lesson4Data={lesson4Data}
-            setLesson4Data={setLesson4Data}
-          />
-        </Route>
-      </section>
+
+      <Route exact path="/learn">
+        <Lesson1
+          setIsSideNavShowing={setIsSideNavShowing}
+          lesson1Data={lesson1Data}
+          setLesson1Data={setLesson1Data}
+        />
+      </Route>
+      <Route exact path="/learn/2">
+        <Lesson2
+          setIsSideNavShowing={setIsSideNavShowing}
+          lesson2Data={lesson2Data}
+          setLesson2Data={setLesson2Data}
+        />
+      </Route>
+      <Route exact path="/learn/3">
+        <Lesson3
+          setIsSideNavShowing={setIsSideNavShowing}
+          lesson3Data={lesson3Data}
+          setLesson3Data={setLesson3Data}
+        />
+      </Route>
+      <Route exact path="/learn/4">
+        <Lesson4
+          setIsSideNavShowing={setIsSideNavShowing}
+          lesson4Data={lesson4Data}
+          setLesson4Data={setLesson4Data}
+        />
+      </Route>
     </Container>
   );
 }
 
-const Container = styled.div`
+const Container = styled.section`
   padding: 2rem 0 1.25rem;
   transition: padding 150ms ease-in-out;
 `;

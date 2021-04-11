@@ -21,9 +21,6 @@ function Navbar() {
     }
   };
 
-  /*const navAnimation =
-                  currentPath === "/learn" ? { padding: "0 1rem" } : { padding: "0 6rem" };*/
-
   return (
     <Nav initial={{ padding: "0 6rem" }} animate={navAnimation}>
       <Link to="/" className="no-underline">
@@ -42,6 +39,7 @@ function Navbar() {
           whileHover="hover"
           whileTap="tap"
           onClick={() => {
+            localStorage.setItem("isDarkMode", JSON.stringify(!isDarkMode));
             setIsDarkMode(!isDarkMode);
           }}
         >

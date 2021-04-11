@@ -49,18 +49,6 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
     );
   });
 
-  function onSubmit() {
-    const tempSolObj = checkThirdSolution(lesson3Data);
-    const tempLesson = { ...lesson3Data };
-    tempLesson.solutionObj = tempSolObj;
-    setLesson3Data(tempLesson);
-    localStorage.setItem("lesson3Data", JSON.stringify(tempLesson));
-
-    if (tempSolObj.isSolved) {
-      setIsSideNavShowing(true);
-    }
-  }
-
   return (
     <div>
       <Header1 padding="0 0.5rem" textAlign="center">

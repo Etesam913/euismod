@@ -45,13 +45,12 @@ function Learn() {
     const data1 = JSON.parse(localStorage.getItem("lesson1Data"));
     const data2 = JSON.parse(localStorage.getItem("lesson2Data"));
     const data3 = JSON.parse(localStorage.getItem("lesson3Data"));
+    const data4 = JSON.parse(localStorage.getItem("lesson4Data"));
     if (data1 !== null) setLesson1Data(data1);
     if (data2 !== null) setLesson2Data(data2);
     if (data3 !== null) setLesson3Data(data3);
-    /*if (data1) setSolutionObj1(data1.solutionObj);
-    if (data2) setSolutionObj2(data2.solutionObj);
-    if (data3) setSolutionObj3(data3.solutionObj);*/
-  }, [setLesson1Data, setLesson2Data]);
+    if (data4 !== null) setLesson4Data(data4);
+  }, [setLesson1Data, setLesson2Data, setLesson3Data, setLesson4Data]);
 
   return (
     <Container>
@@ -62,6 +61,7 @@ function Learn() {
           lesson1Data.solutionObj,
           lesson2Data.solutionObj,
           lesson3Data.solutionObj,
+          lesson4Data.solutionObj,
         ]}
       />
       <section>

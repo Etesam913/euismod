@@ -47,7 +47,7 @@ function Sidebar({
           return <XSvg height="28px" width="28px" fill="#d92020" />;
         }
       }
-      return <span>c</span>;
+      return <span></span>;
     }
 
     return (

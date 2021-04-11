@@ -206,4 +206,8 @@ export function checkFourthSolution(lesson4Data) {
   ) {
     errorTexts[2] = "The grid-template-rows property is wrong";
   }
+  if (gridGap === gridGapSolution && checkEquality(errorTexts, null))
+    return { isSolved: true, text: "Correct" };
+
+  return { isSolved: false, text: errorTexts };
 }

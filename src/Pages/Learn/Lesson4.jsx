@@ -14,7 +14,7 @@ import { AppContext } from "../../Contexts";
 import { SandboxContent4 } from "../../components/Sandboxes";
 import StyledInput from "../../components/Input";
 import StyledButton from "../../components/Button";
-import { renderSubmitText } from "./helpers";
+import { onLessonSubmit, renderSubmitText } from "./helpers";
 import { checkFourthSolution } from "../../functions/SolutionChecks";
 
 function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
@@ -27,10 +27,6 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
       gridTemplateCols: "33.333% 66.666%",
       gridTemplateRows: "10% 80% 10%",
     });
-  }
-
-  function onSubmit() {
-    return checkFourthSolution(lesson4Data);
   }
 
   return (
@@ -162,7 +158,19 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
         alignItems="flex-end"
         padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
       >
-        <StyledButton text="Submit" onClick={onSubmit} />
+        <StyledButton
+          text="Submit"
+          onClick={() => {
+            onLessonSubmit(
+              lesson4Data,
+              setLesson4Data,
+              checkFourthSolution(lesson4Data),
+              "lesson4Data",
+              setIsSideNavShowing
+            );
+          }}
+        />
+        {renderSubmitText(lesson4Data, setLesson4Data)}
       </FlexContainer>
     </div>
   );

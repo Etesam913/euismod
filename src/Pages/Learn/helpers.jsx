@@ -82,15 +82,27 @@ export function renderSubmitText(lessonData, setLessonData) {
   return <SubmitList style={{ overflow: "hidden" }}>{getText()}</SubmitList>;
 }
 
-export function solutionAnimation(solutionObj) {
-  if (solutionObj !== null) {
-    if (solutionObj.isSolved) {
-      return { height: 54 };
-    } else {
-      return { height: 54 * solutionObj.text.length };
-    }
-  } else {
-    return { height: 0 };
+export function onLessonSubmit(
+  lessonData,
+  setLessonData,
+  solutionCheck,
+  localStorageId,
+  setIsSideNavShowing
+) {
+  const tempSolObj = solutionCheck();
+  const tempLesson = { ...lessonData };
+  tempLesson.solutionObj = tempSolObj;
+  setLessonData(tempLesson);
+  localStorage.setItem(localStorageId, JSON.stringify(tempLesson));
+  setTimeout(function () {
+    window.scroll({
+      top: document.body.scrollHeight,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, 175);
+  if (tempSolObj.isSolved) {
+    setIsSideNavShowing(true);
   }
 }
 

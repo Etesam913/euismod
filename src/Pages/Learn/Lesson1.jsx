@@ -14,28 +14,13 @@ import StyledButton from "../../components/Button";
 import StyledInput from "../../components/Input";
 import { checkFirstSolution } from "../../functions/SolutionChecks";
 import { SandboxContent1 } from "../../components/Sandboxes";
-import { renderSubmitText } from "./helpers";
+import { onLessonSubmit, renderSubmitText } from "./helpers";
 
 function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
   const { size } = useContext(AppContext);
   const displayRef = useRef(null);
   const columnsRef = useRef(null);
   const rowsRef = useRef(null);
-
-  function onSubmit() {
-    const tempSolObj = checkFirstSolution(displayRef, columnsRef, rowsRef);
-    console.log(tempSolObj);
-    const tempLesson1 = { ...lesson1Data };
-    tempLesson1.solutionObj = tempSolObj;
-    setLesson1Data(tempLesson1);
-    localStorage.setItem("lesson1Data", JSON.stringify(tempLesson1));
-    console.log(JSON.parse(localStorage.getItem("lesson1Data")));
-
-    if (tempSolObj.isSolved) {
-      setIsSideNavShowing(true);
-    }
-  }
-
   const boxData = [0, 0, 0, 0, 0, 0];
   const htmlBoxes = boxData.map((val, index) => {
     return (
@@ -44,6 +29,7 @@ function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
       </CodeLine>
     );
   });
+
   return (
     <div>
       <Header1 padding="0 0.5rem" textAlign="center">
@@ -132,7 +118,18 @@ function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
         alignItems="flex-end"
         padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
       >
-        <StyledButton text="Submit" onClick={onSubmit} />
+        <StyledButton
+          text="Submit"
+          onClick={() => {
+            onLessonSubmit(
+              lesson1Data,
+              setLesson1Data,
+              checkFirstSolution(lesson1Data),
+              "lesson1Data",
+              setIsSideNavShowing
+            );
+          }}
+        />
         {renderSubmitText(lesson1Data, setLesson1Data)}
       </FlexContainer>
     </div>

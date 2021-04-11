@@ -89,18 +89,18 @@ export function onLessonSubmit(
   localStorageId,
   setIsSideNavShowing
 ) {
-  const tempSolObj = solutionCheck();
+  const tempSolObj = solutionCheck;
   const tempLesson = { ...lessonData };
   tempLesson.solutionObj = tempSolObj;
   setLessonData(tempLesson);
   localStorage.setItem(localStorageId, JSON.stringify(tempLesson));
-  setTimeout(function () {
+  /*setTimeout(function () {
     window.scroll({
       top: document.body.scrollHeight,
       left: 0,
       behavior: "smooth",
     });
-  }, 175);
+  }, 175);*/
   if (tempSolObj.isSolved) {
     setIsSideNavShowing(true);
   }

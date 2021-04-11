@@ -13,7 +13,7 @@ import { SandboxContent2 } from "../../components/Sandboxes";
 import StyledInput from "../../components/Input";
 import { AppContext } from "../../Contexts";
 import StyledButton from "../../components/Button";
-import { renderSubmitText } from "./helpers";
+import { onLessonSubmit, renderSubmitText } from "./helpers";
 import { checkSecondSolution } from "../../functions/SolutionChecks";
 
 function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
@@ -28,18 +28,6 @@ function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
       </CodeLine>
     );
   });
-
-  function onSubmit() {
-    const tempSolObj = checkSecondSolution(justifySelfRef, alignSelfRef);
-    const tempLesson = { ...lesson2Data };
-    tempLesson.solutionObj = tempSolObj;
-    setLesson2Data(tempLesson);
-    localStorage.setItem("lesson2Data", JSON.stringify(tempLesson));
-
-    if (tempSolObj.isSolved) {
-      setIsSideNavShowing(true);
-    }
-  }
 
   return (
     <div>
@@ -123,7 +111,18 @@ function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
         alignItems="flex-end"
         padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
       >
-        <StyledButton text="Submit" onClick={onSubmit} />
+        <StyledButton
+          text="Submit"
+          onClick={() => {
+            onLessonSubmit(
+              lesson2Data,
+              setLesson2Data,
+              checkSecondSolution(lesson2Data),
+              "lesson2Data",
+              setIsSideNavShowing
+            );
+          }}
+        />
         {renderSubmitText(lesson2Data, setLesson2Data)}
       </FlexContainer>
     </div>

@@ -1,75 +1,66 @@
-export function checkFirstSolution(displayRef, columnsRef, rowsRef) {
-  if (displayRef && columnsRef && rowsRef) {
-    const sanitizedDisplayText = displayRef.current.value.trim().toLowerCase();
-    const sanitizedColumnsText = columnsRef.current.value.trim().toLowerCase();
-    const sanitizedRowText = rowsRef.current.value.trim().toLowerCase();
+export function checkFirstSolution(lesson1Data) {
+  const sanitizedDisplayText = lesson1Data.display.trim().toLowerCase();
+  const sanitizedColumnsText = lesson1Data.gridTemplateCols
+    .trim()
+    .toLowerCase();
+  const sanitizedRowText = lesson1Data.gridTemplateRows.trim().toLowerCase();
 
-    console.log(sanitizedDisplayText);
-    console.log(sanitizedColumnsText);
-    console.log(sanitizedRowText);
+  const displayTextSolution = "grid";
+  const columnsTextSolution = "50% 50%";
+  const rowsTextSolution = "133px 133px 133px";
 
-    const displayTextSolution = "grid";
-    const columnsTextSolution = "50% 50%";
-    const rowsTextSolution = "133px 133px 133px";
-
-    if (
-      sanitizedDisplayText === displayTextSolution &&
-      sanitizedColumnsText === columnsTextSolution &&
-      sanitizedRowText === rowsTextSolution
-    ) {
-      return { isSolved: true, text: "Correct" };
-    } else {
-      let errorTexts = [null, null, null];
-      if (sanitizedDisplayText !== displayTextSolution) {
-        displayRef.current.focus();
-        errorTexts[0] = "The display property is incorrect";
-      }
-      if (sanitizedColumnsText !== columnsTextSolution) {
-        columnsRef.current.focus();
-        errorTexts[1] = "The grid-template-columns property is incorrect";
-      }
-      if (sanitizedRowText !== rowsTextSolution) {
-        rowsRef.current.focus();
-        errorTexts[2] = "The grid-template-rows property is incorrect";
-      }
-      console.log(errorTexts);
-      return { isSolved: false, text: errorTexts };
+  if (
+    sanitizedDisplayText === displayTextSolution &&
+    sanitizedColumnsText === columnsTextSolution &&
+    sanitizedRowText === rowsTextSolution
+  ) {
+    return { isSolved: true, text: "Correct" };
+  } else {
+    let errorTexts = [null, null, null];
+    if (sanitizedDisplayText !== displayTextSolution) {
+      /*displayRef.current.focus();*/
+      errorTexts[0] = "The display property is incorrect";
     }
+    if (sanitizedColumnsText !== columnsTextSolution) {
+      /*columnsRef.current.focus();*/
+      errorTexts[1] = "The grid-template-columns property is incorrect";
+    }
+    if (sanitizedRowText !== rowsTextSolution) {
+      /*rowsRef.current.focus();*/
+      errorTexts[2] = "The grid-template-rows property is incorrect";
+    }
+    return { isSolved: false, text: errorTexts };
   }
 }
 
-export function checkSecondSolution(justifySelfRef, alignSelfRef) {
-  if (justifySelfRef && alignSelfRef) {
-    const sanitizedJustifyText = justifySelfRef.current.value
-      .trim()
-      .toLowerCase();
-    const sanitizedAlignText = alignSelfRef.current.value.trim().toLowerCase();
+export function checkSecondSolution(lesson2Data) {
+  const sanitizedJustifyText = lesson2Data.justifySelf.trim().toLowerCase();
+  const sanitizedAlignText = lesson2Data.alignSelf.trim().toLowerCase();
 
-    const justifySolution = "start";
-    const justifySolution2 = "left";
-    const alignSolution = "end";
+  const justifySolution = "start";
+  const justifySolution2 = "left";
+  const alignSolution = "end";
 
+  if (
+    (sanitizedJustifyText === justifySolution ||
+      sanitizedJustifyText === justifySolution2) &&
+    sanitizedAlignText === alignSolution
+  ) {
+    return { isSolved: true, text: "Correct" };
+  } else {
+    let errorTexts = [null, null];
     if (
-      (sanitizedJustifyText === justifySolution ||
-        sanitizedJustifyText === justifySolution2) &&
-      sanitizedAlignText === alignSolution
+      sanitizedJustifyText !== justifySolution &&
+      sanitizedJustifyText !== justifySolution2
     ) {
-      return { isSolved: true, text: "Correct" };
-    } else {
-      let errorTexts = [null, null];
-      if (
-        sanitizedJustifyText !== justifySolution &&
-        sanitizedJustifyText !== justifySolution2
-      ) {
-        justifySelfRef.current.focus();
-        errorTexts[0] = "The justify-self is incorrect";
-      }
-      if (sanitizedAlignText !== alignSolution) {
-        alignSelfRef.current.focus();
-        errorTexts[1] = "The align-self property is incorrect";
-      }
-      return { isSolved: false, text: errorTexts };
+      /*justifySelfRef.current.focus();*/
+      errorTexts[0] = "The justify-self is incorrect";
     }
+    if (sanitizedAlignText !== alignSolution) {
+      /*alignSelfRef.current.focus();*/
+      errorTexts[1] = "The align-self property is incorrect";
+    }
+    return { isSolved: false, text: errorTexts };
   }
 }
 

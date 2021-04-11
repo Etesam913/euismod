@@ -16,7 +16,7 @@ import { AppContext } from "../../Contexts";
 import { SandboxContent3 } from "../../components/Sandboxes";
 import StyledButton from "../../components/Button";
 import { checkThirdSolution } from "../../functions/SolutionChecks";
-import { renderSubmitText } from "./helpers";
+import { onLessonSubmit, renderSubmitText } from "./helpers";
 
 function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
   const { size } = useContext(AppContext);
@@ -195,7 +195,18 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
         alignItems="flex-end"
         padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
       >
-        <StyledButton text="Submit" onClick={onSubmit} />
+        <StyledButton
+          text="Submit"
+          onClick={() => {
+            onLessonSubmit(
+              lesson3Data,
+              setLesson3Data,
+              checkThirdSolution(lesson3Data),
+              "lesson3Data",
+              setIsSideNavShowing
+            );
+          }}
+        />
         {renderSubmitText(lesson3Data, setLesson3Data)}
       </FlexContainer>
     </div>

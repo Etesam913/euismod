@@ -19,7 +19,7 @@ export const alertVariants = {
     transition: {
       padding: { duration: 0.15 },
       margin: { duration: 0.15 },
-      opacity: { duration: 0.15 },
+      opacity: { duration: 0.25 },
     },
   },
 };

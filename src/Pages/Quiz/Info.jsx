@@ -1,10 +1,11 @@
 import React from "react";
 import { Header1, Paragraph } from "../../styling/Headers";
 import StyledButton from "../../components/Button";
+import { FlexContainer } from "../../styling/GeneralComponents";
 
 function Info() {
   return (
-    <>
+    <FlexContainer flexDirection="column">
       <Header1 textAlign="center"> The CSS Grid Quiz</Header1>
       <Paragraph fontSize="1.25em" textAlign="center">
         Take a series of 5 questions to test your practical knowledge of CSS
@@ -16,7 +17,7 @@ function Info() {
       </Paragraph>
 
       <StyledButton text="Start Quiz" to="/quiz/1" />
-    </>
+    </FlexContainer>
   );
 }
 

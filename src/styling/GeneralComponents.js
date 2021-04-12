@@ -85,6 +85,7 @@ export const CodeContainer = styled.div`
   color: ${(props) => props.theme.colors.primary};
   transition: 150ms;
   line-height: 1.75rem;
+  margin: ${(props) => props.margin};
 `;
 
 export const CodeLine = styled.code`
@@ -154,16 +155,17 @@ export const SidebarContainer = styled(motion.aside)`
   position: absolute;
   background: ${(props) => props.theme.colors.lowContrastBackground};
   overflow: hidden;
-  border-top-right-radius: 0.75rem;
-  border-bottom-right-radius: 0.75rem;
+  border-radius: ${(props) =>
+    props.leftScreen ? "0 0.75rem 0.75rem 0" : "0.75rem"};
   box-sizing: border-box;
   z-index: 1;
   top: 7rem;
+  left: ${(props) => props.left};
   @media screen and (max-width: 768px) {
     top: 4.35rem;
-    transition: top 300ms;
+    transition: top 300ms, left 300ms;
   }
-  transition: top 300ms;
+  transition: top 300ms, left 300ms;
   box-shadow: ${(props) => props.theme.misc.shadow};
 `;
 
@@ -201,4 +203,17 @@ export const SidebarItemButton = styled(motion.button)`
     background: ${(props) => props.theme.colors.highlighted};
     transition: 200ms ease-in-out;
   }
+`;
+export const HamburgerWrapper = styled.button`
+  border: 0;
+  padding: 0;
+  ${(props) =>
+    props.isSideNavShowing &&
+    css`
+      top: 0.25rem;
+      right: 0.25rem;
+    `}
+
+  position: absolute;
+  background: transparent;
 `;

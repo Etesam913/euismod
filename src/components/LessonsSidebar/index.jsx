@@ -7,6 +7,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import Hamburger from "../Hamburger";
 import { Checkbox, XSvg } from "../../SvgMaster";
 import {
+  HamburgerWrapper,
   SidebarContainer,
   SidebarItem,
   SidebarItemButton,
@@ -28,13 +29,13 @@ function LessonsSidebar({
     setIsSideNavShowing(false);
   }
 
-  const sideBarData = [
+  const sidebarData = [
     ["Grid Creation", "/learn"],
     ["Item Placement", "/learn/2"],
     ["Grid Areas", "/learn/3"],
     ["Grid Gap/fr unit", "/learn/4"],
   ];
-  const sideBarItems = sideBarData.map((text, index) => {
+  const sidebarItems = sidebarData.map((text, index) => {
     function solveStatus() {
       if (
         solutionObjs !== null &&
@@ -57,7 +58,7 @@ function LessonsSidebar({
     }
 
     return (
-      <SidebarItem>
+      <SidebarItem key={"lesson-" + index}>
         <SidebarItemButton
           selected={location.pathname === text[1]}
           onClick={() => {
@@ -73,6 +74,7 @@ function LessonsSidebar({
 
   return (
     <SidebarContainer
+      leftScreen
       isSideNavShowing={isSideNavShowing}
       initial={{
         padding: "14px 12px 12px 10px",
@@ -101,26 +103,12 @@ function LessonsSidebar({
             <Header1 margin={"0"} padding={"0rem .75rem"}>
               Lessons
             </Header1>
-            <SidebarList>{sideBarItems}</SidebarList>
+            <SidebarList>{sidebarItems}</SidebarList>
           </motion.div>
         )}
       </AnimatePresence>
     </SidebarContainer>
   );
 }
-
-const HamburgerWrapper = styled.button`
-  border: 0;
-  padding: 0;
-  ${(props) =>
-    props.isSideNavShowing &&
-    css`
-      top: 0.25rem;
-      right: 0.25rem;
-    `}
-
-  position: absolute;
-  background: transparent;
-`;
 
 export default withTheme(LessonsSidebar);

@@ -20,10 +20,23 @@ function QuizQuestionComponents({ id }) {
           ;
         </CodeContainer>
       );
+    } else if (id === 4) {
+      return (
+        <CodeContainer margin="1rem 0">
+          <CodeLine> display: grid; </CodeLine>
+          <CodeLine>
+            {" "}
+            grid-template-columns: <StyledInput width="13rem" />;
+          </CodeLine>
+          <CodeLine>
+            grid-template-rows: <StyledInput width="13rem" />;
+          </CodeLine>
+        </CodeContainer>
+      );
     }
   }
 
-  return <div>{getComponent()}</div>;
+  return <section>{getComponent()}</section>;
 }
 
 export default QuizQuestionComponents;

@@ -10,6 +10,7 @@ import { Header1, Header2, Paragraph } from "../../styling/Headers";
 import { AppContext } from "../../Contexts";
 import StyledButton from "../../components/Button";
 import QuizQuestionComponents from "./QuizQuestionComponents";
+import { LeftArrow, RightArrow } from "../../SvgMaster";
 
 function QuizTemplate({
   questionText,
@@ -18,12 +19,14 @@ function QuizTemplate({
   codeLines,
   index,
   nextQuestion,
+  previousQuestion,
+  imgAlt,
 }) {
-  const { size } = useContext(AppContext);
+  const { isDarkMode } = useContext(AppContext);
   let code = null;
   if (codeLines) {
     code = codeLines.map((obj) => {
-      return <CodeLine>{obj.text}</CodeLine>;
+      return <CodeLine textIndent={obj.indent + "em"}>{obj.text}</CodeLine>;
     });
   }
 
@@ -57,17 +60,44 @@ function QuizTemplate({
   }
 
   return (
-    <FlexContainer flexDirection="column">
+    <Container>
       <Header1 textAlign="center">Question {index}</Header1>
       {imgSrc && (
-        <ResponsiveImg margin={"1.25rem 0"} maxWidth={"40rem"} src={imgSrc} />
+        <ResponsiveImg
+          margin={"1.25rem 0"}
+          maxWidth={"40rem"}
+          src={imgSrc}
+          alt={imgAlt}
+        />
       )}
       {codeLines && <CodeContainer margin="1rem 0">{code}</CodeContainer>}
       <Header2 textAlign="center">{questionText}</Header2>
       <QuizQuestionComponents id={index} />
       {choices && <ChoicesList>{choicesComponents}</ChoicesList>}
-      {nextQuestion && <StyledButton text="Next Question" to={nextQuestion} />}
-    </FlexContainer>
+      <FlexContainer>
+        {previousQuestion && (
+          <StyledButton to={previousQuestion}>
+            <LeftArrow
+              height="24px"
+              width="24px"
+              fill={isDarkMode ? "white" : "black"}
+            />
+          </StyledButton>
+        )}
+
+        {nextQuestion && (
+          <StyledButton to={nextQuestion}>
+            <RightArrow
+              height="24px"
+              width="24px"
+              fill={isDarkMode ? "white" : "black"}
+            />{" "}
+          </StyledButton>
+        )}
+      </FlexContainer>
+
+      <StyledButton text="Submit Quiz" />
+    </Container>
   );
 }
 
@@ -78,6 +108,12 @@ const ChoicesList = styled.form`
 
 const Radio = styled.input`
   margin: 0;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default QuizTemplate;

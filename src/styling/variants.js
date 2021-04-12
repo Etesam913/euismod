@@ -23,3 +23,9 @@ export const alertVariants = {
     },
   },
 };
+
+export const pageVariants = {
+  init: { opacity: 0 },
+  anim: { opacity: 1 },
+  exit: { opacity: 0 },
+};

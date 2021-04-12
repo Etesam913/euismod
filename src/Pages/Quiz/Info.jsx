@@ -1,11 +1,13 @@
 import React from "react";
 import { Header1, Paragraph } from "../../styling/Headers";
 import StyledButton from "../../components/Button";
-import { FlexContainer } from "../../styling/GeneralComponents";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { pageVariants } from "../../styling/variants";
 
 function Info() {
   return (
-    <FlexContainer flexDirection="column">
+    <Container variants={pageVariants} initial="init" animate="anim">
       <Header1 textAlign="center"> The CSS Grid Quiz</Header1>
       <Paragraph fontSize="1.25em" textAlign="center">
         Take a series of 5 questions to test your practical knowledge of CSS
@@ -17,8 +19,14 @@ function Info() {
       </Paragraph>
 
       <StyledButton text="Start Quiz" to="/quiz/1" />
-    </FlexContainer>
+    </Container>
   );
 }
+
+export const Container = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default Info;

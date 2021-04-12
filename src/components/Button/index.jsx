@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { buttonVariants2 } from "../../styling/variants";
 import { useHistory } from "react-router-dom";
 
-function StyledButton({ text, to, onClick, margin }) {
+function StyledButton({ text, to, onClick, margin, children }) {
   const history = useHistory();
 
   function handleClick() {
@@ -27,6 +27,7 @@ function StyledButton({ text, to, onClick, margin }) {
       margin={margin}
     >
       {text}
+      {children}
     </StyledButtonWrapper>
   );
 }

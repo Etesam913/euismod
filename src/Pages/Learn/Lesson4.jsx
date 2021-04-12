@@ -4,7 +4,6 @@ import {
   CodeLine,
   FlexContainer,
   GridItem,
-  LessonGrid,
   LessonGridType2,
   Property,
   Sandbox,

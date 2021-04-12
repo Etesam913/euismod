@@ -4,10 +4,10 @@ import { Header1, Paragraph } from "../styling/Headers";
 import { motion } from "framer-motion";
 import { FlexContainer } from "../styling/GeneralComponents";
 import StyledButton from "../components/Button";
+import { pageVariants } from "../styling/variants";
 function Home() {
-
   return (
-    <Container>
+    <Container variants={pageVariants} initial="init" animate="anim">
       <FlexContainer
         as={"section"}
         flexDirection="column"
@@ -19,7 +19,7 @@ function Home() {
           Try out the interactive lesson to see how easy learning CSS Grid can
           be.
         </Paragraph>
-        <StyledButton text="Try Other Lessons" to='/learn'/>
+        <StyledButton text="Try Other Lessons" to="/learn" />
       </FlexContainer>
       <section></section>
     </Container>

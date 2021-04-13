@@ -14,6 +14,7 @@ export const lightTheme = {
     selected: "#e6e3e3",
     inputBackground: "#ddd",
     success: "#d4edda",
+    successText: "#659671",
     error: "#f8d7da",
   },
   misc: {
@@ -37,6 +38,7 @@ export const darkTheme = {
     selected: "#4a4949",
     inputBackground: "#626262",
     success: "#d4edda",
+    successText: "#659671",
     error: "#f8d7da",
   },
   misc: {

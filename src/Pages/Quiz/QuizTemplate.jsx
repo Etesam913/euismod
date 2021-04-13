@@ -6,11 +6,13 @@ import {
   FlexContainer,
   ResponsiveImg,
 } from "../../styling/GeneralComponents";
-import { Header1, Header2, Paragraph } from "../../styling/Headers";
+import { Header1, Header2 } from "../../styling/Headers";
 import { AppContext } from "../../Contexts";
 import StyledButton from "../../components/Button";
 import QuizQuestionComponents from "./QuizQuestionComponents";
 import { LeftArrow, RightArrow } from "../../SvgMaster";
+import Radio from "../../components/Radio";
+import RadioController from "../../components/RadioController";
 
 function QuizTemplate({
   questionText,
@@ -21,6 +23,8 @@ function QuizTemplate({
   nextQuestion,
   previousQuestion,
   imgAlt,
+  answerData,
+  setAnswerData,
 }) {
   const { isDarkMode } = useContext(AppContext);
   let code = null;
@@ -34,27 +38,15 @@ function QuizTemplate({
   if (choices) {
     choicesComponents = choices.map((text, index) => {
       return (
-        <FlexContainer
-          key={`choice-${index}`}
-          alignItems="center"
-          justifyContent="flex-start"
-        >
-          <Radio
-            type="radio"
-            name="choice"
-            id={`choice-${index}`}
-            value={text}
-          />
-          <Paragraph
-            fontSize="1.15em"
-            as={"label"}
-            margin="0.75rem 1rem"
-            htmlFor={`choice-${index}`}
-            style={{ cursor: "pointer" }}
-          >
-            {text}
-          </Paragraph>
-        </FlexContainer>
+        <Radio
+          type="radio"
+          name="choice"
+          id={`choice-${index}`}
+          value={text}
+          margin="0"
+          labelText={text}
+          index={index}
+        />
       );
     });
   }
@@ -72,8 +64,21 @@ function QuizTemplate({
       )}
       {codeLines && <CodeContainer margin="1rem 0">{code}</CodeContainer>}
       <Header2 textAlign="center">{questionText}</Header2>
-      <QuizQuestionComponents id={index} />
-      {choices && <ChoicesList>{choicesComponents}</ChoicesList>}
+      <QuizQuestionComponents
+        id={index}
+        answerData={answerData}
+        setAnswerData={setAnswerData}
+      />
+      {choices && (
+        <ChoicesForm>
+          <RadioController
+            selectedRadio={answerData}
+            setSelectedRadio={setAnswerData}
+          >
+            {choicesComponents}
+          </RadioController>
+        </ChoicesForm>
+      )}
       <FlexContainer>
         {previousQuestion && (
           <StyledButton to={previousQuestion}>
@@ -91,23 +96,18 @@ function QuizTemplate({
               height="24px"
               width="24px"
               fill={isDarkMode ? "white" : "black"}
-            />{" "}
+            />
           </StyledButton>
         )}
       </FlexContainer>
-
-      <StyledButton text="Submit Quiz" />
+      <StyledButton text="Submit Quiz" to="/quiz/results" />
     </Container>
   );
 }
 
-const ChoicesList = styled.form`
+const ChoicesForm = styled.form`
   padding: 0;
   margin: 0.35rem 0;
-`;
-
-const Radio = styled.input`
-  margin: 0;
 `;
 
 const Container = styled.div`

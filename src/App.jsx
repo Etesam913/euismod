@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  useLocation,
-} from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import { darkTheme, lightTheme } from "./styling/theme";
 import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
@@ -13,7 +8,6 @@ import Learn from "./Pages/Learn";
 import { AppContext } from "./Contexts";
 import { useWindowSize } from "./components/CustomHooks";
 import Quiz from "./Pages/Quiz";
-import { AnimatePresence } from "framer-motion";
 
 function App() {
   const darkModeInitial =

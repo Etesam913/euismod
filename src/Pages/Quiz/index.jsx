@@ -1,21 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Route, useLocation } from "react-router-dom";
 import Info from "./Info";
 import QuizSidebar from "../../components/QuizSidebar";
 import QuizTemplate from "./QuizTemplate";
 import { motion } from "framer-motion";
+import Results from "./Results";
 
 function Quiz() {
   const location = useLocation();
   const [isSideNavShowing, setIsSideNavShowing] = useState(true);
-  const [answerData, setAnswerData] = useState({
-    question1: -1,
-    question2: -1,
-    question3: -1,
-    question4: -1,
-    question5: -1,
-  });
+
+  const data1 = JSON.parse(localStorage.getItem("question1Data"));
+  const data2 = JSON.parse(localStorage.getItem("question2Data"));
+  const data3 = JSON.parse(localStorage.getItem("question3Data"));
+  const data4 = JSON.parse(localStorage.getItem("question4Data"));
+  const data5 = JSON.parse(localStorage.getItem("question5Data"));
+
+  const [question1Data, setQuestion1Data] = useState(data1 ?? -1);
+  const [question2Data, setQuestion2Data] = useState(
+    data2 ?? {
+      gridTemplateArea1: "",
+      gridTemplateArea2: "",
+      gridTemplateArea3: "",
+    }
+  );
+  const [question3Data, setQuestion3Data] = useState(data3 ?? -1);
+  const [question4Data, setQuestion4Data] = useState(
+    data4 ?? {
+      gridTemplateCols: "",
+      gridTemplateRows: "",
+    }
+  );
+  const [question5Data, setQuestion5Data] = useState(data5 ?? -1);
+
+  useEffect(() => {
+    localStorage.setItem("question1Data", JSON.stringify(question1Data));
+    console.log("changed");
+  }, [question1Data]);
+
+  useEffect(() => {
+    localStorage.setItem("question2Data", JSON.stringify(question2Data));
+  }, [question2Data]);
+
+  useEffect(() => {
+    localStorage.setItem("question3Data", JSON.stringify(question3Data));
+  }, [question3Data]);
+
+  useEffect(() => {
+    localStorage.setItem("question4Data", JSON.stringify(question4Data));
+  }, [question4Data]);
+
+  useEffect(() => {
+    localStorage.setItem("question5Data", JSON.stringify(question5Data));
+  }, [question5Data]);
+
   return (
     <Container>
       {location.pathname !== "/quiz" &&
@@ -47,6 +86,8 @@ function Quiz() {
             "A grid with 2 columns of 300px width and 2 rows of 200 px width each.",
           ]}
           nextQuestion="/quiz/2"
+          answerData={question1Data}
+          setAnswerData={setQuestion1Data}
         />
       </Route>
       <Route exact path="/quiz/2">
@@ -57,6 +98,8 @@ function Quiz() {
           previousQuestion="/quiz/1"
           nextQuestion="/quiz/3"
           imgAlt="Quiz 2 Diagram"
+          answerData={question2Data}
+          setAnswerData={setQuestion2Data}
         />
       </Route>
       <Route exact path="/quiz/3">
@@ -77,6 +120,8 @@ function Quiz() {
             "It is aligned to the right horizontally and to the bottom vertically.",
             "It is aligned to the bottom vertically and to the left horizontally.",
           ]}
+          answerData={question3Data}
+          setAnswerData={setQuestion3Data}
         />
       </Route>
       <Route exact path="/quiz/4">
@@ -93,7 +138,28 @@ function Quiz() {
             },
             { indent: 0, text: "grid-template-rows: 10% 45% 45%;" },
           ]}
+          answerData={question4Data}
+          setAnswerData={setQuestion4Data}
         />
+      </Route>
+      <Route exact path="/quiz/5">
+        <QuizTemplate
+          index={5}
+          previousQuestion="/quiz/4"
+          questionText="What does the above CSS code do?"
+          codeLines={[{ indent: 0, text: "grid-gap: 5px" }]}
+          choices={[
+            "It gives a horizontal gap of 10px and a vertical gap of 5px between grid items.",
+            "It gives a vertical gap of 10px and a horizontal gap of 5px between two grids.",
+            "It gives a vertical gap of 10px and a horizontal gap of 5px between grid items.",
+            "It gives both a horizontal and vertical gap of 5px between grid items.",
+          ]}
+          answerData={question5Data}
+          setAnswerData={setQuestion5Data}
+        />
+      </Route>
+      <Route exact path="/quiz/results">
+        <Results />
       </Route>
     </Container>
   );

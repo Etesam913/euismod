@@ -57,7 +57,7 @@ function Radio({ margin, labelText, theme, index }) {
   );
 }
 
-const StyledRadio = styled(motion.div)`
+const StyledRadio = styled(motion.button)`
   margin: ${(props) => props.margin};
   min-height: 1.5rem;
   min-width: 1.5rem;
@@ -68,6 +68,8 @@ const StyledRadio = styled(motion.div)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 0;
+  padding: 0;
 `;
 
 const RadioCircle = styled(motion.div)`
@@ -78,13 +80,16 @@ const RadioCircle = styled(motion.div)`
   transition: background 150ms;
 `;
 
-const Choice = styled(motion.p)`
+const Choice = styled(motion.button)`
   background: ${(props) => props.theme.colors.lowContrastBackground};
   padding: 1rem;
+  border: 0;
+  text-align: left;
   border-radius: 1rem;
-  font-size: ${(props) => props.p};
+  font-size: ${(props) => props.fontSize};
   margin: ${(props) => props.margin};
   color: ${(props) => props.theme.colors.primary};
   transition: color 150ms, background 150ms;
+  font-family: ${(props) => props.theme.fonts.secondary};
 `;
 export default withTheme(Radio);

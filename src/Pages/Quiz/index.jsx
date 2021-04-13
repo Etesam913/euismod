@@ -26,12 +26,7 @@ function Quiz() {
     }
   );
   const [question3Data, setQuestion3Data] = useState(data3 ?? -1);
-  const [question4Data, setQuestion4Data] = useState(
-    data4 ?? {
-      gridTemplateCols: "",
-      gridTemplateRows: "",
-    }
-  );
+  const [question4Data, setQuestion4Data] = useState(data4 ?? -1);
   const [question5Data, setQuestion5Data] = useState(data5 ?? -1);
 
   useEffect(() => {
@@ -94,7 +89,7 @@ function Quiz() {
         <QuizTemplate
           index={2}
           imgSrc="https://etesam.nyc3.digitaloceanspaces.com/Euismod/Question_2.png"
-          questionText="Recreate the image above using the same area names."
+          questionText="Recreate the 3x5 grid above using the same area names."
           previousQuestion="/quiz/1"
           nextQuestion="/quiz/3"
           imgAlt="Quiz 2 Diagram"
@@ -129,14 +124,12 @@ function Quiz() {
           index={4}
           previousQuestion="/quiz/3"
           nextQuestion={"/quiz/5"}
-          questionText="Convert the grid dimensions above into fractional units."
-          codeLines={[
-            { indent: 0, text: "display: grid;" },
-            {
-              indent: 0,
-              text: "grid-template-columns: 10% 10% 10% 35% 35%;",
-            },
-            { indent: 0, text: "grid-template-rows: 10% 45% 45%;" },
+          questionText="What is the advantage of using fractional units over other units like percentages?"
+          choices={[
+            "There is no advantage.",
+            "Fractional units only use the remaining free space, while other units use all of the space.",
+            "It does not take into account the grid gap property, while percentages do.",
+            "They display the content responsively when the viewport size is reduced.",
           ]}
           answerData={question4Data}
           setAnswerData={setQuestion4Data}
@@ -159,7 +152,13 @@ function Quiz() {
         />
       </Route>
       <Route exact path="/quiz/results">
-        <Results />
+        <Results
+          question1Data={question1Data}
+          question2Data={question2Data}
+          question3Data={question3Data}
+          question4Data={question4Data}
+          question5Data={question5Data}
+        />
       </Route>
     </Container>
   );

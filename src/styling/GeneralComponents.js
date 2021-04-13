@@ -132,22 +132,33 @@ export const ResponsiveImg = styled.img`
 
 export const SuccessAlert = styled(motion.li)`
   color: #185927;
-  margin: 0;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.colors.success} !important;
   min-width: ${(props) => props.minWidth};
   width: max-content;
   display: flex;
+  margin: ${(props) => (props.margin ? props.margin : "0")};
   justify-content: space-between;
   align-items: center;
   text-align: ${(props) => props.textAlign};
+  padding: ${(props) => props.padding};
+  font-size: ${(props) => props.fontSize};
 `;
 
-export const ErrorAlert = styled(SuccessAlert)`
+export const ErrorAlert = styled(motion.li)`
   color: #721c24;
   overflow: hidden;
-  margin: 0;
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  border-radius: 0.5rem;
+  min-width: ${(props) => props.minWidth};
   background: ${(props) => props.theme.colors.error} !important;
+  width: max-content;
+  display: ${(props) => (props.display ? props.display : "flex")};
+  justify-content: space-between;
+  align-items: center;
+  text-align: ${(props) => props.textAlign};
+  padding: ${(props) => props.padding};
+  font-size: ${(props) => props.fontSize};
 `;
 
 export const SidebarContainer = styled(motion.aside)`

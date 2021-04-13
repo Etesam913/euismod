@@ -63,7 +63,9 @@ function QuizTemplate({
         />
       )}
       {codeLines && <CodeContainer margin="1rem 0">{code}</CodeContainer>}
-      <Header2 textAlign="center">{questionText}</Header2>
+      <Header2 textAlign="center" maxWidth="45rem">
+        {questionText}
+      </Header2>
       <QuizQuestionComponents
         id={index}
         answerData={answerData}

@@ -19,7 +19,7 @@ const Hamburger = ({ sideNav, setSideNav, height, width }) => {
 const HamburgerBar = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  background-color: ${props=>props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.primary};
   margin: 2.5px;
   transition: 150ms ease-in-out;
   ${(props) =>
@@ -45,7 +45,7 @@ const HamburgerBar = styled.div`
     `}
 `;
 
-const Container = styled(motion.div)`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

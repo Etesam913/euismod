@@ -15,6 +15,7 @@ const headerDefaults = css`
   color: ${(props) => (props.color ? props.color : props.theme.colors.primary)};
   margin: ${(props) => (props.margin ? props.margin : "0.5rem 0.5rem")};
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "600")};
+  max-width: ${(props) => props.maxWidth};
   transition: color 150ms ease-in-out;
   text-align: ${(props) => props.textAlign};
   padding: ${(props) => props.padding};

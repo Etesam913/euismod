@@ -50,6 +50,34 @@ function Quiz() {
     localStorage.setItem("question5Data", JSON.stringify(question5Data));
   }, [question5Data]);
 
+  const question1Choices = [
+    "A grid with 2 columns of 200px width each and 3 rows with 300 px height each.",
+    "A grid with 2 columns of 200px width each and 2 rows with 300px height each.",
+    "A flexbox layout.",
+    "A grid with 2 columns of 300px width and 2 rows of 200 px width each.",
+  ];
+
+  const question3Choices = [
+    "It is aligned to the top vertically and to the right horizontally.",
+    "It is aligned to the left horizontally and to the top vertically.",
+    "It is aligned to the right horizontally and to the bottom vertically.",
+    "It is aligned to the bottom vertically and to the left horizontally.",
+  ];
+
+  const question4Choices = [
+    "There is no advantage.",
+    "Fractional units only use the remaining free space, while other units use all of the space.",
+    "It does not take into account the grid gap property, while percentages do.",
+    "They display the content responsively when the viewport size is reduced.",
+  ];
+
+  const question5Choices = [
+    "It gives a horizontal gap of 10px and a vertical gap of 5px between grid items.",
+    "It gives a vertical gap of 10px and a horizontal gap of 5px between two grids.",
+    "It gives a vertical gap of 10px and a horizontal gap of 5px between grid items.",
+    "It gives both a horizontal and vertical gap of 5px between grid items.",
+  ];
+
   return (
     <Container>
       {location.pathname !== "/quiz" &&
@@ -74,12 +102,7 @@ function Quiz() {
             { indent: 0, text: "grid-template-rows: 300px 300px;" },
           ]}
           questionText="What type of grid does the code above create?"
-          choices={[
-            "A grid with 2 columns of 200px width each and 3 rows with 300 px height each.",
-            "A grid with 2 columns of 200px width each and 2 rows with 300px height each.",
-            "A flexbox layout.",
-            "A grid with 2 columns of 300px width and 2 rows of 200 px width each.",
-          ]}
+          choices={question1Choices}
           nextQuestion="/quiz/2"
           answerData={question1Data}
           setAnswerData={setQuestion1Data}
@@ -109,12 +132,7 @@ function Quiz() {
           previousQuestion="/quiz/2"
           nextQuestion="/quiz/4"
           questionText="How is the grid item aligned based on the above code?"
-          choices={[
-            "It is aligned to the top vertically and to the right horizontally.",
-            "It is aligned to the left horizontally and to the top vertically.",
-            "It is aligned to the right horizontally and to the bottom vertically.",
-            "It is aligned to the bottom vertically and to the left horizontally.",
-          ]}
+          choices={question3Choices}
           answerData={question3Data}
           setAnswerData={setQuestion3Data}
         />
@@ -125,12 +143,7 @@ function Quiz() {
           previousQuestion="/quiz/3"
           nextQuestion={"/quiz/5"}
           questionText="What is the advantage of using fractional units over other units like percentages?"
-          choices={[
-            "There is no advantage.",
-            "Fractional units only use the remaining free space, while other units use all of the space.",
-            "It does not take into account the grid gap property, while percentages do.",
-            "They display the content responsively when the viewport size is reduced.",
-          ]}
+          choices={question4Choices}
           answerData={question4Data}
           setAnswerData={setQuestion4Data}
         />
@@ -141,12 +154,7 @@ function Quiz() {
           previousQuestion="/quiz/4"
           questionText="What does the above CSS code do?"
           codeLines={[{ indent: 0, text: "grid-gap: 5px" }]}
-          choices={[
-            "It gives a horizontal gap of 10px and a vertical gap of 5px between grid items.",
-            "It gives a vertical gap of 10px and a horizontal gap of 5px between two grids.",
-            "It gives a vertical gap of 10px and a horizontal gap of 5px between grid items.",
-            "It gives both a horizontal and vertical gap of 5px between grid items.",
-          ]}
+          choices={question5Choices}
           answerData={question5Data}
           setAnswerData={setQuestion5Data}
         />
@@ -158,6 +166,10 @@ function Quiz() {
           question3Data={question3Data}
           question4Data={question4Data}
           question5Data={question5Data}
+          question1Choices={question1Choices}
+          question3Choices={question3Choices}
+          question4Choices={question4Choices}
+          question5Choices={question5Choices}
         />
       </Route>
     </Container>

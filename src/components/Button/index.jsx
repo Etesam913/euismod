@@ -35,7 +35,7 @@ function StyledButton({ text, to, onClick, margin, children }) {
 const StyledButtonWrapper = styled(motion.button)`
   border: 0;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1rem;
   font-family: ${(props) => props.theme.fonts.primary};
   font-weight: normal;
   padding: 0.75rem;

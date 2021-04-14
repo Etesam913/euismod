@@ -130,35 +130,36 @@ export const ResponsiveImg = styled.img`
   max-width: ${(props) => props.maxWidth};
 `;
 
+const alertDefaults = css`
+  min-width: ${(props) => props.minWidth};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
+  text-align: ${(props) => props.textAlign};
+  padding: ${(props) => props.padding};
+  font-size: ${(props) => props.fontSize};
+  width: ${(props) => (props.width ? props.width : "max-content")};
+  display: ${(props) => (props.display ? props.display : "flex")};
+  font-weight: bold;
+`;
+
 export const SuccessAlert = styled(motion.li)`
   color: #185927;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.colors.success} !important;
-  min-width: ${(props) => props.minWidth};
-  width: max-content;
-  display: flex;
-  margin: ${(props) => (props.margin ? props.margin : "0")};
+  ${alertDefaults};
   justify-content: space-between;
   align-items: center;
-  text-align: ${(props) => props.textAlign};
-  padding: ${(props) => props.padding};
-  font-size: ${(props) => props.fontSize};
+  font-family: ${(props) => props.theme.fonts.primary};
 `;
 
 export const ErrorAlert = styled(motion.li)`
   color: #721c24;
   overflow: hidden;
-  margin: ${(props) => (props.margin ? props.margin : "0")};
   border-radius: 0.5rem;
-  min-width: ${(props) => props.minWidth};
   background: ${(props) => props.theme.colors.error} !important;
-  width: max-content;
-  display: ${(props) => (props.display ? props.display : "flex")};
+  ${alertDefaults};
   justify-content: space-between;
   align-items: center;
-  text-align: ${(props) => props.textAlign};
-  padding: ${(props) => props.padding};
-  font-size: ${(props) => props.fontSize};
+  font-family: ${(props) => props.theme.fonts.primary};
 `;
 
 export const SidebarContainer = styled(motion.aside)`

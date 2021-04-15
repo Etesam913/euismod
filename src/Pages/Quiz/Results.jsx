@@ -116,13 +116,15 @@ function Results({
         >
           {obj.data !== -1 && (
             <AlertSection>
-              <AlertSubtitle>You chose choice {obj.data}:</AlertSubtitle>
+              <AlertSubtitle>You chose choice {obj.data + 1}:</AlertSubtitle>
               <AlertBody>"{obj.choices[obj.data]}"</AlertBody>
             </AlertSection>
           )}
 
           <AlertSection>
-            <AlertSubtitle>The correct answer is choice 1:</AlertSubtitle>
+            <AlertSubtitle>
+              The correct answer is choice {obj.solution + 1}:
+            </AlertSubtitle>
             <AlertBody>"{obj.choices[obj.solution]}"</AlertBody>
           </AlertSection>
           <AlertSection>

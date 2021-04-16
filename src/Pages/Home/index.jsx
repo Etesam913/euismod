@@ -14,11 +14,7 @@ function Home() {
     <Container variants={pageVariants} initial="init" animate="anim">
       <GridItem>
         <Header1 responsive>Anyone Can Learn CSS Grid</Header1>
-        <Paragraph
-          maxWidth="22.5rem"
-          fontSize="1.25em"
-          margin={size.width <= 980 && "1rem auto"}
-        >
+        <Paragraph fontSize="1.25em" margin={size.width <= 980 && "1rem auto"}>
           See one of the lessons in action in the video{" "}
           {size.width <= 980 ? "down below" : "to the right"}.
         </Paragraph>
@@ -26,7 +22,6 @@ function Home() {
       </GridItem>
       <VideoContainer>
         <HomepageVideo
-          width="min(100%, 50rem)"
           src={isDarkMode ? darkDisplay : lightDisplay}
           autoplay
           loop
@@ -43,18 +38,21 @@ function Home() {
           Take the CSS Grid quiz to test your knowledge on grid creation, grid
           areas, and more.
         </Paragraph>
+        <StyledButton text="Go to quiz" to="/learn" />
       </GridItem>
     </Container>
   );
 }
 
 const Container = styled(motion.div)`
-  padding: 2.5rem 6rem;
+  padding: 2.5rem 0;
   transition: padding 300ms ease-in-out;
   display: grid;
-  grid-template-columns: 22.5rem auto;
+  width: min(85rem, 80%);
+  grid-template-columns: 25rem auto;
   grid-template-rows: auto auto;
   grid-gap: 1rem;
+  margin: 0 auto;
 
   @media screen and (max-width: 980px) {
     grid-template-columns: auto;
@@ -81,7 +79,7 @@ const VideoContainer = styled.section`
 `;
 
 const HomepageVideo = styled.video`
-  width: ${(props) => props.width};
+  width: min(100%, 55rem);
   height: auto;
   margin: 0 auto;
 `;

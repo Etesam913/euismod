@@ -19,7 +19,10 @@ function App() {
     <AppContext.Provider value={{ isDarkMode, setIsDarkMode, size }}>
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <Router>
-          <Navbar />
+          <header>
+            <Navbar />
+          </header>
+
           <Route exact path="/">
             <Home />
           </Route>

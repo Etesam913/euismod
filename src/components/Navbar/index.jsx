@@ -1,69 +1,119 @@
-import React, { useContext } from "react";
-import styled, { withTheme } from "styled-components";
+import React, { useContext, useState } from "react";
+import styled, { css, withTheme } from "styled-components";
 import "../../styling/App.css";
-import { Header1, Header2 } from "../../styling/Headers";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Header1 } from "../../styling/Headers";
+import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 import { buttonVariants } from "../../styling/variants";
 import { Moon, Sun } from "../../SvgMaster";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AppContext } from "../../Contexts";
+import Hamburger from "../Hamburger";
+import {
+  SidebarItem,
+  SidebarItemButton,
+  SidebarList,
+} from "../../styling/GeneralComponents";
+import DarkModeButton from "../DarkModeButton";
 
 function Navbar() {
+  const [showSidebar, setShowSidebar] = useState(false);
   let location = useLocation();
+  let history = useHistory();
   const { isDarkMode, setIsDarkMode, size } = useContext(AppContext);
-  const navAnimation = () => {
-    if (location.pathname.includes("/learn")) {
-      return { padding: "0 1rem" };
-    } else if (size.width <= 768) {
-      return { padding: "0rem 1rem" };
-    } else {
-      return { padding: "0 6rem" };
-    }
-  };
 
-  return (
-    <Nav initial={{ padding: "0 6rem" }} animate={navAnimation}>
-      <Link to="/" className="no-underline">
-        <Header1>Euismod</Header1>
-      </Link>
-      <FlexContainer>
-        <StyledNavLink to="/learn" className="no-underline">
-          Learn
-        </StyledNavLink>
-        <StyledNavLink to="/quiz" className="no-underline">
-          Quiz
-        </StyledNavLink>
+  const sidebarData = [
+    ["Learn", "/learn"],
+    ["Quiz", "/quiz"],
+    ["About", "/about"],
+  ];
 
-        <DarkModeButton
-          variants={buttonVariants}
-          whileHover="hover"
-          whileTap="tap"
+  function handleClick(path) {
+    if (location.pathname !== path) history.push(path);
+    setShowSidebar(false);
+  }
+
+  const sidebarItems = sidebarData.map((text, index) => {
+    return (
+      <SidebarItem key={"lesson-" + index}>
+        <SidebarItemButton
+          selected={location.pathname.includes(text[1])}
+          textAlign="right"
           onClick={() => {
-            localStorage.setItem("isDarkMode", JSON.stringify(!isDarkMode));
-            setIsDarkMode(!isDarkMode);
+            handleClick(text[1]);
           }}
         >
-          {isDarkMode ? (
-            <Moon height="26" width="26" />
-          ) : (
-            <Sun height="26" width="26" />
-          )}
-        </DarkModeButton>
-      </FlexContainer>
+          {text[0]}
+        </SidebarItemButton>
+      </SidebarItem>
+    );
+  });
+
+  return (
+    <Nav isLearn={location.pathname.includes("/learn")}>
+      <Link to="/" className="no-underline">
+        <Header1 margin="0.5rem 0.5rem">Euismod</Header1>
+      </Link>
+      {size.width <= 768 ? (
+        <>
+          <Hamburger
+            height="3px"
+            width="24px"
+            stateChange={showSidebar}
+            setStateChange={setShowSidebar}
+            useCase="home"
+          />
+          <AnimatePresence>
+            {showSidebar && (
+              <Sidebar
+                initial={{ x: 192 }}
+                animate={{ x: 0 }}
+                exit={{ x: 200 }}
+                transition={{ ease: [0.6, 0.05, 0.28, 0.91] }}
+              >
+                <SidebarList margin="3rem 0 1rem">
+                  {sidebarItems} <DarkModeButton margin="1.25rem 1rem" />
+                </SidebarList>
+              </Sidebar>
+            )}
+          </AnimatePresence>
+        </>
+      ) : (
+        <FlexContainer>
+          <StyledNavLink to="/learn" className="no-underline">
+            Learn
+          </StyledNavLink>
+          <StyledNavLink to="/quiz" className="no-underline">
+            Quiz
+          </StyledNavLink>
+          <DarkModeButton />
+        </FlexContainer>
+      )}
     </Nav>
   );
 }
 
 const Nav = styled(motion.nav)`
-  width: 100%;
   height: auto;
+  margin: 0 auto;
+  width: min(85rem, 80%);
   box-sizing: border-box;
   color: white;
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+
+  @media screen and (max-width: 768px) {
+    width: auto;
+    margin: 0 0.75rem;
+  }
+
+  ${(props) =>
+    props.isLearn &&
+    css`
+      width: auto;
+      margin: 0 0.5rem;
+    `}
 `;
 
 const activeClassName = "nav-item-active";
@@ -87,19 +137,22 @@ const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
   }
 `;
 
-const DarkModeButton = styled(motion.button)`
-  background: transparent;
-  border: 0;
-  padding: 0;
-  height: 26px;
-  width: 26px;
-  margin: 0 1rem;
-  cursor: pointer;
-`;
-
 const FlexContainer = styled.section`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+`;
+
+const Sidebar = styled(motion.div)`
+  width: 12rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: ${(props) => props.theme.colors.lowContrastBackground};
+  box-shadow: ${(props) => props.theme.misc.shadow};
+  border-bottom-left-radius: 0.5rem;
+  padding: 0 0.5rem;
+  z-index: 1;
 `;
 
 export default withTheme(Navbar);

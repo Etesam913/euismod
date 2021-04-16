@@ -59,8 +59,8 @@ function QuizSidebar({ setIsSideNavShowing, isSideNavShowing, theme }) {
     >
       <HamburgerWrapper isSideNavShowing={isSideNavShowing}>
         <Hamburger
-          sideNav={isSideNavShowing}
-          setSideNav={setIsSideNavShowing}
+          stateChange={isSideNavShowing}
+          setStateChange={setIsSideNavShowing}
           height="3px"
           width="24px"
         />

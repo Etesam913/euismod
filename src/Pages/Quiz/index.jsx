@@ -177,7 +177,9 @@ function Quiz() {
 }
 
 const Container = styled(motion.section)`
-  padding: 2rem;
+  padding: 2.5rem 0;
+  width: min(85rem, 80%);
+  margin: 0 auto;
   display: flex;
   justify-content: center;
 `;

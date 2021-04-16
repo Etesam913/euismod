@@ -184,6 +184,7 @@ export const SidebarContainer = styled(motion.aside)`
 export const SidebarList = styled(motion.ul)`
   list-style-type: none;
   padding: 0;
+  margin: ${(props) => props.margin};
 `;
 
 export const SidebarItem = styled.li`
@@ -194,7 +195,7 @@ export const SidebarItemButton = styled(motion.button)`
   font-size: 1.25em;
   border: none;
   cursor: pointer;
-  background-color: ${(props) =>
+  background: ${(props) =>
     props.selected
       ? props.theme.colors.selected
       : props.theme.colors.lowContrastBackground};
@@ -203,9 +204,9 @@ export const SidebarItemButton = styled(motion.button)`
   font-weight: normal;
   padding: 0.75rem 0.3rem 0.75rem 0.75rem;
   width: 100%;
-  text-align: left;
+  text-align: ${(props) => (props.textAlign ? props.textAlign : "left")};
   border-radius: 0.5rem;
-  transition: 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -213,7 +214,7 @@ export const SidebarItemButton = styled(motion.button)`
 
   :hover {
     background: ${(props) => props.theme.colors.highlighted};
-    transition: 200ms ease-in-out;
+    transition: background 200ms ease-in-out;
   }
 `;
 export const HamburgerWrapper = styled.button`

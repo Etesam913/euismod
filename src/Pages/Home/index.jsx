@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Header1, Paragraph } from "../../styling/Headers";
 import { motion } from "framer-motion";
@@ -7,9 +7,19 @@ import { pageVariants } from "../../styling/variants";
 import { AppContext } from "../../Contexts";
 import lightDisplay from "../../media/lightmode-display.mov";
 import darkDisplay from "../../media/darkmode-dislay.mov";
+import QuizTemplate from "../Quiz/QuizTemplate";
 
 function Home() {
   const { isDarkMode, size } = useContext(AppContext);
+  const [sampleQuestionChoice, setSampleQuestionChoice] = useState(-1);
+
+  const questionChoices = [
+    "A grid with 2 columns of 200px width each and 3 rows with 300 px height each.",
+    "A grid with 2 columns of 400px and 300px width and 3 rows with 200px, 120px, and 250px width.",
+    "A flexbox layout.",
+    "A grid with 3 columns of 200px, 120px, and 250px width and 2 rows of 400px and 300px width.",
+  ];
+
   return (
     <Container variants={pageVariants} initial="init" animate="anim">
       <GridItem>
@@ -20,7 +30,7 @@ function Home() {
         </Paragraph>
         <StyledButton text="Go to lessons" to="/learn" />
       </GridItem>
-      <VideoContainer>
+      <GridItem2>
         <HomepageVideo
           src={isDarkMode ? darkDisplay : lightDisplay}
           autoplay
@@ -31,15 +41,29 @@ function Home() {
             e.target.play();
           }}
         />
-      </VideoContainer>
+      </GridItem2>
       <GridItem>
         <Header1>Test Your Knowledge</Header1>
         <Paragraph maxWidth="22.5rem" fontSize="1.25em">
           Take the CSS Grid quiz to test your knowledge on grid creation, grid
           areas, and more.
         </Paragraph>
-        <StyledButton text="Go to quiz" to="/learn" />
+        <StyledButton text="Go to quiz" to="/quiz" />
       </GridItem>
+      <GridItem2>
+        <QuizTemplate
+          index={-1}
+          codeLines={[
+            { indent: 0, text: "display: grid;" },
+            { indent: 0, text: "grid-template-columns: 200px 120px 250px;" },
+            { indent: 0, text: "grid-template-rows: 400px 300px;" },
+          ]}
+          questionText="What type of grid does the code above create?"
+          choices={questionChoices}
+          answerData={sampleQuestionChoice}
+          setAnswerData={setSampleQuestionChoice}
+        />
+      </GridItem2>
     </Container>
   );
 }
@@ -73,9 +97,10 @@ const GridItem = styled.section`
   }
 `;
 
-const VideoContainer = styled.section`
+const GridItem2 = styled.section`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const HomepageVideo = styled.video`

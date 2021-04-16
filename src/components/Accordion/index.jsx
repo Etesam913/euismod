@@ -28,6 +28,7 @@ function Accordion({
           animate={
             isOpen ? { height: expandedHeight } : { height: closedHeight }
           }
+          exit={{ opacity: 0, height: 0 }}
         >
           <FlexContainer justifyContent="flex-start">
             <Expand

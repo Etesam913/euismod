@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import styled, { withTheme } from "styled-components";
-import { Header1, Header2, Paragraph } from "../../styling/Headers";
+import { Header1, Header2 } from "../../styling/Headers";
 import Accordion from "../../components/Accordion";
-import { Link } from "react-router-dom";
 import { AppContext } from "../../Contexts";
+import {
+  AlertBody,
+  AlertLink,
+  AlertSection,
+  AlertSubtitle,
+} from "../../styling/GeneralComponents";
 
 function Results({
   question1Data,
@@ -163,30 +168,6 @@ const FeedbackList = styled.ul`
   @media screen and (max-width: 768px) {
     align-items: center;
   }
-`;
-
-const AlertSection = styled.section`
-  margin-bottom: 0.75rem;
-`;
-
-const AlertSubtitle = styled.h3`
-  margin: 0 0 0.5rem 0;
-  font-size: 1.05em;
-  font-size: 18px;
-  font-family: ${(props) => props.theme.fonts.primary};
-`;
-
-const AlertBody = styled.div`
-  font-size: 16px;
-  font-family: ${(props) => props.theme.fonts.secondary};
-  font-weight: normal;
-`;
-
-const AlertLink = styled(Link)`
-  font-size: 16px;
-  color: inherit;
-  font-weight: normal;
-  font-family: ${(props) => props.theme.fonts.secondary};
 `;
 
 export default withTheme(Results);

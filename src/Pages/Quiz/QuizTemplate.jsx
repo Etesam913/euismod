@@ -1,10 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import {
+  AlertBody,
+  AlertLink,
+  AlertSection,
+  AlertSubtitle,
   CodeContainer,
   CodeLine,
   FlexContainer,
   ResponsiveImg,
+  SuccessAlert,
 } from "../../styling/GeneralComponents";
 import { Header1, Header2 } from "../../styling/Headers";
 import { AppContext } from "../../Contexts";
@@ -13,6 +18,9 @@ import QuizQuestionComponents from "./QuizQuestionComponents";
 import { LeftArrow, RightArrow } from "../../SvgMaster";
 import Radio from "../../components/Radio";
 import RadioController from "../../components/RadioController";
+import { alertVariants } from "../../styling/variants";
+import { AnimatePresence } from "framer-motion";
+import Accordion from "../../components/Accordion";
 
 function QuizTemplate({
   questionText,
@@ -26,12 +34,17 @@ function QuizTemplate({
   answerData,
   setAnswerData,
 }) {
-  const { isDarkMode } = useContext(AppContext);
+  const { isDarkMode, size } = useContext(AppContext);
+  const [sampleSolution, setSampleSolution] = useState(-5);
   let code = null;
   if (codeLines) {
     code = codeLines.map((obj) => {
       return <CodeLine textIndent={obj.indent + "em"}>{obj.text}</CodeLine>;
     });
+  }
+
+  function handleSampleQuestionClick() {
+    setSampleSolution(answerData);
   }
 
   let choicesComponents = null;
@@ -53,7 +66,9 @@ function QuizTemplate({
 
   return (
     <Container>
-      <Header1 textAlign="center">Question {index}</Header1>
+      <Header1 textAlign="center">
+        {index === -1 ? "Sample Question" : `Question ${index}`}
+      </Header1>
       {imgSrc && (
         <ResponsiveImg
           margin={"1.25rem 0"}
@@ -102,7 +117,60 @@ function QuizTemplate({
           </StyledButton>
         )}
       </FlexContainer>
-      <StyledButton text="Submit Quiz" to="/quiz/results" />
+      {index !== -1 ? (
+        <StyledButton text="Submit Quiz" to="/quiz/results" />
+      ) : (
+        <StyledButton
+          text="Check Solution"
+          onClick={handleSampleQuestionClick}
+        />
+      )}
+      <AnimatePresence>
+        {sampleSolution === 3 && (
+          <SuccessAlert
+            textAlign="center"
+            justifyContent="center"
+            minWidth="4.5rem"
+            variants={alertVariants}
+            initial="init"
+            animate="anim"
+            exit="exit"
+          >
+            Correct
+          </SuccessAlert>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {index === -1 && sampleSolution !== 3 && sampleSolution !== -5 && (
+          <Accordion
+            useCase="error"
+            width={size.width <= 768 ? "17rem" : "31rem"}
+            headerText={"Your answer to the sample question is wrong."}
+            closedHeight={size.width <= 768 ? 48 : 25}
+            expandedHeight={300}
+            margin="0.5rem 0 0.75rem 0"
+          >
+            {sampleSolution !== -1 && (
+              <AlertSection>
+                <AlertSubtitle>
+                  You chose choice {sampleSolution + 1}:
+                </AlertSubtitle>
+                <AlertBody>"{choices[sampleSolution]}"</AlertBody>
+              </AlertSection>
+            )}
+            <AlertSection>
+              <AlertSubtitle>The correct answer is choice 4:</AlertSubtitle>
+              <AlertBody>"{choices[3]}"</AlertBody>
+            </AlertSection>
+            <AlertSection>
+              <AlertSubtitle>
+                Maybe you should revise grid creation.
+              </AlertSubtitle>
+              <AlertLink to={"/learn"}> Go to lesson </AlertLink>
+            </AlertSection>
+          </Accordion>
+        )}
+      </AnimatePresence>
     </Container>
   );
 }

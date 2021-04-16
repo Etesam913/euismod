@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export const FlexContainer = styled.div`
   display: flex;
@@ -86,6 +87,7 @@ export const CodeContainer = styled.div`
   transition: 150ms;
   line-height: 1.75rem;
   margin: ${(props) => props.margin};
+  text-align: left;
 `;
 
 export const CodeLine = styled.code`
@@ -146,11 +148,13 @@ export const SuccessAlert = styled(motion.li)`
   border-radius: 0.5rem;
   background: ${(props) => props.theme.colors.success} !important;
   ${alertDefaults};
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "space-between"};
   align-items: center;
   font-family: ${(props) => props.theme.fonts.primary};
 `;
 
+/* ERROR ALERTS */
 export const ErrorAlert = styled(motion.li)`
   color: #721c24;
   overflow: hidden;
@@ -160,6 +164,30 @@ export const ErrorAlert = styled(motion.li)`
   justify-content: space-between;
   align-items: center;
   font-family: ${(props) => props.theme.fonts.primary};
+`;
+
+export const AlertSection = styled.section`
+  margin-bottom: 0.75rem;
+`;
+
+export const AlertSubtitle = styled.h3`
+  margin: 0 0 0.5rem 0;
+  font-size: 1.05em;
+  font-size: 18px;
+  font-family: ${(props) => props.theme.fonts.primary};
+`;
+
+export const AlertBody = styled.div`
+  font-size: 16px;
+  font-family: ${(props) => props.theme.fonts.secondary};
+  font-weight: normal;
+`;
+
+export const AlertLink = styled(Link)`
+  font-size: 16px;
+  color: inherit;
+  font-weight: normal;
+  font-family: ${(props) => props.theme.fonts.secondary};
 `;
 
 export const SidebarContainer = styled(motion.aside)`

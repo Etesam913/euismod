@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import LessonsSidebar from "../../components/LessonsSidebar";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Lesson1 from "./Lesson1";
 import Lesson3 from "./Lesson3";
 import Lesson2 from "./Lesson2";
 import Lesson4 from "./Lesson4";
 import { pageVariants } from "../../styling/variants";
 import { motion } from "framer-motion";
+import Error from "../Error";
 
 function Learn() {
   const [isSideNavShowing, setIsSideNavShowing] = useState(false);
@@ -67,42 +68,48 @@ function Learn() {
         ]}
       />
       <Container variants={pageVariants} initial="init" animate="anim">
-        <Route exact path="/learn">
-          <Lesson1
-            setIsSideNavShowing={setIsSideNavShowing}
-            lesson1Data={lesson1Data}
-            setLesson1Data={setLesson1Data}
-          />
-        </Route>
-        <Route exact path="/learn/2">
-          <Lesson2
-            setIsSideNavShowing={setIsSideNavShowing}
-            lesson2Data={lesson2Data}
-            setLesson2Data={setLesson2Data}
-          />
-        </Route>
-        <Route exact path="/learn/3">
-          <Lesson3
-            setIsSideNavShowing={setIsSideNavShowing}
-            lesson3Data={lesson3Data}
-            setLesson3Data={setLesson3Data}
-          />
-        </Route>
-        <Route exact path="/learn/4">
-          <Lesson4
-            setIsSideNavShowing={setIsSideNavShowing}
-            lesson4Data={lesson4Data}
-            setLesson4Data={setLesson4Data}
-          />
-        </Route>
+        <Switch>
+          <Route exact path="/learn">
+            <Lesson1
+              setIsSideNavShowing={setIsSideNavShowing}
+              lesson1Data={lesson1Data}
+              setLesson1Data={setLesson1Data}
+            />
+          </Route>
+          <Route exact path="/learn/2">
+            <Lesson2
+              setIsSideNavShowing={setIsSideNavShowing}
+              lesson2Data={lesson2Data}
+              setLesson2Data={setLesson2Data}
+            />
+          </Route>
+          <Route exact path="/learn/3">
+            <Lesson3
+              setIsSideNavShowing={setIsSideNavShowing}
+              lesson3Data={lesson3Data}
+              setLesson3Data={setLesson3Data}
+            />
+          </Route>
+          <Route exact path="/learn/4">
+            <Lesson4
+              setIsSideNavShowing={setIsSideNavShowing}
+              lesson4Data={lesson4Data}
+              setLesson4Data={setLesson4Data}
+            />
+          </Route>
+          <Route path="*">
+            <Error />
+          </Route>
+        </Switch>
       </Container>
     </>
   );
 }
 
 const Container = styled(motion.section)`
-  padding: 2rem 0 1.25rem;
+  padding: 3rem 0 1.25rem;
   transition: padding 150ms ease-in-out;
+  overflow-x: hidden;
 `;
 
 export default Learn;

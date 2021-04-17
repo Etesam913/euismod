@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { darkTheme, lightTheme } from "./styling/theme";
 import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
@@ -8,6 +8,7 @@ import Learn from "./Pages/Learn";
 import { AppContext } from "./Contexts";
 import { useWindowSize } from "./components/CustomHooks";
 import Quiz from "./Pages/Quiz";
+import Error from "./Pages/Error";
 
 function App() {
   const darkModeInitial =
@@ -22,17 +23,22 @@ function App() {
           <header>
             <Navbar />
           </header>
-
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/learn">
-            <Learn isDarkMode={isDarkMode} />
-          </Route>
-          <Route path="/quiz">
-            <Quiz />
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/learn">
+              <Learn isDarkMode={isDarkMode} />
+            </Route>
+            <Route path="/quiz">
+              <Quiz />
+            </Route>
+            <Route path="*">
+              <Error />
+            </Route>
+          </Switch>
         </Router>
+
         <GlobalStyles />
       </ThemeProvider>
     </AppContext.Provider>

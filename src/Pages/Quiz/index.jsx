@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Route, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import Info from "./Info";
 import QuizSidebar from "../../components/QuizSidebar";
 import QuizTemplate from "./QuizTemplate";
 import { motion } from "framer-motion";
 import Results from "./Results";
+import Error from "../Error";
 
 function Quiz() {
   const location = useLocation();
@@ -89,89 +90,93 @@ function Quiz() {
         ) : (
           <span />
         ))}
-
-      <Route exact path="/quiz">
-        <Info />
-      </Route>
-      <Route exact path="/quiz/1">
-        <QuizTemplate
-          index={1}
-          codeLines={[
-            { indent: 0, text: "display: grid;" },
-            { indent: 0, text: "grid-template-columns: 200px 200px;" },
-            { indent: 0, text: "grid-template-rows: 300px 300px;" },
-          ]}
-          questionText="What type of grid does the code above create?"
-          choices={question1Choices}
-          nextQuestion="/quiz/2"
-          answerData={question1Data}
-          setAnswerData={setQuestion1Data}
-        />
-      </Route>
-      <Route exact path="/quiz/2">
-        <QuizTemplate
-          index={2}
-          imgSrc="https://etesam.nyc3.digitaloceanspaces.com/Euismod/Question_2.png"
-          questionText="Recreate the 3x5 grid above using the same area names."
-          previousQuestion="/quiz/1"
-          nextQuestion="/quiz/3"
-          imgAlt="Quiz 2 Diagram"
-          answerData={question2Data}
-          setAnswerData={setQuestion2Data}
-        />
-      </Route>
-      <Route exact path="/quiz/3">
-        <QuizTemplate
-          index={3}
-          codeLines={[
-            { indent: 0, text: ".grid-item" },
-            { indent: 1, text: "justify-self: right;" },
-            { indent: 1, text: "align-self: end;" },
-            { indent: 0, text: "}" },
-          ]}
-          previousQuestion="/quiz/2"
-          nextQuestion="/quiz/4"
-          questionText="How is the grid item aligned based on the above code?"
-          choices={question3Choices}
-          answerData={question3Data}
-          setAnswerData={setQuestion3Data}
-        />
-      </Route>
-      <Route exact path="/quiz/4">
-        <QuizTemplate
-          index={4}
-          previousQuestion="/quiz/3"
-          nextQuestion={"/quiz/5"}
-          questionText="What is the advantage of using fractional units over other units like percentages?"
-          choices={question4Choices}
-          answerData={question4Data}
-          setAnswerData={setQuestion4Data}
-        />
-      </Route>
-      <Route exact path="/quiz/5">
-        <QuizTemplate
-          index={5}
-          previousQuestion="/quiz/4"
-          questionText="What does the above CSS code do?"
-          codeLines={[{ indent: 0, text: "grid-gap: 5px" }]}
-          choices={question5Choices}
-          answerData={question5Data}
-          setAnswerData={setQuestion5Data}
-        />
-      </Route>
-      <Route exact path="/quiz/results">
-        <Results
-          question1Data={question1Data}
-          question2Data={question2Data}
-          question3Data={question3Data}
-          question4Data={question4Data}
-          question5Data={question5Data}
-          question1Choices={question1Choices}
-          question3Choices={question3Choices}
-          question4Choices={question4Choices}
-          question5Choices={question5Choices}
-        />
-      </Route>
+      <Switch>
+        <Route exact path="/quiz">
+          <Info />
+        </Route>
+        <Route exact path="/quiz/1">
+          <QuizTemplate
+            index={1}
+            codeLines={[
+              { indent: 0, text: "display: grid;" },
+              { indent: 0, text: "grid-template-columns: 200px 200px;" },
+              { indent: 0, text: "grid-template-rows: 300px 300px;" },
+            ]}
+            questionText="What type of grid does the code above create?"
+            choices={question1Choices}
+            nextQuestion="/quiz/2"
+            answerData={question1Data}
+            setAnswerData={setQuestion1Data}
+          />
+        </Route>
+        <Route exact path="/quiz/2">
+          <QuizTemplate
+            index={2}
+            imgSrc="https://etesam.nyc3.digitaloceanspaces.com/Euismod/Question_2.png"
+            questionText="Recreate the 3x5 grid above using the same area names."
+            previousQuestion="/quiz/1"
+            nextQuestion="/quiz/3"
+            imgAlt="Quiz 2 Diagram"
+            answerData={question2Data}
+            setAnswerData={setQuestion2Data}
+          />
+        </Route>
+        <Route exact path="/quiz/3">
+          <QuizTemplate
+            index={3}
+            codeLines={[
+              { indent: 0, text: ".grid-item" },
+              { indent: 1, text: "justify-self: right;" },
+              { indent: 1, text: "align-self: end;" },
+              { indent: 0, text: "}" },
+            ]}
+            previousQuestion="/quiz/2"
+            nextQuestion="/quiz/4"
+            questionText="How is the grid item aligned based on the above code?"
+            choices={question3Choices}
+            answerData={question3Data}
+            setAnswerData={setQuestion3Data}
+          />
+        </Route>
+        <Route exact path="/quiz/4">
+          <QuizTemplate
+            index={4}
+            previousQuestion="/quiz/3"
+            nextQuestion={"/quiz/5"}
+            questionText="What is the advantage of using fractional units over other units like percentages?"
+            choices={question4Choices}
+            answerData={question4Data}
+            setAnswerData={setQuestion4Data}
+          />
+        </Route>
+        <Route exact path="/quiz/5">
+          <QuizTemplate
+            index={5}
+            previousQuestion="/quiz/4"
+            questionText="What does the above CSS code do?"
+            codeLines={[{ indent: 0, text: "grid-gap: 5px" }]}
+            choices={question5Choices}
+            answerData={question5Data}
+            setAnswerData={setQuestion5Data}
+          />
+        </Route>
+        <Route exact path="/quiz/results">
+          <Results
+            question1Data={question1Data}
+            question2Data={question2Data}
+            question3Data={question3Data}
+            question4Data={question4Data}
+            question5Data={question5Data}
+            question1Choices={question1Choices}
+            question3Choices={question3Choices}
+            question4Choices={question4Choices}
+            question5Choices={question5Choices}
+          />
+        </Route>
+        <Route path="*">
+          <Error />
+        </Route>
+      </Switch>
     </Container>
   );
 }

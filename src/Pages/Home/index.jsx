@@ -107,7 +107,7 @@ const GridItem2 = styled.section`
 const HomepageVideo = styled.video`
   width: min(100%, 55rem);
   height: auto;
-  margin: 0 auto;
+  margin-left: auto;
 `;
 
 export default Home;

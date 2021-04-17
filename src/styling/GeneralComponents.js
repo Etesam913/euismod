@@ -174,7 +174,6 @@ export const AlertSection = styled.section`
 
 export const AlertSubtitle = styled.h3`
   margin: 0 0 0.5rem 0;
-  font-size: 1.05em;
   font-size: 18px;
   font-family: ${(props) => props.theme.fonts.primary};
 `;
@@ -203,7 +202,7 @@ export const SidebarContainer = styled(motion.aside)`
   top: 7rem;
   left: ${(props) => props.left};
   @media screen and (max-width: 768px) {
-    top: 4.35rem;
+    top: 4rem;
     transition: top 300ms, left 300ms;
   }
   transition: top 300ms, left 300ms;

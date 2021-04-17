@@ -3,8 +3,6 @@ import styled, { css, withTheme } from "styled-components";
 import "../../styling/App.css";
 import { Header1 } from "../../styling/Headers";
 import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
-import { buttonVariants } from "../../styling/variants";
-import { Moon, Sun } from "../../SvgMaster";
 import { motion, AnimatePresence } from "framer-motion";
 import { AppContext } from "../../Contexts";
 import Hamburger from "../Hamburger";
@@ -19,7 +17,7 @@ function Navbar() {
   const [showSidebar, setShowSidebar] = useState(false);
   let location = useLocation();
   let history = useHistory();
-  const { isDarkMode, setIsDarkMode, size } = useContext(AppContext);
+  const { size } = useContext(AppContext);
 
   const sidebarData = [
     ["Learn", "/learn"],

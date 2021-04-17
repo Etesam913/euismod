@@ -75,7 +75,7 @@ const Container = styled(motion.div)`
   width: min(85rem, 80%);
   grid-template-columns: 25rem auto;
   grid-template-rows: auto auto;
-  grid-gap: 1rem;
+  grid-gap: 4rem 1rem;
   margin: 0 auto;
 
   @media screen and (max-width: 980px) {
@@ -83,10 +83,11 @@ const Container = styled(motion.div)`
     grid-template-rows: auto auto;
     justify-content: center;
     text-align: center;
+    grid-gap: 1rem;
   }
 
   @media screen and (max-width: 500px) {
-    padding: 2.5rem 2.25rem;
+    padding: 2.5rem 1rem;
     transition: padding 150ms ease-in-out;
   }
 `;

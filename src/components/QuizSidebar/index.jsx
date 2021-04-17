@@ -42,7 +42,7 @@ function QuizSidebar({ setIsSideNavShowing, isSideNavShowing, theme }) {
   });
   return (
     <SidebarContainer
-      left={size.width <= 768 ? "1.65rem" : "6.5rem"}
+      left="0"
       isSideNavShowing={isSideNavShowing}
       initial={{
         padding: "13px 12px 12px 12px",

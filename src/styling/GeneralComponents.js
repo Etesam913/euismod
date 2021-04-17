@@ -10,7 +10,7 @@ export const FlexContainer = styled.div`
     props.justifyContent ? props.justifyContent : "center"};
   align-items: ${(props) => (props.alignItems ? props.alignItems : "center")};
   padding: ${(props) => props.padding};
-
+  text-align: ${(props) => props.textAlign};
   // Row Specific Styles
   ${(props) =>
     props.flexDirection !== "column" && css``} // Column Specific Styles
@@ -164,10 +164,12 @@ export const ErrorAlert = styled(motion.li)`
   justify-content: space-between;
   align-items: center;
   font-family: ${(props) => props.theme.fonts.primary};
+  overflow-y: auto;
 `;
 
 export const AlertSection = styled.section`
   margin-bottom: 0.75rem;
+  text-align: left;
 `;
 
 export const AlertSubtitle = styled.h3`
@@ -195,8 +197,7 @@ export const SidebarContainer = styled(motion.aside)`
   position: absolute;
   background: ${(props) => props.theme.colors.lowContrastBackground};
   overflow: hidden;
-  border-radius: ${(props) =>
-    props.leftScreen ? "0 0.75rem 0.75rem 0" : "0.75rem"};
+  border-radius: 0 0.75rem 0.75rem 0;
   box-sizing: border-box;
   z-index: 1;
   top: 7rem;

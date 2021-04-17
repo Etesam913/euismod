@@ -64,6 +64,16 @@ function QuizTemplate({
     });
   }
 
+  function calculateExpandedHeight() {
+    if (size.width <= 768) {
+      if (sampleSolution === -1) return 340;
+      return 475;
+    } else {
+      if (sampleSolution === -1) return 240;
+      return 300;
+    }
+  }
+
   return (
     <Container>
       <Header1 textAlign="center">
@@ -78,7 +88,7 @@ function QuizTemplate({
         />
       )}
       {codeLines && <CodeContainer margin="1rem 0">{code}</CodeContainer>}
-      <Header2 textAlign="center" maxWidth="45rem">
+      <Header2 textAlign="center" maxWidth="45rem" margin="1.5rem 0 0.5rem">
         {questionText}
       </Header2>
       <QuizQuestionComponents
@@ -146,8 +156,8 @@ function QuizTemplate({
             useCase="error"
             width={size.width <= 768 ? "17rem" : "31rem"}
             headerText={"Your answer to the sample question is wrong."}
-            closedHeight={size.width <= 768 ? 48 : 25}
-            expandedHeight={300}
+            closedHeight={size.width <= 768 ? 80 : 25}
+            expandedHeight={calculateExpandedHeight()}
             margin="0.5rem 0 0.75rem 0"
           >
             {sampleSolution !== -1 && (

@@ -22,6 +22,9 @@ function Results({
   question5Choices,
 }) {
   const { size } = useContext(AppContext);
+  const gridArea1Solution = "header header header header header";
+  const gridArea2Solution = "ads main_content main_content . sidebar";
+  const gridArea3Solution = "footer footer footer footer footer";
 
   function checkSolutions() {
     let question1Solved = false;
@@ -29,10 +32,6 @@ function Results({
     let question3Solved = false;
     let question4Solved = false;
     let question5Solved = false;
-
-    const gridArea1Solution = "header header header header header";
-    const gridArea2Solution = "ads main_content main_content . sidebar";
-    const gridArea3Solution = "footer footer footer footer footer";
 
     if (question1Data === 1) question1Solved = true;
     if (
@@ -73,6 +72,14 @@ function Results({
       feedbackLink: "/learn",
     },
     {
+      data: question2Data,
+      choices: null,
+      solution: [gridArea1Solution, gridArea2Solution, gridArea3Solution],
+      isShowing: !checkSolutions()[1],
+      feedbackText: "You may want to revise grid areas.",
+      feedbackLink: "/learn/3",
+    },
+    {
       data: question3Data,
       choices: question3Choices,
       solution: 2,
@@ -102,11 +109,11 @@ function Results({
     if (obj.isShowing) {
       function calculateExpandedHeight() {
         if (size.width <= 768) {
-          if (obj.data === -1) return 310;
+          if (obj.data === -1) return 320;
           return 400;
         } else {
-          if (obj.data === -1) return 210;
-          return 290;
+          if (obj.data === -1) return 220;
+          return 320;
         }
       }
 
@@ -115,23 +122,46 @@ function Results({
           useCase="error"
           width={size.width <= 768 ? "17rem" : "25rem"}
           headerText={"Your answer to question " + (index + 1) + " is wrong."}
-          closedHeight={size.width <= 768 ? 48 : 25}
+          closedHeight={size.width <= 768 ? 50 : 25}
           expandedHeight={calculateExpandedHeight()}
           margin="0 0 0.75rem 0"
         >
-          {obj.data !== -1 && (
+          {obj.data !== -1 && obj.choices && (
             <AlertSection>
               <AlertSubtitle>You chose choice {obj.data + 1}:</AlertSubtitle>
               <AlertBody>"{obj.choices[obj.data]}"</AlertBody>
             </AlertSection>
           )}
-
-          <AlertSection>
-            <AlertSubtitle>
-              The correct answer is choice {obj.solution + 1}:
-            </AlertSubtitle>
-            <AlertBody>"{obj.choices[obj.solution]}"</AlertBody>
-          </AlertSection>
+          {obj.choices && (
+            <>
+              <AlertSection>
+                <AlertSubtitle>
+                  The correct answer is choice {obj.solution + 1}:
+                </AlertSubtitle>
+                <AlertBody>"{obj.choices[obj.solution]}"</AlertBody>
+              </AlertSection>
+            </>
+          )}
+          {obj.choices === null && (
+            <>
+              <AlertSection>
+                <AlertSubtitle>You wrote:</AlertSubtitle>
+                <AlertBody>
+                  <div>"{obj.data.gridTemplateArea1}"</div>
+                  <div>"{obj.data.gridTemplateArea2}"</div>
+                  <div>"{obj.data.gridTemplateArea3}"</div>
+                </AlertBody>
+              </AlertSection>
+              <AlertSection>
+                <AlertSubtitle>The correct answer is:</AlertSubtitle>
+                <AlertBody>
+                  <div>"{gridArea1Solution}"</div>
+                  <div>"{gridArea2Solution}"</div>
+                  <div>"{gridArea3Solution}"</div>
+                </AlertBody>
+              </AlertSection>
+            </>
+          )}
           <AlertSection>
             <AlertSubtitle>{obj.feedbackText}</AlertSubtitle>
             <AlertLink to={obj.feedbackLink}> Go to lesson </AlertLink>

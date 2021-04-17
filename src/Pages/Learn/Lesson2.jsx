@@ -59,7 +59,7 @@ function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
             <Property>justify-self: start</Property> and
             <Property>align-self: center</Property>.
           </Paragraph>
-          <Header2 margin="0.75rem 0" responsive>
+          <Header2 margin="2.5rem 0 0.75rem" responsive>
             Task:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">

@@ -58,7 +58,7 @@ function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
             grid. To create 3 columns of width 150 pixels each, you would set
             <Property>grid-template-columns: 150px 150px 150px</Property>.
           </Paragraph>
-          <Header2 margin="0.75rem 0" responsive>
+          <Header2 margin="2.5rem 0 0.75rem" responsive>
             Task:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">

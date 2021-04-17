@@ -30,7 +30,7 @@ function Accordion({
           }
           exit={{ opacity: 0, height: 0 }}
         >
-          <FlexContainer justifyContent="flex-start">
+          <FlexContainer justifyContent="flex-start" textAlign="left">
             <Expand
               margin={"0 0.5rem 0 0"}
               height="3px"

@@ -24,7 +24,6 @@ function Navbar() {
   const sidebarData = [
     ["Learn", "/learn"],
     ["Quiz", "/quiz"],
-    ["About", "/about"],
   ];
 
   function handleClick(path) {

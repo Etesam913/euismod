@@ -99,7 +99,7 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
             ,<Property>grid-area: middle</Property>, and
             <Property>grid-area: bottom</Property> properties respectively.
           </Paragraph>
-          <Header2 margin="0.75rem 0" responsive>
+          <Header2 margin="2.5rem 0 0.75rem" responsive>
             Task:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">

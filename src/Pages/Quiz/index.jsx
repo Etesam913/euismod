@@ -30,9 +30,8 @@ function Quiz() {
   const [question4Data, setQuestion4Data] = useState(data4 ?? -1);
   const [question5Data, setQuestion5Data] = useState(data5 ?? -1);
 
-  useEffect(() => {
+  /*useEffect(() => {
     localStorage.setItem("question1Data", JSON.stringify(question1Data));
-    console.log("changed");
   }, [question1Data]);
 
   useEffect(() => {
@@ -49,7 +48,7 @@ function Quiz() {
 
   useEffect(() => {
     localStorage.setItem("question5Data", JSON.stringify(question5Data));
-  }, [question5Data]);
+  }, [question5Data]);*/
 
   const question1Choices = [
     "A grid with 2 columns of 200px width each and 3 rows with 300 px height each.",

@@ -1,14 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled, { withTheme } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlexContainer } from "../../styling/GeneralComponents";
-import { RadioContext } from "../../Contexts";
 
-function Radio({ margin, labelText, theme, index }) {
-  const { selectedRadio, setSelectedRadio } = useContext(RadioContext);
+function Radio({
+  margin,
+  labelText,
+  theme,
+  index,
+  selectedRadio,
+  setSelectedRadio,
+}) {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <FlexContainer alignItems="center" justifyContent="flex-start">
+    <FlexContainer
+      alignItems="center"
+      justifyContent="flex-start"
+      key={`choice-${index}`}
+    >
       <StyledRadio
         margin={margin}
         onHoverStart={() => {
@@ -57,7 +66,7 @@ function Radio({ margin, labelText, theme, index }) {
   );
 }
 
-const StyledRadio = styled(motion.button)`
+const StyledRadio = styled(motion.div)`
   margin: ${(props) => props.margin};
   min-height: 1.5rem;
   min-width: 1.5rem;

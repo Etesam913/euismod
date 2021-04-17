@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   AlertBody,
@@ -17,7 +17,6 @@ import StyledButton from "../../components/Button";
 import QuizQuestionComponents from "./QuizQuestionComponents";
 import { LeftArrow, RightArrow } from "../../SvgMaster";
 import Radio from "../../components/Radio";
-import RadioController from "../../components/RadioController";
 import { alertVariants } from "../../styling/variants";
 import { AnimatePresence } from "framer-motion";
 import Accordion from "../../components/Accordion";
@@ -47,6 +46,10 @@ function QuizTemplate({
     setSampleSolution(answerData);
   }
 
+  useEffect(() => {
+    console.log(answerData);
+  }, [answerData]);
+
   let choicesComponents = null;
   if (choices) {
     choicesComponents = choices.map((text, index) => {
@@ -54,11 +57,13 @@ function QuizTemplate({
         <Radio
           type="radio"
           name="choice"
-          id={`choice-${index}`}
+          key={`choice-${index}`}
           value={text}
           margin="0"
           labelText={text}
           index={index}
+          selectedRadio={answerData}
+          setSelectedRadio={setAnswerData}
         />
       );
     });
@@ -97,13 +102,12 @@ function QuizTemplate({
         setAnswerData={setAnswerData}
       />
       {choices && (
-        <ChoicesForm>
-          <RadioController
-            selectedRadio={answerData}
-            setSelectedRadio={setAnswerData}
-          >
-            {choicesComponents}
-          </RadioController>
+        <ChoicesForm
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          {choicesComponents}
         </ChoicesForm>
       )}
       <FlexContainer>

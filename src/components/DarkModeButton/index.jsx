@@ -10,6 +10,7 @@ function DarkModeButton({ margin }) {
 
   return (
     <Button
+      aria-label="dark mode"
       variants={buttonVariants}
       whileHover="hover"
       whileTap="tap"

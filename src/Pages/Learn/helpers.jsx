@@ -11,7 +11,6 @@ export function renderSubmitText(lessonData, setLessonData) {
     if (useCase === "success") {
       tempLesson.solutionObj.text = null;
       setLessonData(tempLesson);
-      console.log(tempLesson);
     } else if (useCase === "error") {
       const curIndex = tempLesson.solutionObj.text.indexOf(textToDelete);
       tempLesson.solutionObj.text[curIndex] = null;

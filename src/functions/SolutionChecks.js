@@ -78,9 +78,6 @@ export function checkThirdSolution(lesson3Data) {
   const area1Arr = lesson3Data.gridTemplateArea1.trim().split(" ");
   const area2Arr = lesson3Data.gridTemplateArea2.trim().split(" ");
   const area3Arr = lesson3Data.gridTemplateArea3.trim().split(" ");
-  console.log(area1Arr);
-  console.log(area2Arr);
-  console.log(area3Arr);
   if (
     area1Arr.length !== 3 ||
     !checkEquality(area1Arr, area1Arr[0]) ||
@@ -136,7 +133,6 @@ export function checkThirdSolution(lesson3Data) {
 
 // Goes through every element and checks if their unit is correct
 function checkUnitsMatch(arr, unit) {
-  let indexInCorrectLocation = true;
   for (let i = 0; i < arr.length; i++) {
     const sanitizedElement = arr[i].trim();
     // Unit has to be present and there must be a number to the left of it

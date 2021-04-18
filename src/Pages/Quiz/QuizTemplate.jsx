@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import {
   AlertBody,
@@ -45,10 +45,6 @@ function QuizTemplate({
   function handleSampleQuestionClick() {
     setSampleSolution(answerData);
   }
-
-  useEffect(() => {
-    console.log(answerData);
-  }, [answerData]);
 
   let choicesComponents = null;
   if (choices) {

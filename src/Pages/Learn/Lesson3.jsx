@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   CodeContainer,
   CodeLine,
@@ -87,7 +87,7 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
             be created by <br />
             <MultiLineProperty margin="0.75rem auto">
               grid-template-areas: <br />
-              <div style={{ textIndent: "1em" }}>"top ."</div>
+              <div style={{ textIndent: "1em" }}>"top . ."</div>
               <div style={{ textIndent: "1em" }}>"middle" "middle ."</div>
               <div style={{ textIndent: "1em" }}>
                 "bottom" "bottom" "bottom";

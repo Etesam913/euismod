@@ -54,8 +54,9 @@ function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
             Info:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">
-            When creating a grid you must first set the display property to
-            grid. To create 3 columns of width 150 pixels each, you would set
+            When creating a grid you must first set{" "}
+            <Property>display: grid</Property>. To create 3 columns of width 150
+            pixels each, you would set
             <Property>grid-template-columns: 150px 150px 150px</Property>.
           </Paragraph>
           <Header2 margin="2.5rem 0 0.75rem" responsive>

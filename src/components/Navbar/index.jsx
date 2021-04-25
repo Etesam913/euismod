@@ -52,13 +52,16 @@ function Navbar() {
       </Link>
       {size.width <= 768 ? (
         <>
-          <Hamburger
-            height="3px"
-            width="24px"
-            stateChange={showSidebar}
-            setStateChange={setShowSidebar}
-            useCase="home"
-          />
+          <HamburgerWrapper aria-label="navigation-bar">
+            <Hamburger
+              height="3px"
+              width="24px"
+              stateChange={showSidebar}
+              setStateChange={setShowSidebar}
+              useCase="home"
+            />
+          </HamburgerWrapper>
+
           <AnimatePresence>
             {showSidebar && (
               <Sidebar
@@ -150,6 +153,16 @@ const Sidebar = styled(motion.div)`
   border-bottom-left-radius: 0.5rem;
   padding: 0 0.5rem;
   z-index: 1;
+`;
+
+const HamburgerWrapper = styled.button`
+  border: 0;
+  background: transparent;
+  padding: 0;
+  position: absolute;
+  z-index: 2;
+  right: 1rem;
+  top: 1rem;
 `;
 
 export default withTheme(Navbar);

@@ -10,7 +10,12 @@ export const buttonVariants2 = {
 
 export const alertVariants = {
   init: { opacity: 0, height: 0, padding: "0px 8px", margin: "0px 8px" },
-  anim: { opacity: 1, height: 28, padding: "8px 8px", margin: "8px 8px" },
+  anim: (custom) => ({
+    opacity: 1,
+    height: custom,
+    padding: "8px 8px",
+    margin: "8px 8px",
+  }),
   exit: {
     opacity: 0,
     height: 0,

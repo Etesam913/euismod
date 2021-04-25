@@ -164,7 +164,7 @@ export const ErrorAlert = styled(motion.li)`
   justify-content: space-between;
   align-items: center;
   font-family: ${(props) => props.theme.fonts.primary};
-  overflow-y: auto;
+  overflow-y: ${(props) => (props.overflowY ? props.overflowY : "auto")};
 `;
 
 export const AlertSection = styled.section`

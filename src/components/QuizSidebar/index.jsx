@@ -57,7 +57,10 @@ function QuizSidebar({ setIsSideNavShowing, isSideNavShowing, theme }) {
             }
       }
     >
-      <HamburgerWrapper isSideNavShowing={isSideNavShowing}>
+      <HamburgerWrapper
+        isSideNavShowing={isSideNavShowing}
+        aria-label="sidebar"
+      >
         <Hamburger
           stateChange={isSideNavShowing}
           setStateChange={setIsSideNavShowing}

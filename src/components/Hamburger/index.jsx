@@ -56,7 +56,7 @@ const HamburgerBar = styled.div`
     `}
 `;
 
-const Container = styled.button`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,14 +66,6 @@ const Container = styled.button`
   background: 0;
   border: 0;
   margin: ${(props) => props.margin};
-  ${(props) =>
-    props.useCase === "home" &&
-    css`
-      position: absolute;
-      z-index: 2;
-      right: 1rem;
-      top: 1rem;
-    `};
 `;
 
 export default Hamburger;

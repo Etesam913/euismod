@@ -19,9 +19,10 @@ function Navbar() {
   let history = useHistory();
   const { size } = useContext(AppContext);
 
-  const sidebarData = [
+  const navData = [
     ["Learn", "/learn"],
     ["Quiz", "/quiz"],
+    ["About", "/about"],
   ];
 
   function handleClick(path) {
@@ -29,9 +30,9 @@ function Navbar() {
     setShowSidebar(false);
   }
 
-  const sidebarItems = sidebarData.map((text, index) => {
+  const sidebarItems = navData.map((text, index) => {
     return (
-      <SidebarItem key={"lesson-" + index}>
+      <SidebarItem key={"sidebar-item-" + index}>
         <SidebarItemButton
           selected={location.pathname.includes(text[1])}
           textAlign="right"
@@ -42,6 +43,18 @@ function Navbar() {
           {text[0]}
         </SidebarItemButton>
       </SidebarItem>
+    );
+  });
+
+  const navLinks = navData.map((text, index) => {
+    return (
+      <StyledNavLink
+        to={text[1]}
+        className="no-underline"
+        key={"sidebar-item-" + index}
+      >
+        {text[0]}
+      </StyledNavLink>
     );
   });
 
@@ -79,12 +92,7 @@ function Navbar() {
         </>
       ) : (
         <FlexContainer>
-          <StyledNavLink to="/learn" className="no-underline">
-            Learn
-          </StyledNavLink>
-          <StyledNavLink to="/quiz" className="no-underline">
-            Quiz
-          </StyledNavLink>
+          {navLinks}
           <DarkModeButton />
         </FlexContainer>
       )}

@@ -9,6 +9,7 @@ import { AppContext } from "./Contexts";
 import { useWindowSize } from "./components/CustomHooks";
 import Quiz from "./Pages/Quiz";
 import Error from "./Pages/Error";
+import About from "./Pages/About";
 
 function App() {
   const darkModeInitial =
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path="/quiz">
               <Quiz />
+            </Route>
+            <Route path="/about">
+              <About />
             </Route>
             <Route path="*">
               <Error />

@@ -16,6 +16,7 @@ export const lightTheme = {
     success: "#d4edda",
     successText: "#659671",
     error: "#f8d7da",
+    link: "#1577b3",
   },
   misc: {
     shadow: "6px 6px 54px -20px rgba(0, 0, 0, 0.55)",
@@ -40,6 +41,7 @@ export const darkTheme = {
     success: "#d4edda",
     successText: "#659671",
     error: "#f8d7da",
+    link: "#1577b3",
   },
   misc: {
     shadow: "6px 6px 45px -10px rgba(0, 0, 0, 1)",

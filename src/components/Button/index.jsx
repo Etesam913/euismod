@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 import { buttonVariants2 } from "../../styling/variants";
 import { useHistory } from "react-router-dom";
 
-function StyledButton({ text, to, onClick, margin, children }) {
+function StyledButton({ text, to, onClick, margin, children, type }) {
   const history = useHistory();
 
   function handleClick() {
@@ -25,6 +25,7 @@ function StyledButton({ text, to, onClick, margin, children }) {
       whileHover="hover"
       whileTap="tap"
       margin={margin}
+      type={type}
     >
       {text}
       {children}
@@ -44,6 +45,20 @@ const StyledButtonWrapper = styled(motion.button)`
   background: ${(props) => props.theme.colors.buttonPrimary};
   color: ${(props) => props.theme.colors.primary};
   transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+
+  ${(props) =>
+    props.type === "warning" &&
+    css`
+      background: #ffc107;
+      color: black;
+    `}
+
+  ${(props) =>
+    props.type === "danger" &&
+    css`
+      background: #dc3545;
+      color: white;
+    `}
 `;
 
 export default StyledButton;

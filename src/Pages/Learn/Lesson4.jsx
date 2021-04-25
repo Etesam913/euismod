@@ -14,7 +14,10 @@ import { SandboxContent4 } from "../../components/Sandboxes";
 import StyledInput from "../../components/Input";
 import StyledButton from "../../components/Button";
 import { onLessonSubmit, renderSubmitText } from "./helpers";
-import { checkFourthSolution } from "../../functions/SolutionChecks";
+import {
+  checkFourthSolution,
+  checkThirdSolution,
+} from "../../functions/SolutionChecks";
 
 function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
   const { size } = useContext(AppContext);
@@ -128,6 +131,7 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
               text="Reset to Default"
               margin="0.85rem 0"
               onClick={resetToDefault}
+              type="danger"
             />
           </FlexContainer>
         </GridItem>
@@ -153,23 +157,42 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
         </GridItem>
       </LessonGridType2>
       <FlexContainer
-        flexDirection="column"
-        alignItems="flex-end"
-        padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
+        padding={size.width <= 768 ? "0 1.5rem 0 1.5rem" : "0 .45rem 0 0.45rem"}
       >
-        <StyledButton
-          text="Submit"
-          onClick={() => {
-            onLessonSubmit(
-              lesson4Data,
-              setLesson4Data,
-              checkFourthSolution(lesson4Data),
-              "lesson4Data",
-              setIsSideNavShowing
-            );
-          }}
-        />
-        {renderSubmitText(lesson4Data, setLesson4Data)}
+        <FlexContainer
+          flexDirection="column"
+          alignItems="flex-end"
+          width="100%"
+        >
+          <FlexContainer justifyContent="space-between" width="100%">
+            <StyledButton
+              text="Show Solution"
+              type="warning"
+              onClick={() => {
+                setLesson4Data({
+                  solutionObj: null,
+                  gridGap: "8px 10px",
+                  gridTemplateCols: "1fr 2fr",
+                  gridTemplateRows: "1fr 8fr 1fr",
+                });
+              }}
+            />
+            <StyledButton
+              text="Submit"
+              onClick={() => {
+                onLessonSubmit(
+                  lesson4Data,
+                  setLesson4Data,
+                  checkFourthSolution(lesson4Data),
+                  "lesson4Data",
+                  setIsSideNavShowing
+                );
+              }}
+            />
+          </FlexContainer>
+
+          {renderSubmitText(lesson4Data, setLesson4Data)}
+        </FlexContainer>
       </FlexContainer>
     </div>
   );

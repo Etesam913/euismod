@@ -51,6 +51,7 @@ export function renderSubmitText(lessonData, setLessonData) {
                 initial="init"
                 animate="anim"
                 exit="exit"
+                custom={28}
               >
                 {lessonData.solutionObj.text}
                 <XButton
@@ -79,7 +80,7 @@ export function renderSubmitText(lessonData, setLessonData) {
                   animate="anim"
                   exit="exit"
                   width={size.width <= 768 && "13rem"}
-                  custom={size.width < 768 ? 52 : 28}
+                  custom={size.width < 768 ? 60 : 28}
                   overflowY="hidden"
                 >
                   {text}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export const FlexContainer = styled.div`
   display: flex;
+  width: ${(props) => props.width};
   flex-direction: ${(props) =>
     props.flexDirection ? props.flexDirection : "row"};
   justify-content: ${(props) =>

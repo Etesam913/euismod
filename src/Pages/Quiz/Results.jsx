@@ -177,7 +177,12 @@ function Results({
       <Header2 margin="1rem">
         Your Score is: {calculateScore(checkSolutions())}/5
       </Header2>
-      <Header2 margin="0.65rem">Feedback</Header2>
+      {calculateScore(checkSolutions()) !== 5 ? (
+        <Header2 margin="0.65rem">Feedback</Header2>
+      ) : (
+        <Header2>Congratulations on getting everything correct!</Header2>
+      )}
+
       <FeedbackList>{errorAlerts}</FeedbackList>
     </Container>
   );

@@ -12,7 +12,6 @@ import Error from "../Error";
 
 function Learn() {
   const [isSideNavShowing, setIsSideNavShowing] = useState(false);
-  const [solutionObj3, setSolutionObj3] = useState(null);
   const [lesson1Data, setLesson1Data] = useState({
     solutionObj: null,
     display: "",

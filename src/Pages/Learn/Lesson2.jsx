@@ -14,7 +14,10 @@ import StyledInput from "../../components/Input";
 import { AppContext } from "../../Contexts";
 import StyledButton from "../../components/Button";
 import { onLessonSubmit, renderSubmitText } from "./helpers";
-import { checkSecondSolution } from "../../functions/SolutionChecks";
+import {
+  checkFirstSolution,
+  checkSecondSolution,
+} from "../../functions/SolutionChecks";
 
 function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
   const { size } = useContext(AppContext);
@@ -107,23 +110,41 @@ function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
         </GridItem>
       </LessonGrid>
       <FlexContainer
-        flexDirection="column"
-        alignItems="flex-end"
-        padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
+        padding={size.width <= 768 ? "0 1.5rem 0 1.5rem" : "0 .45rem 0 0.45rem"}
       >
-        <StyledButton
-          text="Submit"
-          onClick={() => {
-            onLessonSubmit(
-              lesson2Data,
-              setLesson2Data,
-              checkSecondSolution(lesson2Data),
-              "lesson2Data",
-              setIsSideNavShowing
-            );
-          }}
-        />
-        {renderSubmitText(lesson2Data, setLesson2Data)}
+        <FlexContainer
+          flexDirection="column"
+          alignItems="flex-end"
+          width="100%"
+        >
+          <FlexContainer justifyContent="space-between" width="100%">
+            <StyledButton
+              text="Show Solution"
+              type="warning"
+              onClick={() =>
+                setLesson2Data({
+                  solutionObj: null,
+                  justifySelf: "start",
+                  alignSelf: "end",
+                })
+              }
+            />
+            <StyledButton
+              text="Submit"
+              onClick={() => {
+                onLessonSubmit(
+                  lesson2Data,
+                  setLesson2Data,
+                  checkSecondSolution(lesson2Data),
+                  "lesson2Data",
+                  setIsSideNavShowing
+                );
+              }}
+            />
+          </FlexContainer>
+
+          {renderSubmitText(lesson2Data, setLesson2Data)}
+        </FlexContainer>
       </FlexContainer>
     </div>
   );

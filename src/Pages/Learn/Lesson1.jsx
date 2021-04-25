@@ -115,23 +115,42 @@ function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
         </GridItem>
       </LessonGrid>
       <FlexContainer
-        flexDirection="column"
-        alignItems="flex-end"
-        padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
+        padding={size.width <= 768 ? "0 1.5rem 0 1.5rem" : "0 .45rem 0 0.45rem"}
       >
-        <StyledButton
-          text="Submit"
-          onClick={() => {
-            onLessonSubmit(
-              lesson1Data,
-              setLesson1Data,
-              checkFirstSolution(lesson1Data),
-              "lesson1Data",
-              setIsSideNavShowing
-            );
-          }}
-        />
-        {renderSubmitText(lesson1Data, setLesson1Data)}
+        <FlexContainer
+          flexDirection="column"
+          alignItems="flex-end"
+          width="100%"
+        >
+          <FlexContainer justifyContent="space-between" width="100%">
+            <StyledButton
+              text="Show Solution"
+              type="warning"
+              onClick={() => {
+                setLesson1Data({
+                  solutionObj: null,
+                  display: "grid",
+                  gridTemplateCols: "50% 50%",
+                  gridTemplateRows: "133px 133px 133px",
+                });
+              }}
+            />
+            <StyledButton
+              text="Submit"
+              onClick={() => {
+                onLessonSubmit(
+                  lesson1Data,
+                  setLesson1Data,
+                  checkFirstSolution(lesson1Data),
+                  "lesson1Data",
+                  setIsSideNavShowing
+                );
+              }}
+            />
+          </FlexContainer>
+
+          {renderSubmitText(lesson1Data, setLesson1Data)}
+        </FlexContainer>
       </FlexContainer>
     </div>
   );

@@ -15,7 +15,10 @@ import StyledInput from "../../components/Input";
 import { AppContext } from "../../Contexts";
 import { SandboxContent3 } from "../../components/Sandboxes";
 import StyledButton from "../../components/Button";
-import { checkThirdSolution } from "../../functions/SolutionChecks";
+import {
+  checkSecondSolution,
+  checkThirdSolution,
+} from "../../functions/SolutionChecks";
 import { onLessonSubmit, renderSubmitText } from "./helpers";
 
 function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
@@ -179,23 +182,46 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
         </GridItem>
       </LessonGridType2>
       <FlexContainer
-        flexDirection="column"
-        alignItems="flex-end"
-        padding={size.width <= 768 ? "0 1.5rem 0 0" : "0 .45rem 0 0"}
+        padding={size.width <= 768 ? "0 1.5rem 0 1.5rem" : "0 .45rem 0 0.45rem"}
       >
-        <StyledButton
-          text="Submit"
-          onClick={() => {
-            onLessonSubmit(
-              lesson3Data,
-              setLesson3Data,
-              checkThirdSolution(lesson3Data),
-              "lesson3Data",
-              setIsSideNavShowing
-            );
-          }}
-        />
-        {renderSubmitText(lesson3Data, setLesson3Data)}
+        <FlexContainer
+          flexDirection="column"
+          alignItems="flex-end"
+          width="100%"
+        >
+          <FlexContainer justifyContent="space-between" width="100%">
+            <StyledButton
+              text="Show Solution"
+              type="warning"
+              onClick={() => {
+                setLesson3Data({
+                  solutionObj: null,
+                  gridTemplateArea1: "h h h",
+                  gridTemplateArea2: "s m m",
+                  gridTemplateArea3: "f f f",
+                  headerGridArea: "h",
+                  sidebarGridArea: "s",
+                  mainContentGridArea: "m",
+                  footerGridArea: "f",
+                });
+              }}
+            />
+            <StyledButton
+              text="Submit"
+              onClick={() => {
+                onLessonSubmit(
+                  lesson3Data,
+                  setLesson3Data,
+                  checkThirdSolution(lesson3Data),
+                  "lesson3Data",
+                  setIsSideNavShowing
+                );
+              }}
+            />
+          </FlexContainer>
+
+          {renderSubmitText(lesson3Data, setLesson3Data)}
+        </FlexContainer>
       </FlexContainer>
     </div>
   );

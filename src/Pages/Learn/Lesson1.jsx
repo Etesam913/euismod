@@ -63,7 +63,7 @@ function Lesson1({ setIsSideNavShowing, lesson1Data, setLesson1Data }) {
             Task:
           </Header2>
           <Paragraph margin="0" responsive fontSize="1.1em">
-            Create a 3x2 grid where each row has a height of 133 pixels and each
+            Create a 2x3 grid where each row has a height of 133 pixels and each
             column has a width of 50%.
           </Paragraph>
         </GridItem>

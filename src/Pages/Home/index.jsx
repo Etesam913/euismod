@@ -6,7 +6,7 @@ import StyledButton from "../../components/Button";
 import { pageVariants } from "../../styling/variants";
 import { AppContext } from "../../Contexts";
 import lightDisplay from "../../media/lightmode-display.mov";
-import darkDisplay from "../../media/darkmode-dislay.mov";
+import darkDisplay from "../../media/darkmode-display.mov";
 import QuizTemplate from "../Quiz/QuizTemplate";
 
 function Home() {
@@ -68,7 +68,7 @@ function Home() {
   );
 }
 
-const Container = styled(motion.div)`
+const Container = styled(motion.section)`
   padding: 2.5rem 0;
   transition: padding 300ms ease-in-out;
   display: grid;

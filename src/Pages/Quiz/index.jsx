@@ -112,7 +112,7 @@ function Quiz() {
           <QuizTemplate
             index={2}
             imgSrc="https://etesam.nyc3.digitaloceanspaces.com/Euismod/Question_2.png"
-            questionText="Recreate the 3x5 grid above using the same area names."
+            questionText="Recreate the 5x3 grid above using the same area names."
             previousQuestion="/quiz/1"
             nextQuestion="/quiz/3"
             imgAlt="Quiz 2 Diagram"

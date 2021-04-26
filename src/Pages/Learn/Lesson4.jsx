@@ -141,16 +141,16 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
           <CodeContainer>
             <CodeLine>&#60;div class="container"&#62;</CodeLine>
             <CodeLine textIndent="1em">
-              &#60;div class"header"&#62; Header &#60;/div&#62;
+              &#60;div class="header"&#62; Header &#60;/div&#62;
             </CodeLine>
             <CodeLine textIndent="1em">
-              &#60;div class"sidebar"&#62; Sidebar &#60;/div&#62;
+              &#60;div class="sidebar"&#62; Sidebar &#60;/div&#62;
             </CodeLine>
             <CodeLine textIndent="1em">
-              &#60;div class"main-content"&#62; Main Content &#60;/div&#62;
+              &#60;div class="main-content"&#62; Main Content &#60;/div&#62;
             </CodeLine>
             <CodeLine textIndent="1em">
-              &#60;div class"footer"&#62; Footer &#60;/div&#62;
+              &#60;div class="footer"&#62; Footer &#60;/div&#62;
             </CodeLine>
             <CodeLine>&#60;/div&#62;</CodeLine>
           </CodeContainer>

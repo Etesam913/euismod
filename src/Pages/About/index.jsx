@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Header1, Paragraph } from "../../styling/Headers";
+import { pageVariants } from "../../styling/variants";
 
 function About() {
   return (
-    <Container>
+    <Container variants={pageVariants} initial="init" animate="anim">
       <Header1>About</Header1>
       <Paragraph fontSize="1.15em">
         The point of this website is to help people learn CSS grid in a

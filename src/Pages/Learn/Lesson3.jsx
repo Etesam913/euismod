@@ -96,8 +96,8 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
                 "bottom" "bottom" "bottom";
               </div>
             </MultiLineProperty>
-            Then there will have to be 3 HTML tags with classes that have one of
-            the{" "}
+            where a "." represents an empty grid area. Then there will have to
+            be 3 HTML tags with classes that have one of the{" "}
             <Property margin="0.2rem 0.35rem 0.2rem 0">grid-area: top</Property>
             ,<Property>grid-area: middle</Property>, and
             <Property>grid-area: bottom</Property> properties respectively.
@@ -165,16 +165,16 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
           <CodeContainer>
             <CodeLine>&#60;div class="container"&#62;</CodeLine>
             <CodeLine textIndent="1em">
-              &#60;div class"header"&#62; Header &#60;/div&#62;
+              &#60;div class="header"&#62; Header &#60;/div&#62;
             </CodeLine>
             <CodeLine textIndent="1em">
-              &#60;div class"sidebar"&#62; Sidebar &#60;/div&#62;
+              &#60;div class="sidebar"&#62; Sidebar &#60;/div&#62;
             </CodeLine>
             <CodeLine textIndent="1em">
-              &#60;div class"main-content"&#62; Main Content &#60;/div&#62;
+              &#60;div class="main-content"&#62; Main Content &#60;/div&#62;
             </CodeLine>
             <CodeLine textIndent="1em">
-              &#60;div class"footer"&#62; Footer &#60;/div&#62;
+              &#60;div class="footer"&#62; Footer &#60;/div&#62;
             </CodeLine>
 
             <CodeLine>&#60;/div&#62;</CodeLine>

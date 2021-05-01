@@ -9,7 +9,7 @@ function About() {
     <Container variants={pageVariants} initial="init" animate="anim">
       <Header1>About</Header1>
       <Paragraph fontSize="1.15em">
-        The point of this website is to help people learn CSS grid in a
+        The point of this website is to help people learn CSS grid in an
         interactive fashion.
       </Paragraph>
       <Paragraph fontSize="1.15em">

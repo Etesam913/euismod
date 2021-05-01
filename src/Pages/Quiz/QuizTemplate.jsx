@@ -109,21 +109,13 @@ function QuizTemplate({
       <FlexContainer>
         {previousQuestion && (
           <StyledButton to={previousQuestion}>
-            <LeftArrow
-              height="24px"
-              width="24px"
-              fill={isDarkMode ? "white" : "black"}
-            />
+            Previous Question
           </StyledButton>
         )}
 
         {nextQuestion && (
           <StyledButton to={nextQuestion}>
-            <RightArrow
-              height="24px"
-              width="24px"
-              fill={isDarkMode ? "white" : "black"}
-            />
+            Next Question
           </StyledButton>
         )}
       </FlexContainer>

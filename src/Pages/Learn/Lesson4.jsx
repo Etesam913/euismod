@@ -113,6 +113,7 @@ function Lesson4({ setIsSideNavShowing, lesson4Data, setLesson4Data }) {
                 setStateToUpdate={setLesson4Data}
                 property="gridTemplateCols"
               />
+              ;
             </CodeLine>
             <CodeLine textIndent="1em">
               grid-template-rows:{" "}

@@ -153,7 +153,7 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
                 setStateToUpdate={setLesson3Data}
                 property="gridTemplateArea3"
               />
-              "
+              ";
             </CodeLine>
             <CodeLine>&#125;</CodeLine>
 

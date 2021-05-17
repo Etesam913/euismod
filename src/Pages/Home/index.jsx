@@ -17,7 +17,7 @@ function Home() {
     "A grid with 2 columns of 200px width each and 3 rows with 300 px height each.",
     "A grid with 2 columns of 400px and 300px width and 3 rows with 200px, 120px, and 250px width.",
     "A flexbox layout.",
-    "A grid with 3 columns of 200px, 120px, and 250px width and 2 rows of 400px and 300px width.",
+    "A grid with 3 columns of 200px, 120px, and 250px width and 2 rows of 400px and 300px height.",
   ];
 
   return (

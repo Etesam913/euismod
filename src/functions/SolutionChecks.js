@@ -6,13 +6,21 @@ export function checkFirstSolution(lesson1Data) {
   const sanitizedRowText = lesson1Data.gridTemplateRows.trim().toLowerCase();
 
   const displayTextSolution = "grid";
-  const columnsTextSolution = "50% 50%";
-  const rowsTextSolution = "133px 133px 133px";
+  const columnsTextSolution1 = "50% 50%";
+  const columnsTextSolution2 = "repeat(2, 50%)";
+  const columnsTextSolution3 = "repeat(2,50%)";
+  const rowsTextSolution1 = "133px 133px 133px";
+  const rowsTextSolution2 = "repeat(3, 133px)";
+  const rowsTextSolution3 = "repeat(3,133px)";
 
   if (
     sanitizedDisplayText === displayTextSolution &&
-    sanitizedColumnsText === columnsTextSolution &&
-    sanitizedRowText === rowsTextSolution
+    (sanitizedColumnsText === columnsTextSolution1 ||
+      sanitizedColumnsText === columnsTextSolution2 ||
+      sanitizedColumnsText === columnsTextSolution3) &&
+    (sanitizedRowText === rowsTextSolution1 ||
+      sanitizedRowText === rowsTextSolution2 ||
+      sanitizedRowText === rowsTextSolution3)
   ) {
     return { isSolved: true, text: "Correct" };
   } else {
@@ -21,11 +29,19 @@ export function checkFirstSolution(lesson1Data) {
       /*displayRef.current.focus();*/
       errorTexts[0] = "The display property is incorrect";
     }
-    if (sanitizedColumnsText !== columnsTextSolution) {
+    if (
+      sanitizedColumnsText !== columnsTextSolution1 &&
+      sanitizedColumnsText !== columnsTextSolution2 &&
+      sanitizedColumnsText !== columnsTextSolution3
+    ) {
       /*columnsRef.current.focus();*/
       errorTexts[1] = "The grid-template-columns property is incorrect";
     }
-    if (sanitizedRowText !== rowsTextSolution) {
+    if (
+      sanitizedRowText !== rowsTextSolution1 &&
+      sanitizedRowText !== rowsTextSolution2 &&
+      sanitizedRowText !== rowsTextSolution3
+    ) {
       /*rowsRef.current.focus();*/
       errorTexts[2] = "The grid-template-rows property is incorrect";
     }

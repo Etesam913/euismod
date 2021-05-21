@@ -58,7 +58,7 @@ function Lesson2({ setIsSideNavShowing, lesson2Data, setLesson2Data }) {
             A grid item can be aligned horizontally by using the
             <Property>justify-self</Property> property. It can be aligned
             vertically by using the align-self property. For instance, to align
-            an grid item to the center left of its grid container you would set{" "}
+            a grid item to the center left of its grid container you would set{" "}
             <Property>justify-self: start</Property> and
             <Property>align-self: center</Property>.
           </Paragraph>

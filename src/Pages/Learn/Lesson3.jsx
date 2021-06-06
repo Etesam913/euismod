@@ -196,9 +196,9 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
               onClick={() => {
                 setLesson3Data({
                   solutionObj: null,
-                  gridTemplateArea1: "h h h",
-                  gridTemplateArea2: "s m m",
-                  gridTemplateArea3: "f f f",
+                  gridTemplateArea1: "h h",
+                  gridTemplateArea2: "s m",
+                  gridTemplateArea3: "f f",
                   headerGridArea: "h",
                   sidebarGridArea: "s",
                   mainContentGridArea: "m",

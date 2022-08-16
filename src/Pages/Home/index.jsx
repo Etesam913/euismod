@@ -33,7 +33,7 @@ function Home() {
       <GridItem2>
         <HomepageVideo
           src={isDarkMode ? darkDisplay : lightDisplay}
-          autoplay
+          autoPlay
           loop
           muted
           playsInline

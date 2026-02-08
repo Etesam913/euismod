@@ -68,7 +68,6 @@ function QuizSidebar({ setIsSideNavShowing, isSideNavShowing, theme }) {
           width="24px"
         />
       </HamburgerWrapper>
-      <AnimatePresence>
         {isSideNavShowing && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <Header1 margin={"0"} padding={"0.5rem .75rem 0"}>
@@ -77,7 +76,6 @@ function QuizSidebar({ setIsSideNavShowing, isSideNavShowing, theme }) {
             <SidebarList>{sidebarItems}</SidebarList>
           </motion.div>
         )}
-      </AnimatePresence>
     </SidebarContainer>
   );
 }

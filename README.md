@@ -2,7 +2,7 @@
 <h3 align="center">Anyone can learn CSS Grid.</h3>
 
 <div align="center">
-    <img alt="Sandbox Example" src="https://etesam.nyc3.digitaloceanspaces.com/Euismod/lightmode-display.gif" />
+    <img alt="Sandbox Example" src="https://storage.googleapis.com/etesam-public/Euismod/lightmode-display.gif" />
 </div>
 
 <h2>📚 Learn </h2>
@@ -15,4 +15,3 @@
 
 <h2>🤔 Quiz </h2>
 <p>Take a series of 5 questions to test your knowledge on the above subjects.</p>
-

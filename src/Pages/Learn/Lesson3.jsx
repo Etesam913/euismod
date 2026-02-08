@@ -113,7 +113,7 @@ function Lesson3({ setIsSideNavShowing, lesson3Data, setLesson3Data }) {
             margin="2rem 0 0"
             maxWidth="40rem"
             alt="image of task goal"
-            src="https://etesam.nyc3.digitaloceanspaces.com/Euismod/Task3_Guide.png"
+            src="https://storage.googleapis.com/etesam-public/Euismod/Task3_Guide.png"
           />
         </GridItem>
         <GridItem gridArea="css">

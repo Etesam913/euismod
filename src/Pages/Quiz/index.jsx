@@ -111,7 +111,7 @@ function Quiz() {
         <Route exact path="/quiz/2">
           <QuizTemplate
             index={2}
-            imgSrc="https://etesam.nyc3.digitaloceanspaces.com/Euismod/Question_2.png"
+            imgSrc="https://storage.googleapis.com/etesam-public/Euismod/Question_2.png"
             questionText="Recreate the 5x3 grid above using the same area names."
             previousQuestion="/quiz/1"
             nextQuestion="/quiz/3"

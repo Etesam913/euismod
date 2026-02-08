@@ -99,7 +99,7 @@ function LessonsSidebar({
       </HamburgerWrapper>
       <AnimatePresence>
         {isSideNavShowing && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{opacity:0}} transition={{duration:0.2}}>
             <Header1 margin={"0"} padding={"0rem .75rem"}>
               Lessons
             </Header1>

@@ -37,8 +37,8 @@ function QuizTemplate({
   const [sampleSolution, setSampleSolution] = useState(-5);
   let code = null;
   if (codeLines) {
-    code = codeLines.map((obj) => {
-      return <CodeLine textIndent={obj.indent + "em"}>{obj.text}</CodeLine>;
+    code = codeLines.map((obj, idx) => {
+      return <CodeLine key={`code-line-${idx}`} textIndent={obj.indent + "em"}>{obj.text}</CodeLine>;
     });
   }
 
